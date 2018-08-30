@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7.3 Hadoop and Spark Connector &mdash; GridDB-Docs  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7.4 Grafana Connector*" href="7-4_grafana-connector.html" />
+    <link rel="prev" title="7.2 ODBC Connector" href="7-2_odbc-connector.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <img src="_static/logo.png"><a href="index.html"> GridDB-Docs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GridDB-Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>7.3 Hadoop and Spark Connector</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/7-3_hadoop-and-spark-connector.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Table of Contents</p>
+<div class="section" id="hadoop-and-spark-connector">
+<span id="hadoop-and-spark-connector"></span><h1>7.3 Hadoop and Spark Connector<a class="headerlink" href="#hadoop-and-spark-connector" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The Hadoop MapReduce GridDB connector is a Java library for using GridDB as an input source and output destination for Hadoop MapReduce jobs. This library allows the GridDB performance to be used directly by MapReduce jobs through in-memory processing.</p>
+<div class="section" id="operating-environment">
+<span id="operating-environment"></span><h3>Operating Environment<a class="headerlink" href="#operating-environment" title="Permalink to this headline">¶</a></h3>
+<p>Building of the library and execution of the sample programs are checked in the environment below.</p>
+<p>OS:         CentOS6.7(x64)
+Java:       JDK 1.8.0_60
+Maven:      apache-maven-3.3.9
+Hadoop:     CDH5.7.1(YARN)</p>
+</div>
+</div>
+<div class="section" id="quickstart">
+<span id="quickstart"></span><h2>QuickStart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="preparations">
+<span id="preparations"></span><h3>Preparations<a class="headerlink" href="#preparations" title="Permalink to this headline">¶</a></h3>
+<p>Build a GridDB Java client and place the created gridstore.jar under the lib directory.</p>
+</div>
+<div class="section" id="build">
+<span id="build"></span><h3>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h3>
+<p>Run the mvn command like the following: $ mvn package and create the following jar files.</p>
+<p>gs-hadoop-mapreduce-client/target/gs-hadoop-maprduce-client-1.0.0.jar
+gs-hadoop-mapreduce-examples/target/gs-hadoop-maprduce-examples-1.0.0.jar</p>
+</div>
+<div class="section" id="running-the-sample-program">
+<span id="running-the-sample-program"></span><h3>Running The Sample Program<a class="headerlink" href="#running-the-sample-program" title="Permalink to this headline">¶</a></h3>
+<p>An operating example to run the WordCount program using GridDB is shown below. GridDB and Hadoop (HDFS and YARN) need to be started in advance. Run the following in an environment in which these and hadoop commands can be used.</p>
+<p>$ cd gs-hadoop-mapreduce-examples
+$ ./exec-example.sh &gt; –job wordcount &gt; –define notificationAddress= &gt; –define notificationPort= &gt; –define clusterName= &gt; –define user= &gt; –define password= &gt; pom.xml 2&gt; /dev/null | sort -r</p>
+<p>5        5
+3        org.apache.hadoop
+3        com.toshiba.mwcloud.gs.hadoop
+…</p>
+<p>The first number is the number of occurrences while the right side is a word in the file (pom.xml) specified as a processing target. See gs-hadoop-mapreduce-examples/README.md for details about the sample programs.</p>
+</div>
+</div>
+<div class="section" id="spark-connector">
+<span id="spark-connector"></span><h2>Spark Connector<a class="headerlink" href="#spark-connector" title="Permalink to this headline">¶</a></h2>
+<p>The Spark Connector can be downloaded from our <a class="reference external" href="/en/downloads/">downloads page</a>.</p>
+<p>Full list of dependencies:</p>
+<ul class="simple">
+<li><strong>OS:</strong> CentOS6.7(x64)</li>
+<li><strong>Maven:</strong> apache-maven-3.3.9</li>
+<li><strong>Java:</strong> JDK 1.8.0_101</li>
+<li><strong>Apache Hadoop:</strong> Version 2.6.5</li>
+<li><strong>Apache Spark:</strong> Version 2.1.0</li>
+<li><strong>Scala:</strong> Version 2.11.8</li>
+<li><strong>GridDB server and Java client:</strong> 3.0 CE</li>
+<li><strong>GridDB connector for Apache Hadoop MapReduce:</strong> 1.0</li>
+</ul>
+<p>If beginning from scratch, I recommend ensuring all of these items are installed and configured. This tutorial also assumes that your Hadoop, Spark, and Connector are all installed in the <code class="docutils literal notranslate"><span class="pre">[INSTALL_FOLDER]</span></code> directory (I used <code class="docutils literal notranslate"><span class="pre">/opt</span></code>).</p>
+</div>
+<div class="section" id="installation">
+<span id="installation"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Once verified, please proceed with the steps outlined below:</p>
+<p>We start this process off with adding the following environment variables to <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code></p>
+<p>$ nano ~/.bashrc</p>
+<p>export JAVA_HOME=/usr/lib/jvm/[JDK folder]
+export HADOOP_HOME=[INSTALL_FOLDER]/hadoop-2.6.5
+export SPARK_HOME=[INSTALL_FOLDER]/spark-2.1.0-bin-hadoop2.6
+export GRIDDB_SPARK=[INSTALL_FOLDER]/griddb_spark
+export GRIDDB_SPARK_PROPERTIES=$GRIDDB_SPARK/gd-config.xml</p>
+<p>export PATH=$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$SPARK_HOME/bin:$PATH</p>
+<p>export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export HADOOP_OPTS=”$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native”</p>
+<p>$ source ~/.bashrc</p>
+<p>Once those are added, modify the <code class="docutils literal notranslate"><span class="pre">gd-config.xml</span></code> file.</p>
+<p>$ cd $GRIDDB_SPARK
+$ nano gd-config.xml</p>
+ <!\-\- GridDB properties -->
+ <property>
+     <name>gs.user </name>
+     <value>\[GridDB user\] </value>
+ </property>
+ <property>
+     <name>gs.password </name>
+     <value>\[GridDB password\] </value>
+ </property>
+ <property>
+     <name>gs.cluster.name </name>
+     <value>\[GridDB cluster name\] </value>
+ </property>
+  <!\-\- Define address and port for multicast method, leave it blank if using other method -->
+ <property>
+     <name>gs.notification.address </name>
+     <value>\[GridDB notification address(default is 239.0.0.1)\] </value>
+ </property>
+ <property>
+     <name>gs.notification.port </name>
+     <value>\[GridDB notification port(default is 31999)\] </value>
+ </property><div class="section" id="build-the-connector-an-example">
+<span id="build-the-connector-an-example"></span><h3>Build The Connector + An Example<a class="headerlink" href="#build-the-connector-an-example" title="Permalink to this headline">¶</a></h3>
+<p>Next up, refer to this <a class="reference external" href="https://github.com/griddb/griddb_spark/blob/master/Configuration.md">configuration</a> page for a quick definition of each of the GridDB properties.</p>
+<p>To build a GridDB Java client and a GridDB connector for Hadoop MapReduce, place the following files under the <code class="docutils literal notranslate"><span class="pre">$GRIDDB_SPARK/gs-spark-datasource/lib</span></code> directory.</p>
+<p>gridstore.jar
+gs-hadoop-mapreduce-client-1.0.0.jar</p>
+<p>(Note: these <code class="docutils literal notranslate"><span class="pre">.jar</span></code> files should have been created when you built your GridDB client and the GridDB Mapreduce Connector. You can find <code class="docutils literal notranslate"><span class="pre">gridstore.jar</span></code> in <code class="docutils literal notranslate"><span class="pre">/usr/griddb-X.X.X/bin</span></code>, for example)</p>
+<p>Once that’s complete, add the SPARK_CLASSPATH to “spark-env.sh”</p>
+<p>$ cd $SPARK_HOME
+$ nano conf/spark-env.sh</p>
+<p>SPARK_CLASSPATH=.:$GRIDDB_SPARK/gs-spark-datasource/target/gs-spark-datasource.jar:$GRIDDB_SPARK/gs-spark-datasource/lib/gridstore.jar:$GRIDDB_SPARK/gs-spark-datasource/lib/gs-hadoop-mapreduce-client-1.0.0.jar</p>
+<p>Now that we’ve got the prerequisites out of the way, we can continue on to build the connector and an example to ensure everything is working properly.</p>
+<p>To begin, we will need to edit our <code class="docutils literal notranslate"><span class="pre">Init.java</span></code> file to add the correct authentication credientials.</p>
+<p>$ cd $SPARK_HOME/gs-spark-datasource-example/src/
+$ nano Init.java</p>
+<p>And add in your credentials:</p>
+<p>Properties props = new Properties();
+props.setProperty(“notificationAddress”, “239.0.0.1”);
+props.setProperty(“notificationPort”, “31999”);
+props.setProperty(“clusterName”, “Spark-Cluster”);
+props.setProperty(“user”, “admin”);
+props.setProperty(“password”, “hunter2”);
+GridStore store = GridStoreFactory.getInstance().getGridStore(props);</p>
+<p>And now we can run the mvn command like so:</p>
+<p>$ cd $GRIDDB_SPARK
+$ mvn package</p>
+<p>which will create the following <code class="docutils literal notranslate"><span class="pre">.jar</span></code> files:</p>
+<p>gs-spark-datasource/target/gs-spark-datasource.jar
+gs-spark-datasource-example/target/example.jar</p>
+<p>Now proceed with running the example program. First start your GridDB cluster. And then:</p>
+<p>Put some data into the server with the GridDB Java client</p>
+<p>$ cd $GRIDDB_SPARK
+$ java -cp ./gs-spark-datasource-example/target/example.jar:gs-spark-datasource/lib/gridstore.jar Init</p>
+</div>
+</div>
+<div class="section" id="queries">
+<span id="queries"></span><h2>Queries<a class="headerlink" href="#queries" title="Permalink to this headline">¶</a></h2>
+<p>Now you can run queries with your GridDB connector for Spark:</p>
+<p>$ spark-submit –class Query ./gs-spark-datasource-example/target/example.jar</p>
+<p>We will go over some brief examples of Apache Spark’s API. Examples are pulled from the <a class="reference external" href="https://spark.apache.org/examples.html">official page</a>.</p>
+<p>Spark’s defining feature is its RDD (Resilient Distributed Datasets) and the accompanying API. RDDs are immutable data structures that can be run in parallel on commodity hardware – essentially it is exactly what allows Spark to run its queries in parallel and outperform MapReduce. Here’s a very basic example; it will showcase how to build an RDD of the numbers 1 - 5</p>
+<p>List data = Arrays.asList(1, 2, 3, 4, 5);
+JavaRDD distData = sc.parallelize(data);</p>
+<p>With this, you can now run that small array in parallel. Pretty cool, huh?</p>
+<div class="section" id="command-line-query">
+<span id="command-line-query"></span><h3>Command Line Query<a class="headerlink" href="#command-line-query" title="Permalink to this headline">¶</a></h3>
+<p>A “must-run” query in the Big Data scene is running a word count, so here’s what it looks like on Spark. For this example, let’s try using the shell (example taken from: <a class="reference external" href="https://www.dezyre.com/apache-spark-tutorial/spark-tutorial">here</a>). To run this, please be sure you place a text file <code class="docutils literal notranslate"><span class="pre">input.txt</span></code> into your <code class="docutils literal notranslate"><span class="pre">$GRIDDB_SPARK</span></code> directory. Fill it with whatever text you like; I used the opening chapter of <em>Moby Dick</em> . Now fire up the spark shell:</p>
+<p>$ spark-shell</p>
+<p><a class="reference external" href="https://griddb.net/en/wp-content/uploads/2017/08/Screenshot_7.png"><img alt="" src="https://griddb.net/en/wp-content/uploads/2017/08/Screenshot_7.png" /></a></p>
+<p>scala&gt; val inputfile = sc.textFile (“input.txt”)
+inputfile: org.apache.spark.rdd.RDD[String] = input.txt MapPartitionsRDD[1] at textFile at :24</p>
+<p>scala&gt; val counts = inputfile.flatMap (line =&gt; line.split (” ” )).map (word =&gt; (word, 1)).reduceByKey(<em>+</em>)
+counts: org.apache.spark.rdd.RDD[(String, Int)] = ShuffledRDD[4] at reduceByKey at :26</p>
+<p>scala&gt; counts.saveAsTextFile (“output”)</p>
+<p>And now if you head back into <code class="docutils literal notranslate"><span class="pre">$GRIDDB_SPARK</span></code>, you should find the <code class="docutils literal notranslate"><span class="pre">output</span></code> dir. Now just run a simple <code class="docutils literal notranslate"><span class="pre">cat</span></code> on the file in there to retrieve the word count results of your text file.</p>
+<p>$ cd $GRIDDB_SPARK
+$ cd output
+$ cat part-00000
+(Ah!,1)
+(Let,1)
+(dreamiest,,1)
+(dotings,1)
+(cooled,1)
+(spar,1)
+(previous,2)
+(street,,1)
+(old,6)
+(left,,1)
+(order,2)
+(told,1)
+(marvellous,,1)
+(Now,,1)
+(virtue,1)
+(Take,1)</p>
+</div>
+<div class="section" id="ts-query">
+<span id="ts-query"></span><h3>TS Query<a class="headerlink" href="#ts-query" title="Permalink to this headline">¶</a></h3>
+<p>Of course, Spark is also capable of handling much more complex queries. Because GridDB ideally deals mostly in TimeSeries (TS) data, how about we take a look into a TS query? Here’s a sample query taken from <a class="reference external" href="http://sryza.github.io/spark-timeseries/0.3.0/docs/users.html">here</a>:</p>
+<p>val tsRdd: TimeSeriesRDD = …</p>
+<p>// Find a sub-slice between two dates
+val zone = ZoneId.systemDefault()
+val subslice = tsRdd.slice(
+ZonedDateTime.of(LocalDateTime.parse(“2015-04-10T00:00:00”), zone)
+ZonedDateTime.of(LocalDateTime.parse(“2015-04-14T00:00:00”), zone))</p>
+<p>// Fill in missing values based on linear interpolation
+val filled = subslice.fill(“linear”)</p>
+<p>// Use an AR(1) model to remove serial correlations
+val residuals = filled.mapSeries(series =&gt; ar(series, 1).removeTimeDependentEffects(series))</p>
+</div>
+<div class="section" id="license">
+<span id="license"></span><h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
+<p>The Hadoop MapReduce GridDB connector source license is Apache License, version 2.0.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="7-4_grafana-connector.html" class="btn btn-neutral float-right" title="7.4 Grafana Connector*" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="7-2_odbc-connector.html" class="btn btn-neutral" title="7.2 ODBC Connector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GridDB.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #39A7D1;
+    }
+  </style>
+
+
+</body>
+</html>

@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.9 Sharding &mdash; GridDB-Docs  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4.1 Data Modeling Basics" href="4-1_data-modeling-basics.html" />
+    <link rel="prev" title="3.8 Replication &amp; Distribution" href="3-8_replication-distribution.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <img src="_static/logo.png"><a href="index.html"> GridDB-Docs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GridDB-Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>3.9 Sharding</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/3-9_sharding.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Table of Contents</p>
+<div class="section" id="sharding">
+<span id="sharding"></span><h1>3.9 Sharding<a class="headerlink" href="#sharding" title="Permalink to this headline">¶</a></h1>
+<p>System expansion can be carried out online with a scale-out approach. As a result, a system in operation can be supported without having to stop it as it will support the increasing volume of data as the system grows.</p>
+<p>In the scale-out approach, data is arranged in an appropriate manner according to the load of the system in the nodes built into the system. As GridDB will optimize the load balance, the application administrator does not need to worry about the data arrangement. Operation is also easy because a structure to automate such operations has been built into the system. Sharding is the process of distributing the data amongst many different nodes. With sharding, the a chunk of data may be split amongst 4 different nodes, with each node containing different parts of the whole.</p>
+<div class="section" id="concept-of-griddb-cluster">
+<span id="concept-of-griddb-cluster"></span><h2>3.9.1 Concept of GridDB Cluster<a class="headerlink" href="#concept-of-griddb-cluster" title="Permalink to this headline">¶</a></h2>
+<p>For scalability, most databases are classified as either of two types of organization:</p>
+<p><strong>Master-slave type:</strong> A cluster which consists of a master node – which manages the cluster – and multiple database nodes – which store data. Since the master node is a single point of failure (SPOF), it is necessary to replicate and make redundant the master node in order to ensure the availability of the cluster. Moreover, when the number of database (DB) nodes increase, there is a possibility that the load of the master node can overload, causing system-wide slow down.</p>
+<p><strong>Peer-to-peer type:</strong> All nodes which constitute the DB cluster are homogeneous and can perform the same functions. Since each node operates according to fragmentary node information – when compared with a master-slave type – data reconstruction is hard to optimize. The main issue stemming from this practice is the large overheard between nodes.</p>
+<p>GridDB is a hybrid system of master-slave type and a peer-to-peer type. All nodes which constitute the DB cluster are homogeneous with the same functions.</p>
+<p>When the DB cluster is constructed, the master node is autonomously determined. The other nodes in the cluster are called ‘follower nodes’. If the master node ever gets knocked out or fails, a new master node is determined from the surviving nodes. In order to avoid the split brain problem by network partitioning, the number of nodes which constitutes the DB cluster must be more than a quorum.</p>
+<p>A partition is a logical area which stores containers and it is not directly visible to the user. Although multiple partitions are possible, the number of partitions must equal the amount of nodes within the cluster. All containers belong to either of the partition sets using the hash value to a primary key. One owner node plus zero or more backup nodes exist in each partition. There is also a node called the ‘catch-up node’, which will be promoted to a backup node in the future if needed (this node is essentially the backup to the backup).</p>
+<p>The owner node is the node which can update the containers. A backup node is a node which holds the replica of the container and enables only reference opertation to te container. An allocation table of the node to each partition is called a partition table. A master node distributes this partition table to the follower nodes or client libraries. By referring to this partition table, the owner node and backup node belonging to a certain container can be made known.</p>
+<p>As mentioned above, the role for any given GridDB node is two-tiered.</p>
+<ol class="simple">
+<li>master node / follower node</li>
+<li>owner node / backup node / catch-up node</li>
+</ol>
+</div>
+<div class="section" id="determination-of-a-master-node">
+<span id="determination-of-a-master-node"></span><h2>3.9.2 Determination of a master node<a class="headerlink" href="#determination-of-a-master-node" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Determination procedure of a master node</p>
+<p>In GridDB, a master node is autonomously determined using a bully algorithm. An election message is transmitted and received between nodes. When a certain node receives the message from a node stronger than a self-node, it returns the response – a follow message that follows the opponent, turning that node into a ‘follower node’. Then, the node ends these types of message transmission and reception.</p>
+<p>Finally by repeating this procedure, only one node remains undefeated, and the node is determined as the master node. In this algorithm, the number of times this is repeated until a master node is determined is logN, where N is the number of nodes.</p>
+<p>The master node collects information on all follower nodes by the ‘heartbeat’ of a constant cycle. The communication cost of this ‘heartbeat’ is dependent on the number of follower nodes. Although a heartbeat interval is 5 seconds by default, according to the number of nodes or network traffic, you may adjust accordingly.</p>
+</li>
+<li><p class="first">When a master node goes down</p>
+<p>When the master node of the cluster goes down, a new master node is autonomously determined out of the follower nodes which remained. A cluster configuration is reset when the heartbeat to a master node severs follower nodes. Thereafter, a new master node is determined by the procedure described above.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="determination-of-partition-role">
+<span id="determination-of-partition-role"></span><h2>3.9.3 Determination of partition role<a class="headerlink" href="#determination-of-partition-role" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Owner node and backup node</p>
+<p>The number of backup nodes on a partition can be specified with a parameter called the number of replicas. When backup nodes exist in a partition, replication of updating data in an owner node is carried out immediately to all backup nodes.</p>
+<p>The method of replication can choose either asynchronous mode or semi-synchronous mode. In asynchronous mode, when the contents of updating in an ownder node are transmitted to all backup nodes, update process is completed. In semi-synchronous mode, the contents of updating in an owner node are transmitted to all backup nodes, and after checking the reception response from all backuo nodes, update process is completed. Asynchronus mode is superior in availability.</p>
+<p>Since replication is carried out to all backup nodes, the processing cost is proportional to the number of backup nodes. If a performance of update process without a backup node is set to 100, a performance of update process with a backup node in asynchronous mode is about 70, and a performance of update process with a backup node in semi-synchronous mode is about 50.</p>
+<p>Failover is performed when a node failure is detected by a heartbeat. When a failure node is an owner node of a partition, a master node determines a new owner node from current backup nodes for the parition table. When a failure node is a backup node, the master node separates the backup node from the parititon table, and continues processing.</p>
+<p>The master node newly updates a partition table and distributes it to follower nodes. According to this partition table, synchronus data is transmitted and received between a new owneer node and a new backup node, and it checks that the time stamp of both updating log is in agreement. This processing is called a short-term synchronization.</p>
+<p>Since the updating data in the owner node is reflected one by one by replication to the backup node, the data size which should synchonize in a short-term synchonization is slight, and short-term synchonization usually completes in several seconds.</p>
+</li>
+<li><p class="first">Determination of catch-up node</p>
+<p>A catch-up node is a node to be promoted to a backup node in the future, and it is set up when as follows.</p>
+<ul class="simple">
+<li>The number of backup nodes is insufficient to the number of replicas.</li>
+<li>The owner node and backup node of a partition have deviation between nodes.</li>
+</ul>
+<p>A master node determines a catch-up node to resolve the above case. Then, a data image and an updating log are transmitted to the catch-up node from the owner node. By this, the time stamp of the data which the catch-up node has is brought close to the time stamp which the owner node has.</p>
+<p>A master node performs a short-term synchronization between the owner node and the catch-up node, when the difference of the time stamp of the owner node and the catch-up node becomes within a steady value.</p>
+<p>It takes several hours during the period after starting transmission of data from the owner node to the catch-up node until it is set to the backup node.</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="4-1_data-modeling-basics.html" class="btn btn-neutral float-right" title="4.1 Data Modeling Basics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="3-8_replication-distribution.html" class="btn btn-neutral" title="3.8 Replication &amp; Distribution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GridDB.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #39A7D1;
+    }
+  </style>
+
+
+</body>
+</html>

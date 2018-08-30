@@ -1,0 +1,504 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1.3 Preparation: Environment (server) &mdash; GridDB-Docs  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5.1.4 Preparation: Environment (client)" href="5-1-4_prepare-client.html" />
+    <link rel="prev" title="5.1.2 GridDB Basics" href="5-1-2_griddb-basics.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <img src="_static/logo.png"><a href="index.html"> GridDB-Docs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GridDB-Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5.1.3 Preparation: Environment (server)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/5-1-3_prepare-server.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Table of Contents</p>
+<div class="section" id="preparation-environment-server">
+<span id="preparation-environment-server"></span><h1>5.1.3 Preparation: Environment (server)<a class="headerlink" href="#preparation-environment-server" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This chapter covers setting up a GridDB server to use while running the sample application.</p>
+</div>
+<div class="section" id="components">
+<span id="components"></span><h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<p>The environment will be configured as follows:</p>
+<p><strong>Figure 1 block diagram</strong></p>
+<p><img alt="Figure 1 block diagram" src="_images/machine_daiagram.png" /></p>
+<p><strong>Table 2 middleware version</strong></p>
+<p>middleware</p>
+<p>version</p>
+<p>GridDB Community Edition</p>
+<p>2.8.0</p>
+<p>Docker</p>
+<p>1.12.0</p>
+<p>Docker Compose</p>
+<p>1.8.0</p>
+<p>The environment in which you run GridDB will be built in a container using <a class="reference external" href="https://www.docker.com">Docker</a> but you can apply the same concepts to other VMs or a native OS to suit your environment. We will install Docker to the host machine’s OS (Centos 7), then manually build a single node GridDB server and then a two node GridDB cluster using docker-compose.</p>
+</div>
+<div class="section" id="install-docker">
+<span id="install-docker"></span><h2>Install Docker<a class="headerlink" href="#install-docker" title="Permalink to this headline">¶</a></h2>
+<p>Install Docker:</p>
+<p><strong>List.1 Docker installation of</strong></p>
+<p>$ sudo curl -fsSL https://get.docker.com/ | sh
+$ sudo usermod -aG docker vagrant
+$ sudo systemctl enable docker
+$ sudo systemctl start docker</p>
+<ul class="simple">
+<li>L.1: Download and run the Docker installation script.</li>
+<li>L.2: Create a user who runs Docker.</li>
+<li>L.3: Enable boot time start up of Docker.</li>
+<li>L.4: Start Docker.</li>
+</ul>
+</div>
+<div class="section" id="create-the-docker-container">
+<span id="create-the-docker-container"></span><h2>Create the Docker container<a class="headerlink" href="#create-the-docker-container" title="Permalink to this headline">¶</a></h2>
+<p>These steps create the container where you’ll run GridDB:</p>
+<p><strong>List.2 Docker container creation</strong></p>
+<p>$ sudo docker pull centos: 6.7
+$ sudo docker network create –subnet=192.168.11.0/24 griddb_default
+$ sudo docker run -it –name gsnode1 -h gsnode1 –net=griddb_default –ip=192.168.11.11 -d centos: 6.7</p>
+<ul class="simple">
+<li>L.1: Download the CentOS image.</li>
+<li>L.2: Create a network for the container to run GridDB.</li>
+<li>L.3: Create a container from the CentOS image. This will use the network settings from the previously created network.</li>
+</ul>
+</div>
+<div class="section" id="install-gridddb-in-docker-container">
+<span id="install-gridddb-in-docker-container"></span><h2>Install GriddDB in Docker container.<a class="headerlink" href="#install-gridddb-in-docker-container" title="Permalink to this headline">¶</a></h2>
+<p>With the Docker container configured , you can install and configure GridDB.</p>
+<p><strong>List.3 container login</strong></p>
+<p>$ sudo docker exec -it griddb_griddb1_1 bash</p>
+<p>Line 1: Run a shell on the GridDB container and log in.</p>
+<p><strong>List.4 network settings</strong></p>
+<p># hostname -i
+192.168.11.11
+# cat /etc/sysconfig/network
+NETWORKING=yes
+HOSTNAME=localhost.localdomain
+# vi /etc/sysconfig/network
+HOSTNAME= <strong>192.168.11.11</strong> (to change to 192.168.11.11)</p>
+<ul class="simple">
+<li>L.1-2: Make sure the IP address has been set for the hostname.</li>
+<li>L.6-7: Set the IP address in the HOSTNAME of/etc/sysconfig/network.</li>
+</ul>
+<p><strong>List.5 GridDB installation</strong></p>
+<p># curl -L -O https://github.com/griddb/griddb_nosql/releases/download/v2.8.0/griddb_nosql-2.8.0-1.el6.x86_64.rpm
+# rpm -Uvh griddb_nosql-2.8.0-1.el6.x86_64.rpm</p>
+<ul class="simple">
+<li>L.1: Fetch the GridDB RPM file from Github/</li>
+<li>L.2: Install the RPM.</li>
+</ul>
+<p>Then perform the initial configuration of GridDB.</p>
+<p><strong>List.6 gs_cluster.json</strong></p>
+<p># cat /var/lib/gridstore/conf/gs_cluster.json
+(Snip)
+“Cluster”: {
+“ClusterName”: “”,
+(Snip)
+“LoadbalanceCheckInterval”: “180s”
+(Snip)
+# vi /var/lib/gridstore/conf/gs_cluster.json
+(Snip)
+“Cluster”: {
+“ClusterName”: ” <strong>GSCLUSTER</strong> “, (to set the cluster name clusterName)
+(Snip)
+“LoadbalanceCheckInterval”: “180s”,
+“NotificationMember”: [
+{
+“cluster”: { “address”: “192.168.11.11”, “port”: 10010},
+“cync”: { “address”: “192.168.11.11”, “port”: 10020},
+“system”: { “address”: “192.168.11.11”, “port”: 10040},
+“sransaction”: { “address”: “192.168.11.11”, “port”: 10001},
+“sql”: { “address”: “192.168.11.11”, “port”: 20001}
+}
+]
+(Snip)</p>
+<ul class="simple">
+<li>L.4: The initial clusterName will be empty(“”) and GridDB will fail to start.</li>
+<li>L.9: Set clusterName to <strong>GSCLUSTER</strong>. This setting will be used by applications to connect later.</li>
+<li>L.14-22: Contains address and port information using GridDB’s fixed list format. If you want to configure a cluster of multiple nodes, all nodes information must be listed here.</li>
+</ul>
+<p><strong>List.7 Set default user password</strong></p>
+<p># su - gsadm
+$ gs_passwd admin
+Password: ** admin ** (enter the password)
+Retype password: ** admin ** (and then re-enter the password)</p>
+<ul class="simple">
+<li>L.1: Internal GridDB commands need to be run as the gsadm user.</li>
+<li>L.2 to 4: Sets the admin user’s password, which is the default user on GridDB.<strong>(Note) This admin user is not a user of the OS.</strong> The GridDB user name and password will be required for the sample application to connect later.</li>
+</ul>
+<p>Now GridDB can be started.</p>
+<p><strong>List.8 Start GridDB</strong></p>
+<p># su - gsadm
+$ gs_startnode -u ** admin/admin ** -w 0
+…….
+It started node.
+$ gs_joincluster -c ** GSCLUSTER ** -u ** admin/admin ** -w 0
+.
+Joined node</p>
+<ul class="simple">
+<li>L.2: Start the GridDB service. Wait until the start-up in the <code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">0</span></code> option. You will need to specify the user name and password with the -u flag, such as -u /.</li>
+<li>L.5: Either join or create a cluster. Specify the cluster name with the -c option that was set in Listing 6.</li>
+</ul>
+<p>Setting of one of GridDB node is now complete.</p>
+</div>
+<div class="section" id="dockerfile">
+<span id="dockerfile"></span><h2>Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this headline">¶</a></h2>
+<p>The Dockerfile contains all the previous work and is able to perform the above configuration steps automatically. It is useful for creating many nodes.</p>
+<p><strong>List 9 Dockerfile</strong></p>
+<p>FROM centos: 6.7</p>
+<p>RUN set -x &amp;&amp;HOST=`hostname` &amp;&amp;sed -i “s/^ \ (HOSTNAME=\). */\ 1 $ HOST /”/etc/sysconfig/network &amp;&amp;curl -L -O https://github.com/griddb/griddb_nosql/releases/download/v2.8.0/griddb_nosql-2.8.0-1.el6.x86_64.rpm &amp;&amp;rpm -Uvh griddb_nosql-2.8.0-1.el6.x86_64.rpm</p>
+<p>ARG CLUSTER_CONF
+RUN echo $CLUSTER_CONF
+ADD $CLUSTER_CONF /var/lib/gridstore/conf/</p>
+<p>RUN set -x &amp;&amp;chown gsadm: gridstore/var/lib/gridstore/conf/$ CLUSTER_CONF &amp;&amp;chmod 640/var/lib/gridstore/conf/$ CLUSTER_CONF &amp;&amp;su - gsadm -c “gs_passwd admin -p admin”</p>
+<p>CMD su - gsadm -c “gs_startnode -u admin/admin -w 0 &amp;&amp;gs_joincluster -c GSCLUSTER -n 2 -u admin/admin” &amp;&amp;tail -f/dev/null</p>
+<p>It summarizes the settings that were set manually in the above.</p>
+<ul class="simple">
+<li>L.9: Allows the gs_cluster.conf input to be specified for use with docker-compose.yml</li>
+<li>L.19: Too build a cluster of multiple nodes, the <code class="docutils literal notranslate"><span class="pre">gs_joincluster</span></code> command needs the <code class="docutils literal notranslate"><span class="pre">-n</span></code> that specifies the number of nodes.</li>
+</ul>
+</div>
+<div class="section" id="install-docker-compose">
+<span id="install-docker-compose"></span><h2>Install Docker Compose<a class="headerlink" href="#install-docker-compose" title="Permalink to this headline">¶</a></h2>
+<p>If you create more than one similar Docker container, it is worth while to use <a class="reference external" href="https://docs.docker.com/compose/">Docker Compose</a> which can automatically create and boot multiple containers.</p>
+<p><strong>List.10 Install Docker Compose</strong></p>
+<p>$ curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` -O
+$ chmod + x docker-compose-*
+$ sudo mv docker-compose-* /usr/local/bin/docker-compose</p>
+<ul class="simple">
+<li>L.1: Get the Docker Compose for your system binary from Github.</li>
+<li>L.2: Grant executable permissions to the binary.</li>
+<li>L.3: Move the binary to /usr/local/bin, renaming it docker-compose</li>
+</ul>
+<p>The following is the contents of Docker Compose’s configuration file, docker-compose.yml:</p>
+<p><strong>List.11 Docker Compose configuration file</strong></p>
+<p>version: ‘2’
+services:
+griddb1:
+build:
+context .
+args:
+CLUSTER_CONF: “gs_cluster.json”
+container_name: gsnode1
+networks:
+default:
+ipv4_address: 192.168.11.11
+ports:
+- “10001:10001”
+- “20001:20001”
+expose:
+- “10010”
+- “10020”
+- “10040”
+- “10001”
+- “20001”
+griddb2:
+build:
+context .
+args:
+CLUSTER_CONF: “gs_cluster.json”
+container_name: gsnode2
+networks:
+default:
+ipv4_address: 192.168.11.12
+ports:
+- “12001:10001”
+- “22001:20001”
+expose:
+- “10010”
+- “10020”
+- “10040”
+- “10001”
+- “20001”</p>
+<p>networks:
+default:
+ipam:
+config:
+- subnet: 192.168.11.0/24</p>
+<p>In the Docker compose file, you have to specify the parameters of the container that had been specified. It also specifies the respective configuration files which need to represent configured values.</p>
+<p>The files that will be used in the Docker Compose are placed in a directory as follows:</p>
+<p><strong>List.12 Docker Compose configuration file configuration</strong></p>
+<p>griddb /
+&nbsp;- Docker-compose.yml
+&nbsp;- Dockerfile
+&nbsp;- gs_cluster_1.json
+&nbsp;- gs_cluster_2.json</p>
+<p>From that directory, run the commands that will create the Container, installer GridDB, and then start the container.</p>
+<p><strong>List.13 Docker Compose configuration file placement</strong></p>
+<p>$ cd griddb
+$ sudo /usr/local/bin/docker-compose up -d
+$ sudo /usr/local/bin/docker-compose ps
+&nbsp;Name Command State Ports
+-------------------------------------------------- -------------------------------------------------- --------------------------------------
+gsnode1/bin/sh -c su - gsadm -c “… Up 127.0.0.1:10001-&gt;10001/tcp, 10010/tcp, 10020/tcp, 10040/tcp, 127.0.0.1:20001-&gt;20001/tcp
+gsnode2/bin/sh -c su - gsadm -c “… Up 0.0.0.0:12001-&gt;10001/tcp, 10010/tcp, 10020/tcp, 10040/tcp, 0.0.0.0:22001-&gt;20001/tcp</p>
+<ul class="simple">
+<li>L.1: Change directory to where the above configuration files were created.</li>
+<li>L.2: In accordance with the docker-compose command in the configuration file, if Docker container has not yet been created then create and start a container. If the container has already been created, it will only be started.</li>
+<li>L.3 to 7: it displays the status of the container that was started in the docker-compose.</li>
+</ul>
+</div>
+<div class="section" id="files">
+<span id="files"></span><h2>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h2>
+<p>The set of files used in this chapter can be downloaded from: <a class="reference external" href="img/griddb-server-conf.zip">griddb-server-conf.zip</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="5-1-4_prepare-client.html" class="btn btn-neutral float-right" title="5.1.4 Preparation: Environment (client)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="5-1-2_griddb-basics.html" class="btn btn-neutral" title="5.1.2 GridDB Basics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GridDB.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #39A7D1;
+    }
+  </style>
+
+
+</body>
+</html>

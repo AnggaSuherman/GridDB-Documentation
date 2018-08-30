@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1.7 Container Creation and Deletion &mdash; GridDB-Docs  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5.1.8 Collection Registration" href="5-1-8_collection-register.html" />
+    <link rel="prev" title="5.1.6 Schema definition" href="5-1-6_container-schema.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <img src="_static/logo.png"><a href="index.html"> GridDB-Docs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GridDB-Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5.1.7 Container Creation and Deletion</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/5-1-7_container-create-drop.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Table of Contents</p>
+<div class="section" id="container-creation-and-deletion">
+<span id="container-creation-and-deletion"></span><h1>5.1.7 Container Creation and Deletion<a class="headerlink" href="#container-creation-and-deletion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This chapter describes how to create/delete GridDB containers.</p>
+</div>
+<div class="section" id="collection-and-timeseries-container">
+<span id="collection-and-timeseries-container"></span><h2>Collection and Timeseries Container<a class="headerlink" href="#collection-and-timeseries-container" title="Permalink to this headline">¶</a></h2>
+<p>There are 2 container types, a <strong>timeseries container</strong> and a <strong>collection</strong>.</p>
+<ul class="simple">
+<li>Timeseries container<ul>
+<li>A container that specializes for data whcih is consisted of the pair of time and value, such as sensor data.</li>
+<li>The TIMESTAMP data can be specified in a row key.</li>
+<li>It is possible to acquire the data in a specified period of time or to aggregate the data.</li>
+<li>Value can be linearly interpolated when register or retreive the data.</li>
+</ul>
+</li>
+<li>Collection<ul>
+<li>Collection is a general purpose container.</li>
+<li>Collection does not have any functions related to timeseries data, however it can be used with any data type in a key and it can be used in the same way as the other key-value database.</li>
+</ul>
+</li>
+</ul>
+<p>Here are some programming samples to create or delete each type of containers.</p>
+</div>
+<div class="section" id="how-to-create-a-collection">
+<span id="how-to-create-a-collection"></span><h2>How to create a Collection<a class="headerlink" href="#how-to-create-a-collection" title="Permalink to this headline">¶</a></h2>
+<p>Collection can be created as follows.</p>
+<p><strong>List.1 Creating a Collection</strong>(WeatherStationLogic.java)</p>
+<p>// Create Collection
+Collection&lt;String, WeatherStation&gt; weatherStationCol =
+store.putCollection(“weather_station”, WeatherStation.class);
+return weatherStationCol;</p>
+<ul class="simple">
+<li>L.34-35: Use <code class="docutils literal notranslate"><span class="pre">GridStore.putCollection(String,</span> <span class="pre">Class)</span></code> method to create a Collection.A container name should be specified to <code class="docutils literal notranslate"><span class="pre">String</span></code>, and <code class="docutils literal notranslate"><span class="pre">WeatherStation</span></code> class which can be created in chapter <a class="reference external" href="5-1-6_container-schema.php">Schema definition</a> should be set to <code class="docutils literal notranslate"><span class="pre">Class</span></code>.A created Collection will obtained as an instance of <code class="docutils literal notranslate"><span class="pre">com.toshiba.mwcloud.gs.Collection</span></code> class.</li>
+</ul>
+<p><strong>List.2 Releasing a Collection</strong>(CollectionCreate.java)</p>
+<p>} finally {
+// Close Connection
+weatherStationCol.close();
+}</p>
+<ul class="simple">
+<li>L.183: Use <code class="docutils literal notranslate"><span class="pre">Collection.close()</span></code> method to release associated resources by closing the created Collection.</li>
+</ul>
+</div>
+<div class="section" id="how-to-create-a-timeseries-container">
+<span id="how-to-create-a-timeseries-container"></span><h2>How to create a Timeseries Container<a class="headerlink" href="#how-to-create-a-timeseries-container" title="Permalink to this headline">¶</a></h2>
+<p>Timeseries Container can be created as follows.</p>
+<p><strong>List.3 Creating a Timeseries Container</strong>(InstrumentLogLogic.java)</p>
+<p>for (int i = 0; i &lt; WeatherStationLogic.JP_PREFECTURE; i++) {
+// Create TimeSeries Container
+TimeSeries<InstrumentLog> ts =
+store.putTimeSeries(“weather_station_” + (i + 1), InstrumentLog.class);</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">snip</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>}</p>
+<ul class="simple">
+<li>L.137-138: Use <code class="docutils literal notranslate"><span class="pre">GridStore.putTimeSeries(String,</span> <span class="pre">Class)</span></code> method to create a Timeseries Container.A Timeseries container name should be specified to <code class="docutils literal notranslate"><span class="pre">String</span></code>, and <code class="docutils literal notranslate"><span class="pre">InstrumentLog</span></code> class which can be created in chapter <a class="reference external" href="5-1-6_container-schema.php">Schema definition</a> should be set to <code class="docutils literal notranslate"><span class="pre">Class</span></code>.A created Timeseries Container will obtained as an instance of <code class="docutils literal notranslate"><span class="pre">com.toshiba.mwcloud.gs.TimeSeries</span></code> class.</li>
+</ul>
+<p><strong>List.4 Releasing a Timeseries Container</strong>(InstrumentLogLogic.java)</p>
+<p>// Close TimeSeries Container
+ts.close();</p>
+<ul class="simple">
+<li>L.56: In the same manner as Collection, use <code class="docutils literal notranslate"><span class="pre">Collection.close()</span></code> method to release associated resources by closing the created Timeseries Container.</li>
+</ul>
+</div>
+<div class="section" id="how-to-delete-a-container">
+<span id="how-to-delete-a-container"></span><h2>How to delete a Container<a class="headerlink" href="#how-to-delete-a-container" title="Permalink to this headline">¶</a></h2>
+<p><strong>List.5 Deleting Collection</strong>(WeatherStationLogic.java)</p>
+<p>public void dropCollection(GridStore store) throws GSException {
+// Drop Collection
+store.dropCollection(“weather_station”);
+}</p>
+<ul class="simple">
+<li>L.47: Use <code class="docutils literal notranslate"><span class="pre">GridStore.dropCollection(String)</span></code> method to delete a Collection.</li>
+</ul>
+<p><strong>List.6 Deleting Timeseries Container</strong>(SampleTimeSeries.java)</p>
+<p>public void dropTimeSeries(GridStore store, String name) throws GSException {
+// Drop TimeSeries Container
+store.dropTimeSeries(name);
+}</p>
+<ul class="simple">
+<li>L.69: Use <code class="docutils literal notranslate"><span class="pre">GridStore.dropTimeSeries(String)</span></code> method to delete a Timeseries Container.</li>
+</ul>
+<hr class="docutils" />
+<p>This chapter provided how to create or delete 2 types of Container, a <strong>Collection</strong> and a <strong>Timeseries Container</strong>.Container can be easily created or deleted by simply preparing a container name and a class that represents the rows.</p>
+<p>Here we describe only the static method of preparing a class that represents a row in advance, but there is a way to dynamically create a Container without providing a class.Please refer to <a class="reference external" href="5-1-22_metainfo.php">Meta-information</a> for more details.</p>
+</div>
+<div class="section" id="complete-source-code">
+<span id="complete-source-code"></span><h2>Complete source code<a class="headerlink" href="#complete-source-code" title="Permalink to this headline">¶</a></h2>
+<p>Complete source code used in this sample can be downloaded from the following.</p>
+<p>Download: <a class="reference external" href="img/container-create-drop.zip">container-create-drop.zip</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="5-1-8_collection-register.html" class="btn btn-neutral float-right" title="5.1.8 Collection Registration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="5-1-6_container-schema.html" class="btn btn-neutral" title="5.1.6 Schema definition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GridDB.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #39A7D1;
+    }
+  </style>
+
+
+</body>
+</html>
