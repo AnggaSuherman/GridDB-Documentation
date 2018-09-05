@@ -1,0 +1,533 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1.2 GridDB Basics &mdash; GridDB-Docs  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5.1.3 Preparation: Environment (server)" href="5-1-3_prepare-server.html" />
+    <link rel="prev" title="5.1.1 Introduction" href="5-1-1_introduction.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <img src="_static/logo.png"><a href="index.html"> GridDB-Docs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GridDB-Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5.1.2 GridDB Basics</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/5-1-2_griddb-basics.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Table of Contents</p>
+<div class="section" id="griddb-basics">
+<span id="griddb-basics"></span><h1>5.1.2 GridDB Basics<a class="headerlink" href="#griddb-basics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>We will introduce a series of basic operations in this chapter to help better understand the overall of GridDB API. It should be noted that not all of specification information about specific GridDB API’s will be introduced. Please refer to the individual chapter for further details. In addition, this chapter uses the data described in the <a class="reference external" href="5-1-1_introduction.php">Introduction</a>.</p>
+</div>
+<div class="section" id="application-workflow">
+<span id="application-workflow"></span><h2>Application Workflow<a class="headerlink" href="#application-workflow" title="Permalink to this headline">¶</a></h2>
+<p>The basic workflow of a GridDB application is as follows:</p>
+<ol class="simple">
+<li><a class="reference external" href="#connection">Connect</a><ul>
+<li>Open a connection from the client program to the GridDB server.</li>
+</ul>
+</li>
+<li><a class="reference external" href="#container_create">Create a container</a><ul>
+<li>Create a container to store the data in GridDB/</li>
+</ul>
+</li>
+<li><a class="reference external" href="#collection_register">Register data</a><ul>
+<li>Register the data in the container.</li>
+</ul>
+</li>
+<li><a class="reference external" href="#collection_retrieve">Get the data</a><ul>
+<li>Get the data from the container.</li>
+</ul>
+</li>
+<li><a class="reference external" href="#close">Close</a><ul>
+<li>Disconnect the client program from the server to free up resources.</li>
+</ul>
+</li>
+</ol>
+<p>The flow of the process is shown below.</p>
+<p><img alt="Figure 1 Basic Operation Sequence" src="_images/operation_sequence_en.png" />Figure 1 GridDB basic operation sequence</p>
+<p>FirstGridDB in the figure refers to the client program. For more information on classes and each processing will be described below.</p>
+</div>
+<div class="section" id="client-program">
+<span id="client-program"></span><h2>Client program<a class="headerlink" href="#client-program" title="Permalink to this headline">¶</a></h2>
+<p>Let’s take a look at the basic workflow of a GridDB application. Since the description of the individual parts in the process will be described later, we focus on the overall workflow of the program.</p>
+<p><strong>List.1 client program</strong> (FirstGridDB.java)</p>
+<p>package sample;</p>
+<p>import java.util.Properties;</p>
+<p>import com.toshiba.mwcloud.gs.Collection;
+import com.toshiba.mwcloud.gs.GSException;
+import com.toshiba.mwcloud.gs.GridStore;
+import com.toshiba.mwcloud.gs.GridStoreFactory;</p>
+<p>import sample.row.WeatherStation;</p>
+<p>public class FirstGridDB {</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span>\<span class="p">[</span>\<span class="p">]</span> <span class="n">args</span><span class="p">)</span> <span class="n">throws</span> <span class="n">GSException</span> <span class="p">{</span>
+            <span class="o">//</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">Connection</span> <span class="n">parameter</span> <span class="k">for</span> <span class="n">GridDB</span>
+            <span class="n">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Properties</span><span class="p">();</span>
+            <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;host&quot;</span><span class="p">,</span> <span class="s2">&quot;127.0.0.1&quot;</span><span class="p">);</span>
+            <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;port&quot;</span><span class="p">,</span> <span class="s2">&quot;10001&quot;</span><span class="p">);</span>
+            <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;clusterName&quot;</span><span class="p">,</span> <span class="s2">&quot;GSCLUSTER&quot;</span><span class="p">);</span>
+            <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;database&quot;</span><span class="p">,</span> <span class="s2">&quot;public&quot;</span><span class="p">);</span>
+            <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;admin&quot;</span><span class="p">);</span>
+            <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;admin&quot;</span><span class="p">);</span>
+            <span class="n">GridStore</span> <span class="n">store</span> <span class="o">=</span> <span class="n">GridStoreFactory</span><span class="o">.</span><span class="n">getInstance</span><span class="p">()</span><span class="o">.</span><span class="n">getGridStore</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+
+            <span class="o">//</span> <span class="n">Create</span> <span class="n">Collection</span>
+            <span class="n">Collection</span> <span class="n">weatherStationCol</span> <span class="o">=</span>
+                            <span class="n">store</span><span class="o">.</span><span class="n">putCollection</span><span class="p">(</span><span class="s2">&quot;weather_station&quot;</span><span class="p">,</span> <span class="n">WeatherStation</span><span class="o">.</span><span class="n">class</span><span class="p">);</span>
+
+            <span class="o">//</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">value</span> <span class="n">to</span> <span class="n">Row</span> <span class="n">data</span>
+            <span class="n">WeatherStation</span> <span class="n">weatherStation1</span> <span class="o">=</span> <span class="n">new</span> <span class="n">WeatherStation</span><span class="p">();</span>
+            <span class="n">weatherStation1</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span><span class="p">;</span>
+            <span class="n">weatherStation1</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;WeatherStation 01&quot;</span><span class="p">;</span>
+            <span class="n">weatherStation1</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="mf">35.68944</span><span class="p">;</span>
+            <span class="n">weatherStation1</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="mf">139.69167</span><span class="p">;</span>
+            <span class="n">weatherStation1</span><span class="o">.</span><span class="n">hasCamera</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+
+            <span class="n">WeatherStation</span> <span class="n">weatherStation2</span> <span class="o">=</span> <span class="n">new</span> <span class="n">WeatherStation</span><span class="p">();</span>
+            <span class="n">weatherStation2</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;2&quot;</span><span class="p">;</span>
+            <span class="n">weatherStation2</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;WeatherStation 02&quot;</span><span class="p">;</span>
+            <span class="n">weatherStation2</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="mf">35.02139</span><span class="p">;</span>
+            <span class="n">weatherStation2</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="mf">135.75556</span><span class="p">;</span>
+            <span class="n">weatherStation2</span><span class="o">.</span><span class="n">hasCamera</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+
+            <span class="o">//</span> <span class="n">Register</span> <span class="n">Collection</span>
+            <span class="n">weatherStationCol</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">weatherStation1</span><span class="p">);</span>
+            <span class="n">weatherStationCol</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">weatherStation2</span><span class="p">);</span>
+
+            <span class="o">//</span> <span class="n">Retrieve</span> <span class="n">Collection</span>
+            <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;get by key&quot;</span><span class="p">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;ID</span><span class="se">\\</span><span class="s2">tName</span><span class="se">\\</span><span class="s2">t</span><span class="se">\\</span><span class="s2">t</span><span class="se">\\</span><span class="s2">tLongitude</span><span class="se">\\</span><span class="s2">tLatitude</span><span class="se">\\</span><span class="s2">tCamera&quot;</span><span class="p">);</span>
+            <span class="n">weatherStationCol</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">getCollection</span><span class="p">(</span><span class="s2">&quot;weather_station&quot;</span><span class="p">,</span> <span class="n">WeatherStation</span><span class="o">.</span><span class="n">class</span><span class="p">);</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">WeatherStation</span> <span class="n">weatherStation</span> <span class="o">=</span> <span class="n">weatherStationCol</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">String</span><span class="o">.</span><span class="n">valueOf</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+                    <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">String</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%-3s</span><span class="se">\\</span><span class="s2">t</span><span class="si">%-20s</span><span class="se">\\</span><span class="s2">t</span><span class="si">%-10s</span><span class="se">\\</span><span class="s2">t</span><span class="si">%-10s</span><span class="se">\\</span><span class="s2">t</span><span class="si">%-5s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">weatherStation</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                                    <span class="n">weatherStation</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">weatherStation</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">weatherStation</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+                                    <span class="n">weatherStation</span><span class="o">.</span><span class="n">hasCamera</span><span class="p">));</span>
+            <span class="p">}</span>
+
+            <span class="o">//</span> <span class="n">Close</span> <span class="n">Connection</span>
+            <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>}</p>
+<div class="section" id="connection">
+<span id="connection"></span><h3>1. Connection<a class="headerlink" href="#connection" title="Permalink to this headline">¶</a></h3>
+<p>Let’s connect to the GridDB.</p>
+<p><strong>List.2 connection process</strong> (FirstGridDB.java)</p>
+<p>// Set the Connection parameter for GridDB
+Properties props = new Properties ();
+props.setProperty(“host”, “127.0.0.1”);
+props.setProperty(“port”, “10001”);
+props.setProperty(“clusterName”, “GSCLUSTER”);
+props.setProperty(“database”, “public”);
+props.setProperty(“user”, “admin”);
+props.setProperty(“password”, “admin”);
+GridStore store = GridStoreFactory.getInstance().getGridStore(props);</p>
+<ul class="simple">
+<li>L.16-22: Set the connection poperties.</li>
+<li>L.23: From a GridStoreFactory instance, get a store object that will be later used to specify the connection information.</li>
+</ul>
+<p>For more information and further details about connecting to GridDB, please see the [Connection chapter] (../sample_app_prepare_connection).</p>
+</div>
+<div class="section" id="creating-a-container">
+<span id="creating-a-container"></span><h3>2. Creating a container<a class="headerlink" href="#creating-a-container" title="Permalink to this headline">¶</a></h3>
+<p>Containers can be made easily by defining the data as a class. It is possible to specify the data type dynamically in the program as well. For more information is available in the <a class="reference external" href="5-1-7_container-create-drop.php">Container Create/Delete</a> and also the <a class="reference external" href="5-1-22_metainfo.php">meta-information</a> chapters.</p>
+<p><strong>List.3 measuring instrument class</strong> (WeatherStation.java)</p>
+<p>package sample.row;</p>
+<p>import com.toshiba.mwcloud.gs.RowKey;</p>
+<p>/**
+* Class that represents the definition of the schema.
+*/
+public class WeatherStation {
+/**
+* ID of WeatherStation
+*/
+&#64;RowKey
+public String id;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span>\<span class="o">*</span>\<span class="o">*</span>
+ \<span class="o">*</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">WeatherStation</span>
+ <span class="o">*/</span>
+<span class="n">public</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+
+<span class="o">/</span>\<span class="o">*</span>\<span class="o">*</span>
+ \<span class="o">*</span> <span class="n">Installation</span> <span class="n">Latitude</span>
+ <span class="o">*/</span>
+<span class="n">public</span> <span class="n">double</span> <span class="n">latitude</span><span class="p">;</span>
+
+<span class="o">/</span>\<span class="o">*</span>\<span class="o">*</span>
+ \<span class="o">*</span> <span class="n">Installation</span> <span class="n">Longitude</span>
+ <span class="o">*/</span>
+<span class="n">public</span> <span class="n">double</span> <span class="n">longitude</span><span class="p">;</span>
+
+<span class="o">/</span>\<span class="o">*</span>\<span class="o">*</span>
+ \<span class="o">*</span> <span class="n">Camera</span> <span class="n">exists</span> <span class="ow">or</span> <span class="ow">not</span>
+ <span class="o">*/</span>
+<span class="n">public</span> <span class="n">boolean</span> <span class="n">hasCamera</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>}</p>
+<ul class="simple">
+<li>L.12-13: The <code class="docutils literal notranslate"><span class="pre">&#64;RowKey</span></code> keyword specifies which variable becomes the key of the container.</li>
+</ul>
+<p><strong>List.4 container creation process</strong> (FirstGridDB.java)</p>
+<p>// Create Collection
+Collection &lt;String, WeatherStation&gt; weatherStationCol =
+store.putCollection(“weather_station”, WeatherStation.class);</p>
+<ul class="simple">
+<li>L.26-27: Creates the container with name and collection class type.</li>
+</ul>
+</div>
+<div class="section" id="register-the-data">
+<span id="register-the-data"></span><h3>3. Register the data<a class="headerlink" href="#register-the-data" title="Permalink to this headline">¶</a></h3>
+<p>Ready access to GridDB in the above process is now ready. Let’s try to register the data in GridDB.</p>
+<p><strong>List.5 data registration processing</strong> (FirstGridDB.java)</p>
+<p>// Set the value to Row data
+WeatherStation weatherStation1 = new WeatherStation();
+weatherStation1.id = “1”;
+weatherStation1.name = “WeatherStation 01”;
+weatherStation1.latitude = 35.68944;
+weatherStation1.longitude = 139.69167;
+weatherStation1.hasCamera = true;</p>
+<p>WeatherStation weatherStation2 = new WeatherStation();
+weatherStation2.id = “2”;
+weatherStation2.name = “WeatherStation 02”;
+weatherStation2.latitude = 35.02139;
+weatherStation2.longitude = 135.75556;
+weatherStation2.hasCamera = false;</p>
+<p>// Register Collection
+weatherStationCol.put(weatherStation1);
+weatherStationCol.put(weatherStation2);</p>
+<ul class="simple">
+<li>L.30-42: Set the values of the data to be registered.</li>
+<li>L.45-46: Pack data and register it in the container.</li>
+</ul>
+<p>For more information on data registration, please see that <a class="reference external" href="5-1-8_collection-register.php">chapter</a>. There is also further information about TimeSeries data registration in that <a class="reference external" href="5-1-12_timeseries-register.php">chapter</a>.</p>
+<div class="section" id="data-retrieval">
+<span id="data-retrieval"></span><h4>4. Data Retrieval<a class="headerlink" href="#data-retrieval" title="Permalink to this headline">¶</a></h4>
+<p>Now the just registered data can be retrieved from the GridDB server.</p>
+<p><strong>List.6 data acquisition process</strong> (FirstGridDB.java)</p>
+<p>// Retrieve Collection
+System.out.println(“get by key”);
+System.out.println(“ID\tName\t\t\tLongitude\tLatitude\tCamera”);
+weatherStationCol = store.getCollection(“weather_station”, WeatherStation.class);</p>
+<p>for (int i = 0; i &lt; 2; i++) {
+WeatherStation weatherStation = weatherStationCol.get(String.valueOf(i + 1));
+System.out.println(String.format(“%-3s\t%-20s\t%-10s\t%-10s\t%-5s”, weatherStation.id,
+weatherStation.name, weatherStation.latitude, weatherStation.longitude,
+weatherStation.hasCamera));
+}</p>
+<ul class="simple">
+<li>L.51: First get the container by specifying the container name and class.</li>
+<li>L.54: Then get row data by specifying the key.</li>
+</ul>
+<p>Here is the output:</p>
+<p><strong>List.7 data acquisition result</strong></p>
+<p>get by key
+ID Name Longitude Latitude Camera
+1 WeatherStation 01 35.68944 139.69167 true
+2 WeatherStation 02 35.02139 135.75556 false</p>
+<p>Further details are explained in the <a class="reference external" href="5-1-9_collection-retrieve.php">Data retrieval chapter</a>. Also refer to <a class="reference external" href="5-1-13_timeseries-retrieve.php">TimeSeries data retrieval</a>.</p>
+</div>
+<div class="section" id="closing-the-connection">
+<span id="closing-the-connection"></span><h4>5. Closing the Connection<a class="headerlink" href="#closing-the-connection" title="Permalink to this headline">¶</a></h4>
+<p>Finally, cut the client program and GridDB.</p>
+<p><strong>List.8 data acquisition process</strong> (FirstGridDB.java)</p>
+<p>// Close Connection
+store.close ();</p>
+<ul class="simple">
+<li>L.61: Release the used resources on both the client and the server.</li>
+</ul>
+<hr class="docutils" />
+<p>This chapter provided a brief overview of the GridDB workflow and should give an understanding of GridDB’s basic functions. Image of the program to access the GridDB is I think I was able to understand. There are many more functions in the GridDB API that are not described here. Please refer to each specific for more details.</p>
+</div>
+</div>
+<div class="section" id="source-code">
+<span id="source-code"></span><h3>Source code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h3>
+<p>Complete source code used in this chapter can be downloaded from the following.</p>
+<p>Download: <a class="reference external" href="img/griddb-first.zip">griddb-first.zip</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="5-1-3_prepare-server.html" class="btn btn-neutral float-right" title="5.1.3 Preparation: Environment (server)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="5-1-1_introduction.html" class="btn btn-neutral" title="5.1.1 Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GridDB.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #fff;
+    }
+    .wy-nav-side {
+        background: #fff;
+    }
+    .wy-menu-vertical a {
+        color: #39A7D1;
+    }
+    .wy-menu-vertical a:hover {
+        background-color: #77c3df;
+        color: white;
+    }
+    .wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+        color: #24799a;
+    }
+    .wy-side-nav-search img {
+        height: 200px;
+        width: 200px;
+        border-radius: 0%;
+        background-color: #fff;
+    }
+    .highlight {
+        background: #F5F5F5;
+    }
+    .rst-content div[class^='highlight'] pre {
+        color: #24799a;
+    }
+  </style>
+
+
+</body>
+</html>

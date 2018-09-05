@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1.19 Multi-Put &mdash; GridDB-Docs  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5.1.20 Multi-Query" href="5-1-20_multiquery.html" />
+    <link rel="prev" title="5.1.18 Trigger (JMS)" href="5-1-18_trigger-jms.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <img src="_static/logo.png"><a href="index.html"> GridDB-Docs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GridDB-Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5.1.19 Multi-Put</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/5-1-19_multiput.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Table of Contents</p>
+<div class="section" id="multi-put">
+<span id="multi-put"></span><h1>5.1.19 Multi-Put<a class="headerlink" href="#multi-put" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This section describes Multi-put, a method of registering batches of data at one time. It is described further in the <a class="reference external" href="https://www.toshiba.co.jp/cl/pro/bigdatapf/lineup/GridDB/doc/GridDB_TechnicalReference.html#sec-4.7.2">GridDB Technical Reference</a>.</p>
+</div>
+<div class="section" id="batch-processing">
+<span id="batch-processing"></span><h2>Batch Processing<a class="headerlink" href="#batch-processing" title="Permalink to this headline">¶</a></h2>
+<p>When data is sent or received in a one by one manner it is possible to reach the upper limit of network bandwidth and throughput will peak, the following GridDB API’s offer a solution to this problem with methods to work with large sets of data in an efficient manner:</p>
+<ul class="simple">
+<li>Multi-put</li>
+<li>Multi-get</li>
+<li>Multi-query</li>
+</ul>
+</div>
+<div class="section" id="create-row-for-registration">
+<span id="create-row-for-registration"></span><h2>Create Row for registration<a class="headerlink" href="#create-row-for-registration" title="Permalink to this headline">¶</a></h2>
+<p><strong>List.1 Create Row of WeatherStation</strong>(MultiPut.java)</p>
+<p>private static Row createWeatherStationRow(GridStore store, String id, String name,
+double latitude, double longitude, boolean hasCamera) throws GSException {
+// Create WeatherStation Row
+ContainerInfo wsContainerInfo = store.getContainerInfo(“weather_station”);
+Row wsRow = store.createRow(wsContainerInfo);</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// Set by specifying the index of the order of definition of the WeatherStation class
+// ID
+wsRow.setString(0, id);
+// Name
+wsRow.setString(1, name);
+// Latitude
+wsRow.setDouble(2, latitude);
+// Longitude
+wsRow.setDouble(3, longitude);
+// hasCamera
+wsRow.setBool(4, hasCamera);
+
+return wsRow;
+</pre></div>
+</div>
+<p>}</p>
+<p><strong>List.2 Create Row of Intrument Log(MultiPut.java)</strong></p>
+<p>private static Row createIntrumentLogRow(GridStore store, Date timestamp, String weatherStationId,
+float temperture, Blob liveImage)
+throws GSException, ParseException, SerialException, SQLException {
+// Create IntrumentLogRow Row
+ContainerInfo logContainerInfo = store.getContainerInfo(“weather_station_99”);
+Row logRow = store.createRow(logContainerInfo);</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// Set by specifying the index of the order of definition of the InstrumentLog class
+// Timestamp
+logRow.setTimestamp(0, timestamp);
+// ID of WeatherStation
+logRow.setString(1, weatherStationId);
+// Temperture
+logRow.setFloat(2, temperture);
+// Live Image data
+logRow.setBlob(3, liveImage);
+
+return logRow;
+</pre></div>
+</div>
+<p>}</p>
+</div>
+<div class="section" id="multi-put-execution">
+<span id="multi-put-execution"></span><h2>Multi-Put execution<a class="headerlink" href="#multi-put-execution" title="Permalink to this headline">¶</a></h2>
+<p><strong>List.3 Multi-Put execution</strong>(MultiPut.java)</p>
+<p>// Create Connection
+store = gridLogic.createGridStore();</p>
+<p>SimpleDateFormat format = new SimpleDateFormat(“yyyy/MM/dd HH:mm”, Locale.US);</p>
+<p>// multiput Rows
+Map&lt;String, List<Row>&gt; containerRowsMap = new HashMap&lt;&gt;();</p>
+<p>// Create WeatherStation Row
+Row wsRow =
+createWeatherStationRow(store, “99”, “new WeaterStation”, 45.26, 75.42, true);</p>
+<p>// Add multiput value
+List<Row> wsRowList = new ArrayList&lt;&gt;();
+wsRowList.add(wsRow);
+containerRowsMap.put(“weather_station”, wsRowList);</p>
+<p>// Create InstrumentLog Container and Row
+store.putTimeSeries(“weather_station_99”, InstrumentLog.class);</p>
+<p>// Create WeatherStation Row
+Row logRow = createIntrumentLogRow(store, format.parse(“2016/07/03 12:00:00”),
+“weather_station_99”, 40.5f,
+new SerialBlob(new byte[] {0x10, 0x11, 0x12, 0x13, 0x14, 0x15}));</p>
+<p>// Add multiput value
+List<Row> logRowList = new ArrayList&lt;&gt;();
+logRowList.add(logRow);
+containerRowsMap.put(“weather_station_99”, logRowList);</p>
+<p>// Register by multiput
+store.multiPut(containerRowsMap);</p>
+</div>
+<div class="section" id="result-of-multi-get-execution">
+<span id="result-of-multi-get-execution"></span><h2>Result of Multi-Get execution<a class="headerlink" href="#result-of-multi-get-execution" title="Permalink to this headline">¶</a></h2>
+<p><strong>List.4 Obtain of Multi-Put results(WeatherStation)</strong>(MultiPut.java)</p>
+<p>System.out.println(“#####  WeatherStation:”);
+System.out.println(“ID\tName\t\t\tLongitude\tLatitude\tCamera”);
+// Get WeatherStation
+Collection&lt;String, WeatherStation&gt; weatherStationCol =
+store.getCollection(“weather_station”, WeatherStation.class);
+WeatherStation weatherStation = weatherStationCol.get(rowKey);</p>
+<p>System.out.println(String.format(“%-3s\t%-20s\t%-10s\t%-10s\t%-5s”, weatherStation.id,
+weatherStation.name, weatherStation.latitude, weatherStation.longitude,
+weatherStation.hasCamera));</p>
+<p><strong>List.5 Result of Multi-Get execution(WeatherStation)</strong></p>
+<p>#####  WeatherStation:
+ID      Name                    Longitude       Latitude        Camera
+99      new WeatherStation       45.26           75.42           true</p>
+<p><strong>List.6 Obtain of Multi-Put results(InstrumentLog)</strong>(MultiPut.java)</p>
+<p>System.out.println(“#####  InstrumentLog:”);
+System.out.println(“Timestamp\t\t\tWeatherStation ID\tTemperture”);
+TimeSeries<InstrumentLog> logTs =
+store.getTimeSeries(“weather_station_99”, InstrumentLog.class);
+InstrumentLog log = logTs.get(rowKey);
+// Make a displayable byte string
+String byteText = InstrumentLogLogic.makeByteString(log.liveImage);</p>
+<p>System.out.println(String.format(“%s\t%-20s\t%-10s\t%s”, log.timestamp,
+log.weatherStationId, log.temperture, byteText));</p>
+<p><strong>List.7 Result of Multi-Get execution(InstrumentLog)</strong></p>
+<p>#####  InstrumentLog:
+Timestamp                       WeatherStation ID       Temperature      Live Image
+Sun Jul 03 12:00:00 EDT 2016    weather_station_99      40.5</p>
+</div>
+<div class="section" id="source-code">
+<span id="source-code"></span><h2>Source Code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h2>
+<p>Complete source code used in this sample can be downloaded from the following.</p>
+<p>Download:<a class="reference external" href="img/multi-put.zip">multi-put.zip</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="5-1-20_multiquery.html" class="btn btn-neutral float-right" title="5.1.20 Multi-Query" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="5-1-18_trigger-jms.html" class="btn btn-neutral" title="5.1.18 Trigger (JMS)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GridDB.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #fff;
+    }
+    .wy-nav-side {
+        background: #fff;
+    }
+    .wy-menu-vertical a {
+        color: #39A7D1;
+    }
+    .wy-menu-vertical a:hover {
+        background-color: #77c3df;
+        color: white;
+    }
+    .wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+        color: #24799a;
+    }
+    .wy-side-nav-search img {
+        height: 200px;
+        width: 200px;
+        border-radius: 0%;
+        background-color: #fff;
+    }
+    .highlight {
+        background: #F5F5F5;
+    }
+    .rst-content div[class^='highlight'] pre {
+        color: #24799a;
+    }
+  </style>
+
+
+</body>
+</html>

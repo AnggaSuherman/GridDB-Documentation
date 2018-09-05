@@ -1,0 +1,285 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>1.1 What is GridDB? &#8212; GridDB-Docs  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1.2 GridDB Editions" href="1-2_griddb-edition.html" />
+    <link rel="prev" title="Welcome to GridDB-Docs’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+              <div class="related top">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="index.html" title="Previous document">Welcome to GridDB-Docs’s documentation!</a>
+        </li>
+        <li>
+          <a href="1-2_griddb-edition.html" title="Next document">1.2 GridDB Editions</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+
+          <div class="body" role="main">
+            
+  <p>Table of Contents</p>
+<div class="section" id="what-is-griddb">
+<span id="what-is-griddb"></span><h1>1.1 What is GridDB?<a class="headerlink" href="#what-is-griddb" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="toshiba-griddb-is-a-highly-scalable-nosql-database-best-suited-for-iot-and-big-data">
+<span id="toshiba-griddb-is-a-highly-scalable-nosql-database-best-suited-for-iot-and-big-data"></span><h2>Toshiba GridDB™ is a highly scalable NoSQL database best suited for IoT and Big Data<a class="headerlink" href="#toshiba-griddb-is-a-highly-scalable-nosql-database-best-suited-for-iot-and-big-data" title="Permalink to this headline">¶</a></h2>
+<p>We live in the era of the Internet of Things (IoT) where billions of devices are interconnected and are generating petabytes of data at an increasing rate. Gaining insights and information from that data and generating value out of it gives a tangible competitive advantage to businesses, organizations, governments, and even individuals.</p>
+<p>Organizations should focus more on creating value from data that will enhance their core products, services or even operational processes rather than spend time in dealing with the complexity surrounding Big Data. Big data, in this case, means data in large quantities, high frequencies, and vast varieties.</p>
+<p>GridDB is an innovative solution built in Toshiba to solve these complex problems. The foundation of GridDB’s principles is based upon offering a versatile data store that is optimized for IoT, provides high scalability, is tuned for high performance, and ensures high reliability.</p>
+</div>
+<div class="section" id="four-pillars-of-griddb">
+<span id="four-pillars-of-griddb"></span><h2>Four Pillars of GridDB<a class="headerlink" href="#four-pillars-of-griddb" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li>Optimized for IoT</li>
+<li>High Performance</li>
+<li>High Scalability</li>
+<li>High Reliability/Availability</li>
+</ol>
+<div class="section" id="optimized-for-iot">
+<span id="optimized-for-iot"></span><h3>1. Optimized for IoT<a class="headerlink" href="#optimized-for-iot" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="griddbs-key-container-data-model-and-time-series-functions-are-built-for-iot">
+<span id="griddbs-key-container-data-model-and-time-series-functions-are-built-for-iot"></span><h4>GridDB’s Key Container data model and Time Series functions are built for IoT<a class="headerlink" href="#griddbs-key-container-data-model-and-time-series-functions-are-built-for-iot" title="Permalink to this headline">¶</a></h4>
+<p>The Key Container data model of GridDB extends the typical NoSQL Key-Value store. The Key Container model represents data in the form of collections that are referenced by keys. The key and container are rough equivalents of the table name and table data in Relational Databases (RDB). Data modeling in GridDB is easier than with other NoSQL databases as we can define the schema and design the data similar to that of an RDB.</p>
+<p>The Key Container model allows high speed access to data through Java and C APIs. Data in GridDB is also queried through TQL, a custom SQL-like query language. Basic search through the WHERE command and high speed conditional search operations through indexing offer a great advantage for applications that rely on faster search. GridDB supports transactions, including those with plural records from the application. Transactions in GridDB guarantee ACID (Atomicity, Consistency, Isolation, and Durability) at the container level.</p>
+<p>Two types of containers are prominent in GridDB: Collection-Container, a general-purpose container; and TimeSeries-Container which is for managing time series data.</p>
+<p><img alt="containers" src="_images/containers_intro.gif" /></p>
+<p>TimeSeries-Container is apt for IoT scenarios where the data is associated with a time-stamp. GridDB supports numerous time-series functions such as</p>
+<ul class="simple">
+<li>Data compression, for ever-increasing time series data. This functionality reduces memory usage significantly compared to other DBMS</li>
+<li>Term release, to automatically delete records that are no longer valid or needed</li>
+<li>Time series data aggregation and sampling functions</li>
+</ul>
+</div>
+</div>
+<div class="section" id="high-performance">
+<span id="high-performance"></span><h3>2. High Performance<a class="headerlink" href="#high-performance" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="griddbs-hybrid-composition-of-in-memory-and-disk-architecture-is-designed-for-maximum-performance">
+<span id="griddbs-hybrid-composition-of-in-memory-and-disk-architecture-is-designed-for-maximum-performance"></span><h4>GridDB’s hybrid composition of In-Memory and Disk architecture is designed for maximum performance<a class="headerlink" href="#griddbs-hybrid-composition-of-in-memory-and-disk-architecture-is-designed-for-maximum-performance" title="Permalink to this headline">¶</a></h4>
+<p><img alt="architecture" src="_images/hybrid_intro.gif" /></p>
+<p>I/O is a common bottleneck in any DBMS that can cause the CPU to be under-utilized. GridDB overcomes this bottleneck with the ‘Memory first, Storage second’ structure where the ‘primary’ data that is frequently accessed resides in memory and the rest is passed on to disks (SSD and HDD). High performance is achieved in GridDB by:</p>
+<p>Prioritizing In-Memory processing – In scenarios with large amounts of data, GridDB localizes the data access needed by applications by placing as much ‘primary’ data in the same block as possible. Based on the application’s access pattern and frequency GridDB efficiently utilizes memory space by setting hint memory intensity function and thus reduces memory misses.</p>
+<p>Reducing the Overhead – Operational and communication overhead occurs in multi-threaded operations due to lock and synchronization. GridDB eliminates this by allocating an exclusive memory and DB file to each CPU core / thread. As a result, execution time gets shortened and better performance is achieved.</p>
+<p>Parallel Processing – GridDB achieves high performance through parallel processing within a node and across nodes. Parallel processing across nodes is done by distributing a large dataset among multiple nodes (partitioning). Parallelism is made possible by the event-driven engine which processes multiple requests using the least amount of resources.</p>
+</div>
+</div>
+<div class="section" id="high-scalability">
+<span id="high-scalability"></span><h3>3. High Scalability<a class="headerlink" href="#high-scalability" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="griddb-scales-linearly-and-horizontally-on-commodity-hardware-maintaining-excellent-performance">
+<span id="griddb-scales-linearly-and-horizontally-on-commodity-hardware-maintaining-excellent-performance"></span><h4>GridDB scales linearly and horizontally on commodity hardware maintaining excellent performance<a class="headerlink" href="#griddb-scales-linearly-and-horizontally-on-commodity-hardware-maintaining-excellent-performance" title="Permalink to this headline">¶</a></h4>
+<p><img alt="high scalability" src="_images/scaling_intro.gif" /></p>
+<p>Traditional RDBMS are built on Scale-Up architecture (add more capacity to existing server/node). Transactions and data consistency are excellent on RDBMS. On the other hand, NoSQL databases focus on Scale-Out architecture (add smaller nodes to form a large cluster) but fair poorly on transactions and data consistency.</p>
+<p>GridDB scales out horizontally with commodity hardware maintaining the same level of performance. Contrary to other scale-out NoSQL databases, GridDB offers strong data consistency at the container level and provides ACID transaction guarantees similar to that of an RDB. Proprietary algorithms of GridDB allow nodes to be added on the fly online without having to stop the service or operation. GridDB offers a dual advantage for businesses that need a scale-out database for large amounts of data but still want to maintain data consistency.</p>
+</div>
+</div>
+<div class="section" id="high-reliability-availability">
+<span id="high-reliability-availability"></span><h3>4. High Reliability/Availability<a class="headerlink" href="#high-reliability-availability" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="hybrid-cluster-management-and-high-fault-tolerant-system-of-griddb-is-exceptional-for-mission-critical-applications">
+<span id="hybrid-cluster-management-and-high-fault-tolerant-system-of-griddb-is-exceptional-for-mission-critical-applications"></span><h4>Hybrid cluster management and high fault-tolerant system of GridDB is exceptional for mission-critical applications<a class="headerlink" href="#hybrid-cluster-management-and-high-fault-tolerant-system-of-griddb-is-exceptional-for-mission-critical-applications" title="Permalink to this headline">¶</a></h4>
+<p><img alt="high relability and availability" src="_images/relability_intro.gif" /></p>
+<p>Network partitions, node failures, and maintaining consistency are some of the major problems that arise when data is distributed across nodes. Typically, distributed systems adopt ‘Master-Slave’ or ‘Peer-to-Peer’ architectures. Master-Slave option is good at maintaining data consistency but a master node redundancy is required to avoid having a Single Point of Failure (SPOF). Peer-to-Peer, though avoids SPOF, has a huge problem of communication overhead among the nodes.</p>
+<p>GridDB’s autonomous control cluster architecture integrates the advantages of and overcomes the disadvantages of both Master-Slave and Peer-to-Peer styles. GridDB’s algorithms select the master node automatically among peers, and, in case of master node failure, operations remain intact as a new master is appointed automatically and immediately. GridDB’s proprietary algorithms avoid the classic distributed computing problem of Split-Brain, which occurs due to cluster partition during network failures. GridDB also offers various levels of replication based on the availability requirements of the application.</p>
+<p>Overall, GridDB offers multiple reliability features for mission-critical applications that require high availability and data retention.</p>
+<p><strong>And finally…</strong></p>
+<p>When it comes to IoT and Big Data use-cases, GridDB clearly stands out among other databases in the Relational and NoSQL space. Toshiba’s customers in various industry verticals have successfully implemented IoT projects by harnessing the power of GridDB. For more detailed information on each topic covered above, business use-cases and implementation, benchmark performance results and many more please check the GridDB website <a class="reference external" href="http://www.griddb.org/">www.griddb.org</a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="index.html" title="Previous document">Welcome to GridDB-Docs’s documentation!</a>
+        </li>
+        <li>
+          <a href="1-2_griddb-edition.html" title="Next document">1.2 GridDB Editions</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">GridDB-Docs</h1>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=griddb&repo=griddb_nosql&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1.1 What is GridDB?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#toshiba-griddb-is-a-highly-scalable-nosql-database-best-suited-for-iot-and-big-data">Toshiba GridDB™ is a highly scalable NoSQL database best suited for IoT and Big Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#four-pillars-of-griddb">Four Pillars of GridDB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to GridDB-Docs’s documentation!</a></li>
+      <li>Next: <a href="1-2_griddb-edition.html" title="next chapter">1.2 GridDB Editions</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div> 
+    <div class="footer">
+      &copy;2018, GridDB.
+      
+      |
+      <a href="_sources/1-1_what-is-griddb.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-81028923-2']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #39A7D1;
+    }
+  </style>
+
+  </body>
+</html>

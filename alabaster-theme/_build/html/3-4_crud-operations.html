@@ -1,0 +1,681 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3.4 CRUD Operations &mdash; GridDB-Docs  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3.5 Transactions and ACID" href="3-5_transactions-and-acid.html" />
+    <link rel="prev" title="3.3 TQL" href="3-3_tql.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <img src="_static/logo.png"><a href="index.html"> GridDB-Docs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GridDB-Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>3.4 CRUD Operations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/3-4_crud-operations.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Table of Contents</p>
+<div class="section" id="crud-operations">
+<span id="crud-operations"></span><h1>3.4 CRUD Operations<a class="headerlink" href="#crud-operations" title="Permalink to this headline">¶</a></h1>
+<p>CRUD operations are present in all databases as the foundational actions that allow the most basic of actions. GridDB’s CRUD operations are most easily executed by using its very own Java-based API, though it does also accept TQL.</p>
+<p><strong>What is CRUD?</strong></p>
+<ul class="simple">
+<li><strong>Create:</strong> writing new data (containers, rows, etc)</li>
+<li><strong>Read:</strong> viewing, or “pulling up” any data</li>
+<li><strong>Update:</strong> to modify already existing data (as opposed to writing NEW data) to reflect changes</li>
+<li><strong>Delete:</strong> erasing or removing data from a container or row</li>
+</ul>
+<div class="section" id="native-api">
+<span id="native-api"></span><h2>Native API<a class="headerlink" href="#native-api" title="Permalink to this headline">¶</a></h2>
+<p>GridDB can be accessed using TQL or through its native API. The native API willl be looked at first, followed by some examples of use with TQL.</p>
+<p><strong>Creating a Container</strong></p>
+<p>Containers can be made easily by defining the data as a class.</p>
+<p>// Create Collection
+Collection weatherStationCol =
+store.putCollection(“weather_station”, WeatherStation.class);
+return weatherStationCol;</p>
+<p>34-35 line: create the collection by using the GridStore.putCollection (String, Class) method. The String Specifies the name of the container. The Class specifies the WeatherStation class that was created in the schema definition.</p>
+<p>**</p>
+<p>Register the Data</p>
+<p>**</p>
+<p>Ready access to GridDB in the above process is now ready. Let’s try to register the data in GridDB.</p>
+<p>// Set the value to Row data
+WeatherStation weatherStation1 = new WeatherStation ();
+weatherStation1.id = “1”;
+weatherStation1.name = “WeatherStation 01”;
+weatherStation1.latitude = 35.68944;
+weatherStation1.longitude = 139.69167;
+weatherStation1.hasCamera = true;</p>
+<p>WeatherStation weatherStation2 = new WeatherStation ();
+weatherStation2.id = “2”;
+weatherStation2.name = “WeatherStation 02”;
+weatherStation2.latitude = 35.02139;
+weatherStation2.longitude = 135.75556;
+weatherStation2.hasCamera = false;</p>
+<p>// Register Collection
+weatherStationCol.put (weatherStation1);
+weatherStationCol.put (weatherStation2);</p>
+<p>* 30-42 line: Set the values of the data to be registered.* 45-46 line: Pack data and register it in the container</p>
+<p><strong>Read The Data (Retrieval)</strong></p>
+<p>Now the registered data can be retrieved from the GridDB server.</p>
+<p><strong>List.6 data acquisition process</strong> (FirstGridDB.java)</p>
+<p>// Retrieve Collection
+System.out.println(“get by key”);
+System.out.println(“ID\tName\t\t\tLongitude\tLatitude\tCamera”);
+weatherStationCol = store.getCollection(“weather_station”, WeatherStation.class);</p>
+<p>for (int i = 0; i &lt;2; i ++) {
+WeatherStation weatherStation = weatherStationCol.get (String.valueOf (i + 1));
+System.out.println (String.format(“% - 3s\t% -20s\t% s\t% s\t% -5s”, weatherStation.id,
+weatherStation.name, weatherStation.latitude, weatherStation.longitude,
+weatherStation.hasCamera));
+}</p>
+<p>* 51 line: First get the container by specifying the container name and class.* 54 line: Then get row data by specifying the key.Here is the output:</p>
+<p><strong>List.7 data acquisition result</strong></p>
+<p>get by key
+ID Name Longitude Latitude Camera
+1 WeatherStation 01 35.68944 139.69167 true
+2 WeatherStation 02 35.02139 135.75556 false</p>
+<p>**</p>
+<p>Deleting A Container</p>
+<p>**</p>
+<p>The command to delete a container looks like this:</p>
+<p>Container.dropCollection (String)</p>
+</div>
+<div class="section" id="tql">
+<span id="tql"></span><h2>TQL<a class="headerlink" href="#tql" title="Permalink to this headline">¶</a></h2>
+<p>Put simply, TQL is a simplified SQL prepared for NoSQL products. The support range is limited to functions such as search, aggregation, etc. TQL is employed by using the client API (Java, C language). To register and search for data in GridDB, a container or table (NewSQL products only) needs to be created to store the data. This section describes the data types that can be registered in a container or table, data size, index and data management functions.</p>
+<p>The naming rules for containers and tables are the same as those for databases.</p>
+<ul class="simple">
+<li>A string consisting of alphanumeric characters and the underscore mark can be specified. However, the first character cannot be a number.</li>
+<li>Although the case sensitivity of the name is maintained, a container (table) which has the same name when it is not case-sensitive cannot be created.</li>
+</ul>
+<p><strong>Container Creation</strong></p>
+<p>Container (collection)createcollection    Container name Column name Type [Column name Type …]
+Container (time series container)createtimeseries    Container name Compression method Column name type [Column name Type …]</p>
+<ul class="simple">
+<li>Description of each argument</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Argument</span>
+
+<span class="n">Description</span>
+
+<span class="n">Container</span> <span class="n">name</span>
+
+<span class="n">Specify</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">container</span> <span class="n">to</span> <span class="n">be</span> <span class="n">created</span><span class="o">.</span> <span class="n">If</span> <span class="n">the</span> <span class="n">name</span> <span class="ow">is</span> <span class="n">omitted</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">createcontainer</span> <span class="n">command</span><span class="p">,</span> <span class="n">a</span> <span class="n">container</span> <span class="k">with</span> <span class="n">the</span> <span class="n">name</span> <span class="n">given</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">container</span> <span class="n">data</span> <span class="n">file</span> <span class="n">will</span> <span class="n">be</span> <span class="n">created</span><span class="o">.</span>
+
+<span class="n">Column</span> <span class="n">name</span>
+
+<span class="n">Specify</span> <span class="n">the</span> <span class="n">column</span> <span class="n">name</span><span class="o">.</span>
+
+<span class="n">Type</span>
+
+<span class="n">Specify</span> <span class="n">the</span> <span class="n">column</span> <span class="nb">type</span><span class="o">.</span>
+
+<span class="n">Compression</span> <span class="n">method</span>
+
+<span class="n">For</span> <span class="n">TimeSeries</span> <span class="n">data</span><span class="p">,</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">data</span> <span class="n">compression</span> <span class="n">method</span><span class="o">.</span>
+
+<span class="n">Container</span> <span class="n">definition</span> <span class="n">file</span>
+
+<span class="n">Specify</span> <span class="n">the</span> <span class="n">file</span> <span class="n">storing</span> <span class="n">the</span> <span class="n">container</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">JSON</span> <span class="nb">format</span><span class="o">.</span>
+
+<span class="o">**</span><span class="n">Detailed</span> <span class="n">version</span><span class="o">**</span>
+
+<span class="n">Specify</span> <span class="n">the</span> <span class="n">container</span> <span class="n">definition</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">json</span> <span class="n">file</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">container</span><span class="o">.</span>
+
+<span class="o">*</span>   <span class="n">The</span> <span class="n">container</span> <span class="n">definition</span> <span class="n">data</span> <span class="n">has</span> <span class="n">the</span> <span class="n">same</span> <span class="n">definition</span> <span class="k">as</span> <span class="n">the</span> <span class="n">metadata</span> <span class="n">file</span> <span class="n">output</span> <span class="n">by</span> <span class="n">the</span> <span class="n">export</span> <span class="n">tool</span><span class="o">.</span> <span class="n">See</span> <span class="p">[</span><span class="n">Metadata</span> <span class="n">files</span><span class="p">](</span><span class="c1">#impexp_metadata) with [the container data file format](#container_dataform) for the column type and data compression method, container definition format, etc. However, the following data will be invalid in this command even though it is defined in the metadata file of the export command.</span>
+    <span class="o">*</span>   <span class="n">version</span> <span class="n">Export</span> <span class="n">tool</span> <span class="n">version</span>
+    <span class="o">*</span>   <span class="n">database</span> <span class="n">Database</span> <span class="n">name</span>
+    <span class="o">*</span>   <span class="n">containerFileType</span> <span class="n">Export</span> <span class="n">data</span> <span class="n">file</span> <span class="nb">type</span>
+    <span class="o">*</span>   <span class="n">containerFile</span> <span class="n">Export</span> <span class="n">file</span> <span class="n">name</span>
+    <span class="o">*</span>   <span class="n">partitionNo</span> <span class="n">Partition</span> <span class="n">no</span><span class="o">.</span>
+<span class="o">*</span>   <span class="n">Describe</span> <span class="n">a</span> <span class="n">single</span> <span class="n">container</span> <span class="n">definition</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">single</span> <span class="n">container</span> <span class="n">definition</span> <span class="n">file</span><span class="o">.</span>
+<span class="o">*</span>   <span class="n">If</span> <span class="n">the</span> <span class="n">container</span> <span class="n">name</span> <span class="ow">is</span> <span class="n">omitted</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">argument</span><span class="p">,</span> <span class="n">create</span> <span class="n">the</span> <span class="n">container</span> <span class="k">with</span> <span class="n">the</span> <span class="n">name</span> <span class="n">described</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">container</span> <span class="n">definition</span> <span class="n">file</span><span class="o">.</span>
+<span class="o">*</span>   <span class="n">If</span> <span class="n">the</span> <span class="n">container</span> <span class="n">name</span> <span class="ow">is</span> <span class="n">omitted</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">argument</span><span class="p">,</span> <span class="n">ignore</span> <span class="n">the</span> <span class="n">container</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">container</span> <span class="n">definition</span> <span class="n">file</span> <span class="ow">and</span> <span class="n">create</span> <span class="n">the</span> <span class="n">container</span> <span class="k">with</span> <span class="n">the</span> <span class="n">name</span> <span class="n">described</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">argument</span><span class="o">.</span>
+<span class="o">*</span>   <span class="n">An</span> <span class="n">error</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">result</span> <span class="n">even</span> <span class="k">if</span> <span class="n">the</span> <span class="n">database</span> <span class="n">name</span> <span class="ow">is</span> <span class="n">described</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">container</span> <span class="n">definition</span> <span class="n">file</span> <span class="n">but</span> <span class="n">the</span> <span class="n">name</span> <span class="n">will</span> <span class="n">be</span> <span class="n">ignored</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">container</span> <span class="n">will</span> <span class="n">be</span> <span class="n">created</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">database</span> <span class="n">currently</span> <span class="n">being</span> <span class="n">connected</span><span class="o">.</span>
+<span class="o">*</span>   <span class="n">When</span> <span class="n">using</span> <span class="n">the</span> <span class="n">container</span> <span class="n">definition</span> <span class="n">file</span><span class="p">,</span> <span class="p">[</span><span class="n">the</span> <span class="n">metadata</span> <span class="n">file</span> <span class="n">will</span> <span class="n">be</span> <span class="n">output</span> <span class="n">when</span> <span class="n">the</span> <span class="o">--</span><span class="n">out</span> <span class="n">option</span> <span class="ow">is</span> <span class="n">specified</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">export</span> <span class="n">function</span><span class="p">](</span><span class="c1">#impexp_export). The output metadata file can be edited and used as a container definition file.</span>
+</pre></div>
+</div>
+<p>Example: When using the output metadata file as a container definition file</p>
+<p>{
+“version”:”2.1.00”,　　　　　　　　　　　　　　　←invalid
+“container”:”container_354”,
+“database”:”db2”,　　　　　　　　　　　　　　　　←invalid
+“containerType”:”TIME_SERIES”,
+“containerFileType”:”binary”,　　　　　　　　　　←invalid
+“containerFile”:”20141219_114232_098_div1.mc”, 　←invalid
+“rowKeyAssigned”:true,
+“partitionNo”:0,　　　　　　　　　　　　　　　　 ←invalid
+“columnSet”:[
+{
+“columnName”:”timestamp”,
+“type”:”timestamp”
+},
+{
+“columnName”:”active”,
+“type”:”boolean”
+},
+{
+“columnName”:”voltage”,
+“type”:”double”
+}
+],
+“timeSeriesProperties”:{
+“compressionMethod”:”NO”,
+“compressionWindowSize”:-1,
+“compressionWindowSizeUnit”:”null”,
+“expirationDivisionCount”:8,
+“rowExpirationElapsedTime”:-1,
+“rowExpirationTimeUnit”:”null”
+},
+“compressionInfoSet”:[
+]</p>
+<p><strong>Container Deletion</strong></p>
+<ul>
+<li><p class="first">Example:</p>
+<p>gs[public]&gt; dropcontainer　Con001</p>
+</li>
+</ul>
+<p><strong>Container Indication</strong></p>
+<p>The following command is used to display the container data.</p>
+<ul class="simple">
+<li>Sub-command</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">showcontainer</span>
+
+<span class="n">Container</span> <span class="n">name</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Description of each argument</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Argument</span>
+
+<span class="n">Description</span>
+
+<span class="n">Container</span> <span class="n">name</span>
+
+<span class="n">Specify</span> <span class="n">the</span> <span class="n">container</span> <span class="n">name</span> <span class="n">to</span> <span class="n">be</span> <span class="n">displayed</span><span class="o">.</span> <span class="n">Display</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="nb">all</span> <span class="n">containers</span> <span class="k">if</span> <span class="n">omitted</span><span class="o">.</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">Example:</p>
+<p>// display container list
+gs[userDB]&gt; showcontainer
+Database : userDB
+Name                  Type         PartitionId
+------------------------------------------------
+cont001               COLLECTION            10
+col00a                COLLECTION             3
+time02                TIME_SERIES            5
+cont003               COLLECTION            15
+cont005               TIME_SERIES           17</p>
+<p>// display data of specified container
+gs[public]&gt; showcontainer cont003
+Database    : userDB
+Name : cont003
+Type : COLLECTION
+Partition ID: 15
+DataAffinity: -</p>
+<p>Columns:
+No  Name                  Type            Index
+------------------------------------------------------------
+0  col1                  INTEGER         [TREE] (RowKey)
+1  col2                  STRING          []
+2  col3                  TIMESTAMP       []</p>
+</li>
+</ul>
+<p><strong>[Memo]</strong></p>
+<ul class="simple">
+<li>The data displayed in a container list are the “Container name”, “Container type” and “Partition ID”.</li>
+<li>The data displayed in the specified container are the “Container name”, “Container type”, “Partition ID”, “Defined column name”, “Column data type” and “Column index setting”.</li>
+<li>Container data of the current DB will be displayed.</li>
+</ul>
+<p><strong>Container ROWKEY</strong></p>
+<p>A ROWKEY is the data set in the row of a container. The uniqueness of a row with a set ROWKEY is guaranteed. A ROWKEY can be set in the first column of the row. (This is set in Column No. 0 since columns start from 0 in GridDB.)</p>
+<ul class="simple">
+<li>For a timeseries container</li>
+<li>ROWKEY is a TIMESTAMP</li>
+<li>Must be specified.</li>
+<li>For a collection container</li>
+<li>A ROWKEY is either a STRING, INTEGER, LONG, or TIMESTAMP column.</li>
+<li>Need not be specified</li>
+</ul>
+<p>A default index prescribed in advance according to the column data type can be set in a column set in ROWKEY. In the current version, the default index of all STRING, INTEGER, LONG or TIMESTAMP data that can be specified in a ROWKEY is the TREE index.</p>
+</div>
+<div class="section" id="sample-of-collection-operations-java">
+<span id="sample-of-collection-operations-java"></span><h2>Sample of Collection Operations (Java)<a class="headerlink" href="#sample-of-collection-operations-java" title="Permalink to this headline">¶</a></h2>
+<p>package test;</p>
+<p>import java.util.Arrays;
+import java.util.Properties;</p>
+<p>import com.toshiba.mwcloud.gs.Collection;
+import com.toshiba.mwcloud.gs.GSException;
+import com.toshiba.mwcloud.gs.GridStore;
+import com.toshiba.mwcloud.gs.GridStoreFactory;
+import com.toshiba.mwcloud.gs.Query;
+import com.toshiba.mwcloud.gs.RowKey;
+import com.toshiba.mwcloud.gs.RowSet;</p>
+<p>// Operaton on Collection data
+public class Sample1 {</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="nd">@RowKey</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+    <span class="n">boolean</span> <span class="n">status</span><span class="p">;</span>
+    <span class="n">long</span> <span class="n">count</span><span class="p">;</span>
+    <span class="n">byte</span>\<span class="p">[</span>\<span class="p">]</span> <span class="n">lob</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span>\<span class="p">[</span>\<span class="p">]</span> <span class="n">args</span><span class="p">)</span> <span class="n">throws</span> <span class="n">GSException</span> <span class="p">{</span>
+
+    <span class="o">//</span> <span class="n">Get</span> <span class="n">a</span> <span class="n">GridStore</span> <span class="n">instance</span>
+    <span class="n">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Properties</span><span class="p">();</span>
+    <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;notificationAddress&quot;</span><span class="p">,</span> <span class="n">args</span>\<span class="p">[</span><span class="mi">0</span>\<span class="p">]);</span>
+    <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;notificationPort&quot;</span><span class="p">,</span> <span class="n">args</span>\<span class="p">[</span><span class="mi">1</span>\<span class="p">]);</span>
+    <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;clusterName&quot;</span><span class="p">,</span> <span class="n">args</span>\<span class="p">[</span><span class="mi">2</span>\<span class="p">]);</span>
+    <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;system&quot;</span><span class="p">);</span>
+    <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;manager&quot;</span><span class="p">);</span>
+    <span class="n">GridStore</span> <span class="n">store</span> <span class="o">=</span> <span class="n">GridStoreFactory</span><span class="o">.</span><span class="n">getInstance</span><span class="p">()</span><span class="o">.</span><span class="n">getGridStore</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">Collection</span> <span class="p">(</span><span class="n">Delete</span> <span class="k">if</span> <span class="n">schema</span> <span class="n">setting</span> <span class="ow">is</span> <span class="n">NULL</span><span class="p">)</span>
+    <span class="n">Collection</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Person</span><span class="o">&gt;</span> <span class="n">col</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">putCollection</span><span class="p">(</span><span class="s2">&quot;col01&quot;</span><span class="p">,</span> <span class="n">Person</span><span class="o">.</span><span class="n">class</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Set</span> <span class="n">an</span> <span class="n">index</span> <span class="n">on</span> <span class="n">the</span> <span class="n">Row</span><span class="o">-</span><span class="n">key</span> <span class="n">Column</span>
+    <span class="n">col</span><span class="o">.</span><span class="n">createIndex</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Set</span> <span class="n">an</span> <span class="n">index</span> <span class="n">on</span> <span class="n">the</span> <span class="n">Column</span>
+    <span class="n">col</span><span class="o">.</span><span class="n">createIndex</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">autocommit</span> <span class="n">mode</span> <span class="n">to</span> <span class="n">OFF</span>
+    <span class="n">col</span><span class="o">.</span><span class="n">setAutoCommit</span><span class="p">(</span><span class="n">false</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Prepare</span> <span class="n">data</span> <span class="k">for</span> <span class="n">a</span> <span class="n">Row</span>
+    <span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Person</span><span class="p">();</span>
+    <span class="n">person</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;name01&quot;</span><span class="p">;</span>
+    <span class="n">person</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+    <span class="n">person</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">person</span><span class="o">.</span><span class="n">lob</span> <span class="o">=</span> <span class="n">new</span> <span class="n">byte</span>\<span class="p">[</span>\<span class="p">]</span> <span class="p">{</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">74</span> <span class="p">};</span>
+
+    <span class="o">//</span> <span class="n">Operate</span> <span class="n">a</span> <span class="n">Row</span> <span class="n">on</span> <span class="n">a</span> <span class="n">K</span><span class="o">-</span><span class="n">V</span> <span class="n">basis</span><span class="p">:</span> <span class="n">RowKey</span> <span class="o">=</span> <span class="s2">&quot;name01&quot;</span>
+    <span class="n">boolean</span> <span class="n">update</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+    <span class="n">col</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">person</span><span class="p">);</span>    <span class="o">//</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">Row</span>
+    <span class="n">person</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">update</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Obtain</span> <span class="n">the</span> <span class="n">Row</span> <span class="p">(</span><span class="n">acquiring</span> <span class="n">a</span> <span class="n">lock</span> <span class="k">for</span> <span class="n">update</span><span class="p">)</span>
+    <span class="n">col</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">name</span><span class="p">);</span>    <span class="o">//</span> <span class="n">Delete</span> <span class="n">the</span> <span class="n">Row</span>
+
+    <span class="o">//</span> <span class="n">Operate</span> <span class="n">a</span> <span class="n">Row</span> <span class="n">on</span> <span class="n">a</span> <span class="n">K</span><span class="o">-</span><span class="n">V</span> <span class="n">basis</span><span class="p">:</span> <span class="n">RowKey</span> <span class="o">=</span> <span class="s2">&quot;name02&quot;</span>
+    <span class="n">col</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s2">&quot;name02&quot;</span><span class="p">,</span> <span class="n">person</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Add</span> <span class="n">a</span> <span class="n">Row</span> <span class="p">(</span><span class="n">specifying</span> <span class="n">RowKey</span><span class="p">)</span>
+
+    <span class="o">//</span> <span class="n">Commit</span> <span class="n">the</span> <span class="n">transaction</span> <span class="p">(</span><span class="n">Release</span> <span class="n">the</span> <span class="n">lock</span><span class="p">)</span>
+    <span class="n">col</span><span class="o">.</span><span class="n">commit</span><span class="p">();</span>
+
+    <span class="o">//</span> <span class="n">Search</span> <span class="n">the</span> <span class="n">Collection</span> <span class="k">for</span> <span class="n">a</span> <span class="n">Row</span>
+    <span class="n">Query</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">query</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;select * where name = &#39;name02&#39;&quot;</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Fetch</span> <span class="ow">and</span> <span class="n">update</span> <span class="n">the</span> <span class="n">searched</span> <span class="n">Row</span>
+    <span class="n">RowSet</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">update</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">hasNext</span><span class="p">())</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">Update</span> <span class="n">the</span> <span class="n">searched</span> <span class="n">Row</span>
+        <span class="n">Person</span> <span class="n">person1</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">next</span><span class="p">();</span>
+        <span class="n">person1</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">rs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">person1</span><span class="p">);</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Person: &quot;</span> <span class="o">+</span>
+                <span class="s2">&quot; name=&quot;</span> <span class="o">+</span> <span class="n">person1</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span>
+                <span class="s2">&quot; status=&quot;</span> <span class="o">+</span> <span class="n">person1</span><span class="o">.</span><span class="n">status</span> <span class="o">+</span>
+                <span class="s2">&quot; count=&quot;</span> <span class="o">+</span> <span class="n">person1</span><span class="o">.</span><span class="n">count</span> <span class="o">+</span>
+                <span class="s2">&quot; lob=&quot;</span> <span class="o">+</span> <span class="n">Arrays</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="n">person1</span><span class="o">.</span><span class="n">lob</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="o">//</span> <span class="n">Commit</span> <span class="n">the</span> <span class="n">transaction</span>
+    <span class="n">col</span><span class="o">.</span><span class="n">commit</span><span class="p">();</span>
+
+    <span class="o">//</span> <span class="n">Release</span> <span class="n">the</span> <span class="n">resource</span>
+    <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>}</p>
+</div>
+<div class="section" id="sample-of-timeseries-operations-0-storage-and-extraction-of-specific-range-java">
+<span id="sample-of-timeseries-operations-0-storage-and-extraction-of-specific-range-java"></span><h2>Sample of TimeSeries Operations 0 Storage and Extraction of Specific Range (Java)<a class="headerlink" href="#sample-of-timeseries-operations-0-storage-and-extraction-of-specific-range-java" title="Permalink to this headline">¶</a></h2>
+<p>package test;</p>
+<p>import java.util.Date;
+import java.util.Properties;</p>
+<p>import com.toshiba.mwcloud.gs.GSException;
+import com.toshiba.mwcloud.gs.GridStore;
+import com.toshiba.mwcloud.gs.GridStoreFactory;
+import com.toshiba.mwcloud.gs.RowKey;
+import com.toshiba.mwcloud.gs.RowSet;
+import com.toshiba.mwcloud.gs.TimeSeries;
+import com.toshiba.mwcloud.gs.TimestampUtils;
+import com.toshiba.mwcloud.gs.TimeUnit;</p>
+<p>// Storage and extraction of a specific range of time-series data
+public class Sample2 {</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="k">class</span> <span class="nc">Point</span> <span class="p">{</span>
+    <span class="nd">@RowKey</span> <span class="n">Date</span> <span class="n">timestamp</span><span class="p">;</span>
+    <span class="n">boolean</span> <span class="n">active</span><span class="p">;</span>
+    <span class="n">double</span> <span class="n">voltage</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span>\<span class="p">[</span>\<span class="p">]</span> <span class="n">args</span><span class="p">)</span> <span class="n">throws</span> <span class="n">GSException</span> <span class="p">{</span>
+
+    <span class="o">//</span> <span class="n">Get</span> <span class="n">a</span> <span class="n">GridStore</span> <span class="n">instance</span>
+    <span class="n">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Properties</span><span class="p">();</span>
+    <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;notificationAddress&quot;</span><span class="p">,</span> <span class="n">args</span>\<span class="p">[</span><span class="mi">0</span>\<span class="p">]);</span>
+    <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;notificationPort&quot;</span><span class="p">,</span> <span class="n">args</span>\<span class="p">[</span><span class="mi">1</span>\<span class="p">]);</span>
+    <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;clusterName&quot;</span><span class="p">,</span> <span class="n">args</span>\<span class="p">[</span><span class="mi">2</span>\<span class="p">]);</span>
+    <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;system&quot;</span><span class="p">);</span>
+    <span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;manager&quot;</span><span class="p">);</span>
+    <span class="n">GridStore</span> <span class="n">store</span> <span class="o">=</span> <span class="n">GridStoreFactory</span><span class="o">.</span><span class="n">getInstance</span><span class="p">()</span><span class="o">.</span><span class="n">getGridStore</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">TimeSeries</span> <span class="p">(</span><span class="n">Only</span> <span class="n">obtain</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">TimeSeries</span> <span class="k">if</span> <span class="n">it</span> <span class="n">already</span> <span class="n">exists</span><span class="p">)</span>
+    <span class="n">TimeSeries</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">putTimeSeries</span><span class="p">(</span><span class="s2">&quot;point01&quot;</span><span class="p">,</span> <span class="n">Point</span><span class="o">.</span><span class="n">class</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Prepare</span> <span class="n">time</span><span class="o">-</span><span class="n">series</span> <span class="n">element</span> <span class="n">data</span>
+    <span class="n">Point</span> <span class="n">point</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Point</span><span class="p">();</span>
+    <span class="n">point</span><span class="o">.</span><span class="n">active</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+    <span class="n">point</span><span class="o">.</span><span class="n">voltage</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+
+    <span class="o">//</span> <span class="n">Store</span> <span class="n">the</span> <span class="n">time</span><span class="o">-</span><span class="n">series</span> <span class="n">element</span> <span class="p">(</span><span class="n">GridStore</span> <span class="n">sets</span> <span class="n">its</span> <span class="n">timestamp</span><span class="p">)</span>
+    <span class="n">ts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">point</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Extract</span> <span class="n">the</span> <span class="n">specified</span> <span class="nb">range</span> <span class="n">of</span> <span class="n">time</span><span class="o">-</span><span class="n">series</span> <span class="n">elements</span><span class="p">:</span> <span class="n">last</span> <span class="n">six</span> <span class="n">hours</span>
+    <span class="n">Date</span> <span class="n">now</span> <span class="o">=</span> <span class="n">TimestampUtils</span><span class="o">.</span><span class="n">current</span><span class="p">();</span>
+    <span class="n">Date</span> <span class="n">before</span> <span class="o">=</span> <span class="n">TimestampUtils</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">now</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="n">HOUR</span><span class="p">);</span>
+
+    <span class="n">RowSet</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">before</span><span class="p">,</span> <span class="n">now</span><span class="p">)</span><span class="o">.</span><span class="n">fetch</span><span class="p">();</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">rs</span><span class="o">.</span><span class="n">hasNext</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">point</span> <span class="o">=</span> <span class="n">rs</span><span class="o">.</span><span class="n">next</span><span class="p">();</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span>
+                <span class="s2">&quot;Time=&quot;</span> <span class="o">+</span> <span class="n">TimestampUtils</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">timestamp</span><span class="p">)</span> <span class="o">+</span>
+                <span class="s2">&quot; Active=&quot;</span> <span class="o">+</span> <span class="n">point</span><span class="o">.</span><span class="n">active</span> <span class="o">+</span>
+                <span class="s2">&quot; Voltage=&quot;</span> <span class="o">+</span> <span class="n">point</span><span class="o">.</span><span class="n">voltage</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="o">//</span> <span class="n">Release</span> <span class="n">the</span> <span class="n">resource</span>
+    <span class="n">store</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>}</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="3-5_transactions-and-acid.html" class="btn btn-neutral float-right" title="3.5 Transactions and ACID" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="3-3_tql.html" class="btn btn-neutral" title="3.3 TQL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GridDB.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #fff;
+    }
+    .wy-nav-side {
+        background: #fff;
+    }
+    .wy-menu-vertical a {
+        color: #39A7D1;
+    }
+    .wy-menu-vertical a:hover {
+        background-color: #77c3df;
+        color: white;
+    }
+    .wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+        color: #24799a;
+    }
+    .wy-side-nav-search img {
+        height: 200px;
+        width: 200px;
+        border-radius: 0%;
+        background-color: #fff;
+    }
+    .highlight {
+        background: #F5F5F5;
+    }
+    .rst-content div[class^='highlight'] pre {
+        color: #24799a;
+    }
+  </style>
+
+
+</body>
+</html>

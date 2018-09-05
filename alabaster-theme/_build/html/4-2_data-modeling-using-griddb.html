@@ -1,0 +1,615 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4.2 Data Modeling Using GridDB &mdash; GridDB-Docs  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4.3 Modeling Relationships" href="4-3_modeling-relationships.html" />
+    <link rel="prev" title="4.1 Data Modeling Basics" href="4-1_data-modeling-basics.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <img src="_static/logo.png"><a href="index.html"> GridDB-Docs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GridDB-Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>4.2 Data Modeling Using GridDB</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/4-2_data-modeling-using-griddb.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Table of Contents</p>
+<div class="section" id="data-modeling-using-griddb">
+<span id="data-modeling-using-griddb"></span><h1>4.2 Data Modeling Using GridDB<a class="headerlink" href="#data-modeling-using-griddb" title="Permalink to this headline">¶</a></h1>
+<p>Storing Data in Collection</p>
+<p>The flow of storing data in a Collection is shown below. First, if there is no Collection to store data in, create a new Collection following the procedure below:</p>
+<ol class="simple">
+<li>Get a GridStore instance.</li>
+<li>Create a Collection.</li>
+</ol>
+<p>You can store data in an existing Collection with the following procedure:</p>
+<ol class="simple">
+<li>Get a GridStore instance.</li>
+<li>Get a collection.</li>
+<li>Set operation parameters</li>
+<li>Create indexes.</li>
+<li>Create values to be stored.</li>
+<li>Store values in the Collection</li>
+<li>Perform a commit a proper intervals</li>
+<li>Release the GridStore instance.</li>
+</ol>
+<p>Storing data in a TimeSeries container follows the exact same procedure.</p>
+<p>This examples below are intended to provide an application which has the following capabilities:</p>
+<ul class="simple">
+<li>Storing facility information</li>
+<li>Storing alarm history</li>
+<li>Storing sensor data</li>
+<li>Searching for and displaying facility information and sensor data showing abnormality</li>
+</ul>
+<p>The following sections describe client programs which implement each capability based on the schema definitions shown in the previous chapter.</p>
+<div class="section" id="storing-facility-information">
+<span id="storing-facility-information"></span><h2>4.2.1 Storing Facility Information<a class="headerlink" href="#storing-facility-information" title="Permalink to this headline">¶</a></h2>
+<p>Technically, in the monitoring system, the information on facility configuration and specifications needs to be stored in a database. For simplicity, however, this section shows a sample program which loads facility information collectively from a CSV file storing the data. An outline of the processing flow is shown below.</p>
+<ol class="simple">
+<li>Connect to a server and get a GridStore instance.</li>
+<li>Create a facility information Collection name with a specified name (“equipment_col”) in GridStore.</li>
+<li>Create indexes to be used for search.</li>
+<li>Store a value repeatedly while reading a CSV file, as follows:<ul>
+<li>4-1. Analyze a read CSV-formatted line and create a facility information object to store.</li>
+<li>4-2. Store (put) the created facility information object in the facility information Collection.</li>
+<li>4-3. Perform a commit if repeated the predetermined number of times.</li>
+</ul>
+</li>
+<li>Release the GridStore instance if all CSV-formatted lines are processed.</li>
+</ol>
+<p>A concrete sample program is shown below:</p>
+<p>1:  package pvrms;
+2:3:  import java.io.FileReader;
+4:  import java.io.IOException;
+5:  import java.text.ParseException;
+6:  import java.util.Properties;
+7:8:  import au.com.bytecode.opencsv.CSVReader;
+9:10:  import com.toshiba.mwcloud.gs.Collection;
+11:  import com.toshiba.mwcloud.gs.GSException;
+12:  import com.toshiba.mwcloud.gs.GridStore;
+13:  import com.toshiba.mwcloud.gs.GridStoreFactory;
+14:  import com.toshiba.mwcloud.gs.RowKey;
+15:16:  // Facility information
+17:  class Equip {
+18:      &#64;RowKey String id;
+19:      String   name;
+20:      //Blob     spec; // For simplicity, spec information is not used.
+21:  }
+22:23:  public class SimplePv0 {
+24:25:      /*
+26:       * Load facility information from a CSV file.
+27:       <em>/
+28:      public static void main(String[] args) throws GSException, ParseException, IOException {
+29:30:          // Specify a server.
+31:          final String gsServer     = “127.0.0.1”;
+32:          final String gsPort       = “10001”;
+33:          final String user         = “admin”;
+34:          final String password     = “admin”;
+35:36:          final String equipColName = “equipment_col”;
+37:38:          // Get a GridStore instance.
+39:          final Properties prop = new Properties();
+40:          prop.setProperty(“host”, gsServer);
+41:          prop.setProperty(“port”, gsPort);
+42:          prop.setProperty(“user”, user);
+43:          prop.setProperty(“password”, password);
+44:          final GridStore store = GridStoreFactory.getInstance().getGridStore(prop);
+45:46:47:          // Read a CSV file.
+48:          String dataFileName = “equipName.csv”;
+49:          CSVReader reader = new CSVReader(new FileReader(dataFileName));
+50:          String[] nextLine;
+51:52:          /</em>
+53:           *  Create a Collection.
+54:           <em>/
+55:          Collection equipCol = store.putCollection(equipColName, Equip.class);
+56:57:          /</em>
+58:           *  Create indexes for Columns.
+59:           <em>/
+60:          equipCol.createIndex(“id”);
+61:          equipCol.createIndex(“name”);
+62:63:          /</em>
+64:           *  Set autocommit mde to OFF.
+65:           <em>/
+66:          equipCol.setAutoCommit(false);
+67:68:          // Commit interval
+69:          Long commtInterval = (long) 1;
+70:71:          /</em>
+72:           *  Store a value.
+73:           */
+74:          Equip equip = new Equip();
+75:          Long cnt = (long) 0;
+76:          byte[] b = new byte[1];
+77:          b[0] = 1;
+78:          while ((nextLine = reader.readNext()) != null) {
+79:80:              // Store facility information.
+81:              equip.id   = nextLine[2];
+82:              equip.name   = nextLine[3];
+83:84:              equipCol.put(equip);
+85:86:              cnt++;
+87:88:              if(0 == cnt%commtInterval) {
+89:                  // Commit a transaction.
+90:                  equipCol.commit();
+91:              }
+92:93:          }
+94:95:          // Release a resource
+96:          store.close();
+97:          reader.close();
+98:99:  }
+100:101:  }</p>
+</div>
+<div class="section" id="storing-alarm-history">
+<span id="storing-alarm-history"></span><h2>4.2.2 Storing Alarm History<a class="headerlink" href="#storing-alarm-history" title="Permalink to this headline">¶</a></h2>
+<p>Technically, in the monitoring system, a sensor or a facility directly sends an alarm to GridDB and stores it . For simplicity’s sake, however, this section shows a sample program which loads alarm history data collectively from a CSV file storing the data. An outline of the processing flow is shown below.</p>
+<ol class="simple">
+<li>Connect to a server and get a GridStore instance.</li>
+<li>Create an alert Collection with a specified name (“alert_col”) in GridStore and get it.</li>
+<li>Create indexes to be used for search.</li>
+<li>Store a value repeatedly while reading a CSV file, as follows:<ul>
+<li>4-1. Analyze a read CSV-formatted line and create an alert object to store.</li>
+<li>4-2. Store (put) the created alert object in the alert Collection.</li>
+<li>4-3. Perform a commit if repeated the predetermined number of times.</li>
+</ul>
+</li>
+<li>Release the GridStore instance if all CSV-formatted lines are processed.</li>
+</ol>
+<p>A concrete sample program is shown below:</p>
+<p>1:  package pvrms;
+2:3:  import java.io.FileReader;
+4:  import java.io.IOException;
+5:  import java.text.ParseException;
+6:  import java.text.SimpleDateFormat;
+7:  import java.util.Date;
+8:  import java.util.Properties;
+9:10:  import au.com.bytecode.opencsv.CSVReader;
+11:12:  import com.toshiba.mwcloud.gs.Collection;
+13:  import com.toshiba.mwcloud.gs.GSException;
+14:  import com.toshiba.mwcloud.gs.GridStore;
+15:  import com.toshiba.mwcloud.gs.GridStoreFactory;
+16:  import com.toshiba.mwcloud.gs.RowKey;
+17:18:  // Alert information
+19:  class Alert {
+20:      &#64;RowKey Long id;
+21:      Date    timestamp;
+22:      String  sensorId;
+23:      int     level;
+24:      String  detail;
+25:  }
+26:27:  public class SimplePv1 {
+28:29:      /*
+30:       * Load alert data from a CSV file.
+31:       <em>/
+32:      public static void main(String[] args) throws GSException, ParseException, IOException {
+33:34:          // Specify a server.
+35:          final String gsServer     = “127.0.0.1”;
+36:          final String gsPort       = “10001”;
+37:          final String user         = “admin”;
+38:          final String password     = “admin”;
+39:40:          final String alertColName = “alert_col”;
+41:42:          // Get a GridStore instance.
+43:          final Properties prop = new Properties();
+44:          prop.setProperty(“host”, gsServer);
+45:          prop.setProperty(“port”, gsPort);
+46:          prop.setProperty(“user”, user);
+47:          prop.setProperty(“password”, password);
+48:          final GridStore store = GridStoreFactory.getInstance().getGridStore(prop);
+49:50:          // Read a CSV file.
+51:          String dataFileName = “alarmHistory.csv”;
+52:          CSVReader reader = new CSVReader(new FileReader(dataFileName));
+53:          String[] nextLine;
+54:55:          /</em>
+56:           *  Create a Collection.
+57:           <em>/
+58:          Collection alertCol = store.putCollection(alertColName, Alert.class);
+59:60:          /</em>
+61:           *  Create indexes for Columns.
+62:           <em>/
+63:          alertCol.createIndex(“timestamp”);
+64:          alertCol.createIndex(“level”);
+65:66:          /</em>
+67:           *  Set autocommit mde to OFF.
+68:           <em>/
+69:          alertCol.setAutoCommit(false);
+70:71:          // Commit interval
+72:          Long commtInterval = (long) 1;
+73:74:          /</em>
+75:           *  Store a value.
+76:           */
+77:          SimpleDateFormat format = new SimpleDateFormat(“yyyy/MM/ddHH:mm:ss”);
+78:          Alert alert = new Alert();
+79:          Long cnt = (long) 0;
+80:          while ((nextLine = reader.readNext()) != null) {
+81:82:              String dateS     = nextLine[0];//2011/1/1
+83:              String timeS     = nextLine[1];//19 (hundred hours)
+84:              String datetimeS = dateS + ” ” + timeS + “:00:00”;
+85:              Date   date      = format.parse(datetimeS);
+86:              Long   datetime  = date.getTime();
+87:88:              alert.id         = ++cnt;
+89:              alert.timestamp  = new Date(datetime);
+90:              alert.sensorId   = nextLine[2];
+91:              alert.level      = Integer.valueOf(nextLine[3]);
+92:              alert.detail     = nextLine[4];
+93:94:              alertCol.put(alert);
+95:96:              if(0 == cnt%commtInterval) {
+97:                  // Commit a transaction.
+98:                  alertCol.commit();
+99:              }
+100:101:          }
+102:103:          // Release a resource.
+104:          store.close();
+105:          reader.close();
+106:107:  }
+108:109:  }</p>
+</div>
+<div class="section" id="storing-sensor-data">
+<span id="storing-sensor-data"></span><h2>4.2.3 Storing Sensor Data<a class="headerlink" href="#storing-sensor-data" title="Permalink to this headline">¶</a></h2>
+<p>Technically, in the monitoring system, a sensor directly sends a measured value to be stored in GridStore. For simplicity, however, this section shows a sample program which loads sensor data collectively from a CSV file storing the data. An outline of a processing flow is shown below.</p>
+<ol class="simple">
+<li>Connect to a server and get a GridStore instance.</li>
+<li>Read the first line of a CSV file and create a set of TimeSeries to be used beforehand, as follows:<ul>
+<li>2-1. Analyze the first CSV-formatted line and obtain multiple sensor IDs (= the names of TimeSeries to be created).</li>
+<li>2-2. Create an alert Collection in GridStore for each obtained sensor ID.</li>
+</ul>
+</li>
+<li>Store a value repeatedly, while reading the rest of the CSV file, as follows:<ul>
+<li>3-1. Analyze a read CSV-formatted file and create a Point object to store.</li>
+<li>3-2. Store (put) the created Point object in an appropriate TimeSeries.</li>
+</ul>
+</li>
+<li>Release the GridStore instance if all CSV-formatted lines are processed.</li>
+</ol>
+<p>A concrete sample program is shown below:</p>
+<p>1:  package pvrms;
+2:3:  import java.io.FileReader;
+4:  import java.io.IOException;
+5:  import java.text.ParseException;
+6:  import java.text.SimpleDateFormat;
+7:  import java.util.Date;
+8:  import java.util.Properties;
+9:10:  import au.com.bytecode.opencsv.CSVReader;
+11:12:  import com.toshiba.mwcloud.gs.GridStore;
+13:  import com.toshiba.mwcloud.gs.GridStoreFactory;
+14:  import com.toshiba.mwcloud.gs.RowKey;
+15:  import com.toshiba.mwcloud.gs.TimeSeries;
+16:17:  // Sensor data
+18:  class Point {
+19:      &#64;RowKey Date time;
+20:      double  value;
+21:      String  status;
+22:  }
+23:24:  public class SimplePv2 {
+25:26:      /*
+27:       * Load time-series data form a CSV file.
+28:       <em>/
+29:      public static void main(String[] args) throws ParseException, IOException {
+30:31:          // Specify a server.
+32:          final String gsServer     = “127.0.0.1”;
+33:          final String gsPort       = “10001”;
+34:          final String user         = “admin”;
+35:          final String password     = “admin”;
+36:37:          // Get a GridStore instance.
+38:          final Properties prop = new Properties();
+39:          prop.setProperty(“host”, gsServer);
+40:          prop.setProperty(“port”, gsPort);
+41:          prop.setProperty(“user”, user);
+42:          prop.setProperty(“password”, password);
+43:          final GridStore store = GridStoreFactory.getInstance().getGridStore(prop);
+44:45:          // Read a CSV file.
+46:          String dataFileName = “sensorHistory.csv”;
+47:          CSVReader reader = new CSVReader(new FileReader(dataFileName));
+48:          String[] nextLine;
+49:          nextLine = reader.readNext();
+50:51:52:          // Presupposing that the 1st line contains sensor IDs and the rest of lines contain data.
+53:          // Presupposing that 0:date, 1:time, …
+54:55:56:          /</em>
+57:           *  Read a sensor ID and create a TimeSeries.
+58:           <em>/
+59:          String[] tsNameArray = new String[nextLine.length];
+60:          for(int j = 2; j &lt; nextLine.length; j++) {
+61:62:              tsNameArray[j] = nextLine[j];
+63:              store.putTimeSeries(tsNameArray[j], Point.class);
+64:65:          }
+66:67:          /</em>
+68:           *  Store a value in each TimeSeries.
+69:           */
+70:          SimpleDateFormat format = new SimpleDateFormat(“yyyy/MM/ddHH:mm:ss”);
+71:          Point point             = new Point();
+72:          while ((nextLine = reader.readNext()) != null) {
+73:74:              String dateS     = nextLine[0];//2011/1/1
+75:              String timeS     = nextLine[1];//19 (hundred hours)
+76:              String datetimeS = dateS + ” ” + timeS + “:00:00”;
+77:              Date   date      = format.parse(datetimeS);
+78:              Long   datetime  = date.getTime();
+79:80:              for(int i = 2, j = 2; j &lt; nextLine.length; i++, j+=2) {
+81:82:                  TimeSeries ts = store.getTimeSeries(tsNameArray[i], Point.class);
+83:84:                  point.time   = new Date(datetime);
+85:                  point.value  = Double.valueOf(nextLine[j]);
+86:                  point.status = nextLine[j+1];
+87:88:                  ts.append(point);
+89:              }
+90:          }
+91:92:          // Release a resource.
+93:          store.close();
+94:          reader.close();
+95:96:  }
+97:98:  }</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="4-3_modeling-relationships.html" class="btn btn-neutral float-right" title="4.3 Modeling Relationships" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="4-1_data-modeling-basics.html" class="btn btn-neutral" title="4.1 Data Modeling Basics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GridDB.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #fff;
+    }
+    .wy-nav-side {
+        background: #fff;
+    }
+    .wy-menu-vertical a {
+        color: #39A7D1;
+    }
+    .wy-menu-vertical a:hover {
+        background-color: #77c3df;
+        color: white;
+    }
+    .wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+        color: #24799a;
+    }
+    .wy-side-nav-search img {
+        height: 200px;
+        width: 200px;
+        border-radius: 0%;
+        background-color: #fff;
+    }
+    .highlight {
+        background: #F5F5F5;
+    }
+    .rst-content div[class^='highlight'] pre {
+        color: #24799a;
+    }
+  </style>
+
+
+</body>
+</html>

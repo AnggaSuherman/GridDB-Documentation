@@ -1,0 +1,521 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>2.2 Installation &#8212; GridDB-Docs  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2.3 Run your First GridDB Node/Cluster" href="2-3_run-your-first-griddb-node-cluster.html" />
+    <link rel="prev" title="2.1 System Requirements" href="2-1_system-requirements.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+              <div class="related top">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="2-1_system-requirements.html" title="Previous document">2.1 System Requirements</a>
+        </li>
+        <li>
+          <a href="2-3_run-your-first-griddb-node-cluster.html" title="Next document">2.3 Run your First GridDB Node/Cluster</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+
+          <div class="body" role="main">
+            
+  <p>Table of Contents</p>
+<div class="section" id="installation">
+<span id="installation"></span><h1>2.2 Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>The following instructions are for the Standard Edition of GridDB. Instructions for the Community Edition can be found <a class="reference external" href="#text-2">below</a></p>
+<div class="section" id="setup">
+<span id="setup"></span><h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>This chapter explains the installation of a node onto a single machine. See the chapter on operations for the cluster configuration.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// The lsb_release command prints certain LSB (Linux Standard Base) and Distribution information.
+$ lsb_release -id
+Distributor ID: CentOS
+Description: CentOS release 6.3 (Final)
+</pre></div>
+</div>
+<ul>
+<li><p class="first"><strong>Installing a Node</strong></p>
+<p>The following 3 RPM packages are needed when installing a GridDB node. Place these packages anywhere in the machine.</p>
+<p>TODO: Table</p>
+<p>Package name</p>
+<p>File name</p>
+<p>Description</p>
+<p>griddb-server</p>
+<p>griddb-server-X.X.X-linux.x86_64.rpm</p>
+<p>The start and other commands for the GridDB node module and server are included.</p>
+<p>griddb-client</p>
+<p>griddb-client-X.X.X-linux.x86_64.rpm</p>
+<p>One set of operating commands except start node is included.</p>
+<p>griddb-docs</p>
+<p>griddb-docs-X.X.X-linux.x86_64.rpm</p>
+<p>GridDB manual and program samples are included.</p>
+</li>
+</ul>
+<p>*X.X.X is the GridDB version</p>
+<p>Install using the rpm command as a root user.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ su
+\# rpm -Uvh griddb-server-X.X.X-linux.x86_64.rpm
+Under preparation...           ########################################### \[100%\]
+User gsadm and group gridstore have been registered.
+GridStore uses new user and group.
+   1:griddb-server                 ########################################### \[100%\]
+\# rpm -Uvh griddb-client-X.X.X-linux.x86_64.rpm
+Under preparation...           ########################################### \[100%\]
+User and group has already been registered correctly.
+GridStore uses existing user and group.
+   1:griddb-client                  ########################################### \[100%\]
+\# rpm -Uvh griddb-docs-X.X.X-linux.x86_64.rpm
+Under preparation...           ########################################### \[100%\]
+   1:griddb-docs                   ########################################### \[100%\]
+</pre></div>
+</div>
+<p>When you install the package, the following group and user are created in the OS. This OS user is set as the operator of GridDB.</p>
+<p>TODO: TableGroup</p>
+<p>User</p>
+<p>Home directory</p>
+<p>gridstore</p>
+<p>gsadm</p>
+<p>/var/lib/gridstore</p>
+<p>The following environment variables are defined in this gsadm user.</p>
+<p>TODO: Table
+Environment variables</p>
+<p>Value</p>
+<p>Meaning</p>
+<p>GS_HOME</p>
+<p>/var/lib/gridstore</p>
+<p>gsadm/GridDB home directory</p>
+<p>GS_LOG</p>
+<p>/var/lib/gridstore/log</p>
+<p>Event log file output directory</p>
+<p><strong>[Points to note]</strong></p>
+<ul class="simple">
+<li>These environment variables are used in the operating commands described later.</li>
+<li>The password of the gsadm user has not been set. With the root user privilege, please set the password appropriately.<ul>
+<li>Some of the functions of the operation tools may be necessary.</li>
+</ul>
+</li>
+</ul>
+<p>In addition, when the GridDB node module is installed, services that are executed automatically upon startup of the OS will be registered.</p>
+<p>TODO: Table
+Service Name</p>
+<p>Run Level</p>
+<p>gridstore</p>
+<p>3, 4, 5</p>
+<p>The service registration data can be checked with the following command.</p>
+<p># /sbin/chkconfig –list | grep gridstore
+gridstore 0:off 1:off 2:off 3:on 4:on 5:on 6:off</p>
+<p>The GridDB node will be started automatically by this service during OS startup.</p>
+<p><strong>[Points to note]</strong></p>
+<ul class="simple">
+<li>Services will not start automatically immediately after installation.</li>
+</ul>
+<p>To Stop auto startup of a service, use the command below.</p>
+<p># /sbin/chkconfig gridstore off</p>
+<p>See the chapter on services in ‘GridDB Operational Management Guide’ (GridDB_OperationGuide.html) for details of the services.</p>
+<p><strong>Post-Installation Checks</strong></p>
+<p>Check the directory configuration of the installed GridDB node.</p>
+<p>First, check that the GridDB home directory, and related directory and files have been created.</p>
+</div>
+<div class="section" id="griddb-home-directory">
+<span id="griddb-home-directory"></span><h2>GridDB home directory<a class="headerlink" href="#griddb-home-directory" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">gridstore</span><span class="o">/</span>                      <span class="c1"># GridDB home directory</span>
+                   <span class="n">admin</span><span class="o">/</span>                <span class="c1"># integrated operational management GUI home directory</span>
+                   <span class="n">backup</span><span class="o">/</span>               <span class="c1"># backup directory</span>
+                   <span class="n">conf</span><span class="o">/</span>                 <span class="c1"># definition file directory</span>
+                        <span class="n">gs_cluster</span><span class="o">.</span><span class="n">json</span>  <span class="c1"># cluster definition file</span>
+                        <span class="n">gs_node</span><span class="o">.</span><span class="n">json</span>     <span class="c1"># node definition file</span>
+                        <span class="n">password</span>         <span class="c1"># user definition file</span>
+                   <span class="n">data</span><span class="o">/</span>                 <span class="c1"># database file directory</span>
+                   <span class="n">log</span><span class="o">/</span>                  <span class="c1"># log directory</span>
+</pre></div>
+</div>
+<p>Confirm the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls /var/lib/gridstore/
+admin backup conf data log
+</pre></div>
+</div>
+<p>Next, check that the installation directory has been created.</p>
+</div>
+<div class="section" id="installation-directory">
+<span id="installation-directory"></span><h2>Installation directory<a class="headerlink" href="#installation-directory" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">gridstore</span><span class="o">-</span><span class="n">X</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">X</span><span class="o">/</span>              <span class="c1"># installation directory</span>
+                     <span class="n">Fixlist</span><span class="o">.</span><span class="n">pdf</span>   <span class="c1"># revision record</span>
+                     <span class="n">Readme</span><span class="o">.</span><span class="n">txt</span>    <span class="c1"># release instructions</span>
+                     <span class="nb">bin</span><span class="o">/</span>          <span class="c1"># operation command, module directory</span>
+                     <span class="n">conf</span><span class="o">/</span>         <span class="c1"># definition file sample directory</span>
+                     <span class="n">docs</span><span class="o">/</span>         <span class="c1"># document directory</span>
+                     <span class="n">etc</span><span class="o">/</span>
+                     <span class="n">lib</span><span class="o">/</span>          <span class="c1"># library directory</span>
+                     <span class="n">license</span><span class="o">/</span>      <span class="c1"># license directory</span>
+                     <span class="n">prop</span><span class="o">/</span>         <span class="c1"># configuration file directory</span>
+                     <span class="n">web</span><span class="o">/</span>          <span class="c1"># integrated operational management GUI file directory</span>
+</pre></div>
+</div>
+<p>Confirm with the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls /usr/gridstore-X.X.X/
+Fixlist.pdf Readme.txt bin conf etc lib license prop web
+</pre></div>
+</div>
+<p>All documents have been compressed into a single ZIP file. Decompress and refer to the documents where appropriate as shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /usr/gridstore-X.X.X/docs
+$ unzip griddb-documents-X.X.X.zip
+</pre></div>
+</div>
+<p>In addition, the following symbolic links are created as shown below in a few directories under the installation directory for greater convenience.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls /usr/gridstore/
+conf lib prop web
+</pre></div>
+</div>
+<p>Lastly, confirm the version of the server module installed with the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gsserver --version
+GridDB version X.X.X build XXXXX
+</pre></div>
+</div>
+<p><strong>[Points to note]</strong></p>
+<p>The following files are created when GridDB is operated according to the following procedure.</p>
+<p>[Database file]</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">gridstore</span><span class="o">/</span>                     <span class="c1"># GridDB home directory</span>
+                   <span class="n">data</span><span class="o">/</span>                <span class="c1"># database file directory</span>
+                        <span class="n">gs</span>\<span class="n">_log</span>\<span class="n">_n_m</span><span class="o">.</span><span class="n">log</span>  <span class="c1"># log file to record the transaction logs (n, m are numbers)</span>
+                        <span class="n">gs</span>\<span class="n">_cp</span>\<span class="n">_n_p</span><span class="o">.</span><span class="n">dat</span>   <span class="c1"># checkpoint file to record data regularly (n, p are numbers)</span>
+</pre></div>
+</div>
+<p>[Log file]</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">gridstore</span><span class="o">/</span>                            <span class="c1"># GridDB home directory</span>
+                   <span class="n">log</span><span class="o">/</span>                        <span class="c1"># log directory</span>
+                       <span class="n">gridstore</span><span class="o">-%</span><span class="n">Y</span><span class="o">%</span><span class="n">m</span><span class="o">%</span><span class="n">d</span><span class="o">-</span><span class="n">n</span><span class="o">.</span><span class="n">log</span>  <span class="c1"># event log file</span>
+                       <span class="n">gs_XXXX</span><span class="o">.</span><span class="n">log</span>             <span class="c1"># operation tool log file</span>
+</pre></div>
+</div>
+<p>The directory where these files are created can be changed by the parameter settings in the node definition file.</p>
+<p>*gs_XXXX is an operation tool name. (Example: gs_startnode.log)</p>
+<p>Setting Up an Administrator User</p>
+<p>Administrator privilege is used for authentication related matter within the nodes and clusters. Creation date of administrator user is saved in the user definition file. The default file is as shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">gridstore</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span><span class="n">password</span>
+</pre></div>
+</div>
+<p>The default user below exists immediately after installation.</p>
+<p>TODO: Table
+User</p>
+<p>Password</p>
+<p>Example of proper use</p>
+<p>admin</p>
+<p>admin</p>
+<p>For authentication of operation administrator user, operation commands</p>
+<p>system</p>
+<p>manager</p>
+<p>For authentication of application user, client execution</p>
+<p>Administrator user information including the above-mentioned default users can be changed using the user administration command in the operating commands.</p>
+<p>TODO: Table
+Command</p>
+<p>Function</p>
+<p>gs_adduser</p>
+<p>Add an administrator user</p>
+<p>gs_deluser</p>
+<p>Delete an administrator user</p>
+<p>gs_passwd</p>
+<p>Change the password of administrator user</p>
+<p>Change the password as shown below when using a default user. The password is encrypted during registration.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gs_passwd admin
+Password: (enter password)
+Retype password: (re-enter password)
+</pre></div>
+</div>
+<p><strong>[Points to note]</strong></p>
+<ul class="simple">
+<li>A GridDB administrator user is different from the OS user gsadm created during installation.</li>
+<li>A change in the administrator user information using a user administration command becomes valid when a node is restarted.</li>
+<li>In order to use it for authentication purposes in the client, the same user data needs to be registered in all the nodes. Copy the user definition file and make sure the same user data can be referred to in all the nodes.</li>
+<li>Execute the operating command as a gsadm user.</li>
+</ul>
+<p><strong>[Memo]</strong></p>
+<ul class="simple">
+<li>See “GridDB Operational Management Guide” (<a class="reference external" href="https://griddb.net/en/docs/manuals/v3.1/GridDB_OperationGuide.html">GridDB_OperationGuide.html</a>) for details of the user management commands.</li>
+</ul>
+</div>
+<div class="section" id="installation-community-editon-on-a-singular-node">
+<span id="installation-community-editon-on-a-singular-node"></span><h2>Installation (Community Editon) on a Singular Node<a class="headerlink" href="#installation-community-editon-on-a-singular-node" title="Permalink to this headline">¶</a></h2>
+<p>This section will layout the steps to installing GridDB. These instructions have been confirmed to work on <strong>CentOS version 6.7.</strong> First, download the GridDB RPM: <a class="reference external" href="https://github.com/griddb/griddb_nosql/releases">here</a>. Switch to the root user and install the RPM by using the “rpm” command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ su
+\# rpm -ivh griddb\_nosql-X.X.X-linux.x86\_64.rpm
+Preparing...                ########################################### \[100%\]
+
+Information:
+  User gsadm and group gridstore have been registered.
+  GridDB uses new user and group.
+
+   1:griddb_nosql           ########################################### \[100%\]
+</pre></div>
+</div>
+<div class="section" id="confirmation-after-installation">
+<span id="confirmation-after-installation"></span><h3>Confirmation After Installation<a class="headerlink" href="#confirmation-after-installation" title="Permalink to this headline">¶</a></h3>
+<p>After installing GridDB’s node module, the user “gsadm” and the group “gridstore” are created. Use the user and group for running a node module and operational commands. And please note that a password for the new user gsadm is not automatically set upon creation, so please take the time to set one. If installation completed normally, the following directories and files are created as well as necessary modules and commands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">gridstore</span><span class="o">/</span>        <span class="c1"># GridDB home directory</span>
+     <span class="n">backup</span><span class="o">/</span>               <span class="c1"># Backup directory(unused)</span>
+     <span class="n">conf</span><span class="o">/</span>                 <span class="c1"># Directory storing definition files</span>
+         <span class="n">gs_cluster</span><span class="o">.</span><span class="n">json</span>   <span class="c1"># Cluster definition file</span>
+         <span class="n">gs_node</span><span class="o">.</span><span class="n">json</span>      <span class="c1"># Node definition file</span>
+         <span class="n">password</span>          <span class="c1"># User definition file</span>
+     <span class="n">data</span><span class="o">/</span>                 <span class="c1"># Directory storing database files</span>
+     <span class="n">log</span><span class="o">/</span>                  <span class="c1"># Directory storing event log files</span>
+</pre></div>
+</div>
+<p>We should also confirm that the following files and directories exist:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls /var/lib/gridstore/*
+/var/lib/gridstore/backup:
+
+/var/lib/gridstore/conf:
+gs\_cluster.json  gs\_node.json  password
+
+/var/lib/gridstore/data:
+
+/var/lib/gridstore/log:
+</pre></div>
+</div>
+<p>Confirm the directory structure of the installed GridDB client libraries. If installation completed normally, the following files are created.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -l /usr/share/java/\*gridstore\*
+lrwxrwxrwx 1 gsadm gridstore 46 Apr 11 20:43 /usr/share/java/gridstore-conf.jar -&gt; /usr/griddb-X.X.X/bin/gridstore-conf-X.X.X.jar
+lrwxrwxrwx 1 gsadm gridstore 41 Apr 11 20:43 /usr/share/java/gridstore.jar -&gt; /usr/griddb-X.X.X/bin/gridstore-X.X.X.jar
+</pre></div>
+</div>
+<p>If you start a GridDB node and then access and run the node from a client, the following files are created in the directories to store database files and event log files.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">gridstore</span><span class="o">/</span>        <span class="c1"># GridDB home directory</span>
+     <span class="n">data</span><span class="o">/</span>                 <span class="c1"># Directory storing database files</span>
+         <span class="n">gs</span>\<span class="n">_log</span>\<span class="n">_n_m</span><span class="o">.</span><span class="n">log</span>    <span class="c1"># File recording transaction logs (n, m: positive number)</span>
+         <span class="n">gs</span>\<span class="n">_cp</span>\<span class="n">_n_p</span><span class="o">.</span><span class="n">dat</span>     <span class="c1"># Checkpoint file recording data regularly (n, p: positive number)</span>
+</pre></div>
+</div>
+<p>The event log file will be in the following location</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">gridstore</span><span class="o">/</span>              <span class="c1"># GridDB home directory</span>
+     <span class="n">log</span><span class="o">/</span>                        <span class="c1"># Directory storing event logs</span>
+         <span class="n">gridstore</span><span class="o">-%</span><span class="n">Y</span><span class="o">%</span><span class="n">m</span><span class="o">%</span><span class="n">d</span><span class="o">-</span><span class="n">n</span><span class="o">.</span><span class="n">log</span>  <span class="c1"># Event log file</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-up-an-administrator-user">
+<span id="setting-up-an-administrator-user"></span><h3>Setting up an Administrator User<a class="headerlink" href="#setting-up-an-administrator-user" title="Permalink to this headline">¶</a></h3>
+<p>After all of this, you must create an administrator user to use GridDB. The administrator user information is stored in the User Definition file. The default file is as shown here: $GS_HOME/conf/password.</p>
+<p>After installation a default user called “admin” will be created. The operating commands used to change the default users’ information are shown below.</p>
+<p>TODO: Table</p>
+<p>Command</p>
+<p>Function</p>
+<p>gs_adduser</p>
+<p>Add an administrator user</p>
+<p>gs_deluser</p>
+<p>Delete an administrator user</p>
+<p>gs_passwd</p>
+<p>Change the password of an administrator user</p>
+<p>It is recommended that you add a password to the user “admin” as one is not set upon creation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gs_passwd admin
+Password:（Input password）
+Retype password:（Input password again）
+</pre></div>
+</div>
+<p>If you’d like to add another user beyond the default “admin” user, it must start with “gs#”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gs_adduser gs#newuser
+Password:（Input password）
+Retype password:（Input password again）
+</pre></div>
+</div>
+<p>Once the changes you wanted to make are done, you will need to restart the node for the changes to have effect.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="2-1_system-requirements.html" title="Previous document">2.1 System Requirements</a>
+        </li>
+        <li>
+          <a href="2-3_run-your-first-griddb-node-cluster.html" title="Next document">2.3 Run your First GridDB Node/Cluster</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">GridDB-Docs</h1>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=griddb&repo=griddb_nosql&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2.2 Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#griddb-home-directory">GridDB home directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-directory">Installation directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-community-editon-on-a-singular-node">Installation (Community Editon) on a Singular Node</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="2-1_system-requirements.html" title="previous chapter">2.1 System Requirements</a></li>
+      <li>Next: <a href="2-3_run-your-first-griddb-node-cluster.html" title="next chapter">2.3 Run your First GridDB Node/Cluster</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div> 
+    <div class="footer">
+      &copy;2018, GridDB.
+      
+      |
+      <a href="_sources/2-2_installation.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-81028923-2']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #39A7D1;
+    }
+  </style>
+
+  </body>
+</html>

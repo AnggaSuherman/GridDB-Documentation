@@ -1,0 +1,469 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.7 Monitoring &amp; Troubleshooting &mdash; GridDB-Docs  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6.8 Tuning" href="6-8_tuning.html" />
+    <link rel="prev" title="6.6 Cluster Administration &amp; Operations" href="6-6_cluster-administration-operations.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <img src="_static/logo.png"><a href="index.html"> GridDB-Docs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GridDB-Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>6.7 Monitoring &amp; Troubleshooting</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/6-7_monitoring-troubleshooting.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Table of Contents</p>
+<div class="section" id="monitoring-troubleshooting">
+<span id="monitoring-troubleshooting"></span><h1>6.7 Monitoring &amp; Troubleshooting<a class="headerlink" href="#monitoring-troubleshooting" title="Permalink to this headline">¶</a></h1>
+<p>This chapter describes the troubleshooting procedures of GridDB. It contains information on how to resolve problems which occur when constructing and operating a GridDB’s system.</p>
+<p>This chapter is written for developers, users and system administrators responsible for GridDB’s operation management.</p>
+<p>The following subjects are covered in this chapter.</p>
+<ul class="simple">
+<li>Introduction</li>
+<li>Verification of the circumstances under which problems occurred: explains how to check the detailed circumstances (log file).</li>
+<li>Countermeasures to be adopted when problems occur: contains a list of expected problems and their countermeasures.</li>
+</ul>
+<div class="section" id="checking-the-circumstances-under-which-the-problems-occurred">
+<span id="checking-the-circumstances-under-which-the-problems-occurred"></span><h2>Checking the Circumstances Under Which the Problems Occurred<a class="headerlink" href="#checking-the-circumstances-under-which-the-problems-occurred" title="Permalink to this headline">¶</a></h2>
+<p>Check the process (action) and error code etc. to see what kind of problem has occurred and the circumstances under which the problem occurred. After checking the circumstances, review/execute the “countermeasures (resolution method)”.</p>
+<p>The circumstances can be checked by either checking the process (action) or by checking the error code.</p>
+<ul class="simple">
+<li>Based on the process (action) carried out when the problem occurred and the error notification, select the appropriate “cause” in <a class="reference external" href="#shoot">Countermeasures to be adopted when a problem occurs</a> and study the countermeasures.</li>
+<li>Based on the error notification, select the appropriate “symptom” in <a class="reference external" href="#shoot">Countermeasures to be adopted when a problem occurs</a>, check the [Description] and “cause” and study the countermeasures.</li>
+</ul>
+<p>If the circumstances cannot be narrowed down from the notification error or the process (action) being carried out, check the GridDB status from the log file. See below for the log files such as the event log, client log, etc.</p>
+</div>
+<div class="section" id="checking-the-event-log-file-of-a-griddb-server">
+<span id="checking-the-event-log-file-of-a-griddb-server"></span><h2>Checking the Event Log File of a GridDB Server<a class="headerlink" href="#checking-the-event-log-file-of-a-griddb-server" title="Permalink to this headline">¶</a></h2>
+<p>Check whether an error has occurred and its description from the event log file in the server.</p>
+<p>The contents of the latest event log can be checked with the “gs_logs” command.</p>
+<p><strong>[Example]</strong></p>
+<p>$ gs_logs -u admin/admin
+2015-03-20T10:07:47.219+0900 host01 22962 INFO CHECKPOINT_SERVICE [30902:CP_STATUS] [CP_START] mode=NORMAL_CHECKPOINT, backupPath=</p>
+<p>The format of the event log file is as follows. Check the server status when an error occurs from the time and other data.</p>
+<p>(Date and time) (host name) (thread no.) (log level) (category) [(error/trace no.): (error/trace no. name)] (message) &lt; (Detailed data: source code position etc. Only when an error occurs)&gt;</p>
+<p>Earlier event log files are output to the event log storage directory (default: “/var/lib/gridstore/log”). File name is gridstore-log taking date (YYYYMMDD) log. A sequential no. is appended if the log taking date is duplicated.</p>
+<p><strong>[Memo]</strong></p>
+<ul class="simple">
+<li>Execute the “gs_logconf” command when checking or changing the output level of the event log.</li>
+</ul>
+</div>
+<div class="section" id="checking-the-log-file-of-a-client">
+<span id="checking-the-log-file-of-a-client"></span><h2>Checking the Log File of a Client<a class="headerlink" href="#checking-the-log-file-of-a-client" title="Permalink to this headline">¶</a></h2>
+<p>If an error is detected in the client program such as an application program etc., check the description of the error which occurred.</p>
+<p>In the client program where Java API is used, the client log can be output to a file by setting the log output, including the login library in the class path of the execution environment.</p>
+<p>For example, the following log is recorded.</p>
+<p><strong>[Example]</strong></p>
+<p>15/03/25 13:07:56 INFO GridStoreLogger.Transaction: Repairing session (context=7c469c48, statement=PUT_MULTIPLE_ROWS,
+partition=11, statementId=1, containerId=0, sessionId=1, trialCount=0, transactionStarted=false)
+com.toshiba.mwcloud.gs.common.GSStatementException: [110016:TM_SESSION_UUID_UNMATCHED] Failed to operate session or transaction status
+(pId=11, clientId=87a89588-b6e1-4dac-bf42-92fa596b7efb:1, sessionMode=1, txnMode=1, reason=) (address=/192.168.10.10:10001, partitionId=11)</p>
+<p>Compare the event log of the server at the time the error was recorded in the client log and check the surrounding logs to verify the status of the server when the error occurred.</p>
+<p><strong>[Memo]</strong></p>
+<ul class="simple">
+<li>An error message may be recorded in the event log if an error were to occur during notification or if the trigger process were to fail.</li>
+<li>See the paragraph on GridStoreFactory class in the “GridDB API Reference” (<a class="reference external" href="/en/docs/GridDB_API_Reference.html">GridDB_API_Reference.html</a>) for the client login settings.</li>
+</ul>
+</div>
+<div class="section" id="checking-the-log-file-of-a-jdbc-driver">
+<span id="checking-the-log-file-of-a-jdbc-driver"></span><h2>Checking the Log File of a JDBC Driver<a class="headerlink" href="#checking-the-log-file-of-a-jdbc-driver" title="Permalink to this headline">¶</a></h2>
+<p>If an error occurs in the GridDB Advanced Edition NewSQL interface e.g. during SQL execution, check the description of the error.</p>
+<p>The log file below is created under the execution directory of the application, or under the log output directory specified by the application.</p>
+<ul class="simple">
+<li>Log file of the JDBC driver is “/NewSQLJDBC.log”.</li>
+<li>Log file of the engine is “/newsql- log taking date and time (YYYYMMDDHHMMSS).log”</li>
+</ul>
+<p>A log will not be output by default. If the log file has not been created, set up the log output level and output destination.</p>
+<p>The log output level and output destination settings are configured from gs.util.Debug.</p>
+<p>(1) Import gs.util.Debug.</p>
+<p>(2) Use setLogLevel() to change the output level of the log.</p>
+<p>setLogLevel (int log level)</p>
+<p>There are 4 log output levels as shown below.</p>
+<ul class="simple">
+<li>3: ERROR</li>
+<li>2: WARNING</li>
+<li>1: INFO</li>
+<li>0: DEBUG</li>
+</ul>
+<p>When the level is set to low, all logs with a level higher than the level will be output.</p>
+<p>(3) Use setLogFilePath() to set the log output destination. Default directory is the current directory.</p>
+<p>Debug.setLogFilePath(String output directory)</p>
+<p><strong>[Example]</strong> When the log output level is debug, and log output destination is under the jdbcLog folder in the current directory</p>
+<p>import java.sql.*;
+import gs.util.Debug;</p>
+<p>// usage: java SampleJDBC (multicastAddress) (port) (clusterName)</p>
+<p>public class Sample {
+public static void main(String[] args) {
+Debug.setLogFilePath(“jdbcLog”);
+Debug.setLevel(0)
+}</p>
+</div>
+<div class="section" id="checking-the-log-file-of-an-operating-command">
+<span id="checking-the-log-file-of-an-operating-command"></span><h2>Checking the Log File of an Operating Command<a class="headerlink" href="#checking-the-log-file-of-an-operating-command" title="Permalink to this headline">¶</a></h2>
+<p>If an error occurs in the operating tool (gs_admin), check the description of the error which occurred from the log file of the operating command.</p>
+<p>Log file of operating command is located at “&lt; log data output destination (“/var/lib/gridstore/log” by default)&gt; / operating command name.log”.　Example) “operating command name.log” may be gs_startnode.log or gs_stopcluster.log, gs_stat.log etc.</p>
+<p><strong>[Example]</strong> Log file of gs_startnode command file name: gs_startnode.log</p>
+<p>2014-10-20 15:25:16,876 [25444] [INFO] <module>(56) /usr/bin/gs_startnode start.
+2014-10-20 15:25:16,877 [25444] [DEBUG] <module>(105) command: [‘/usr/bin/gsserver’, ‘–conf’, ‘/var/lib/gridstore/conf’]
+2014-10-20 15:25:17,889 [25444] [INFO] <module>(156) wait for starting node. (node=127.0.0.1:10040 waitTime=0)
+2014-10-20 15:25:18,905 [25444] [INFO] <module>(192) /usr/bin/gs_startnode end.</p>
+<p><strong>[Memo]</strong></p>
+<ul class="simple">
+<li>Event log data of the server is also recommended to be checked together with the data of the operating command.</li>
+</ul>
+</div>
+<div class="section" id="troubleshooting">
+<span id="troubleshooting"></span><h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>Understand the circumstances based on the error notification from the server or application, or the process (action) being executed etc., then select the appropriate problem from the problem and countermeasure list and study the countermeasures.</p>
+<div class="section" id="problems-and-countermeasures-according-to-the-circumstances-under-which-the-problems-occurred">
+<span id="problems-and-countermeasures-according-to-the-circumstances-under-which-the-problems-occurred"></span><h3>Problems and Countermeasures According to the Circumstances Under Which the Problems Occurred<a class="headerlink" href="#problems-and-countermeasures-according-to-the-circumstances-under-which-the-problems-occurred" title="Permalink to this headline">¶</a></h3>
+<p>Expected problems have been classified as follows according to the circumstances under which they occurred and the countermeasures to resolve these problems have been summarized.</p>
+<ul class="simple">
+<li>Problems related to cluster configuration</li>
+<li>Problems related to cluster expansion, reduction</li>
+<li>Problems related to client failover</li>
+<li>Problems related to cluster failure</li>
+<li>Problems related to recovery processing</li>
+<li>Problems related to container operation</li>
+<li>TQL-related problems</li>
+</ul>
+<div class="section" id="problems-related-to-cluster-configuration">
+<span id="problems-related-to-cluster-configuration"></span><h4>Problems Related to Cluster Configuration<a class="headerlink" href="#problems-related-to-cluster-configuration" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><a class="reference external" href="img/trouble_guide_troubleList_1.html">List of problems related to cluster configuration</a></li>
+</ul>
+</div>
+<div class="section" id="problems-related-to-cluster-expansion-reduction">
+<span id="problems-related-to-cluster-expansion-reduction"></span><h4>Problems Related to Cluster Expansion, Reduction<a class="headerlink" href="#problems-related-to-cluster-expansion-reduction" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><a class="reference external" href="img/trouble_guide_troubleList_2.html">List of problems related to cluster expansion, reduction</a></li>
+</ul>
+</div>
+<div class="section" id="problems-related-to-client-failover">
+<span id="problems-related-to-client-failover"></span><h4>Problems Related to Client Failover<a class="headerlink" href="#problems-related-to-client-failover" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><a class="reference external" href="img/trouble_guide_troubleList_3.html">List of problems related to client failover</a></li>
+</ul>
+</div>
+<div class="section" id="problems-related-to-cluster-failure">
+<span id="problems-related-to-cluster-failure"></span><h4>Problems Related to Cluster Failure<a class="headerlink" href="#problems-related-to-cluster-failure" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><a class="reference external" href="img/trouble_guide_troubleList_4.html">List of problems related to cluster failure</a></li>
+</ul>
+</div>
+<div class="section" id="problems-related-to-recovery-processing">
+<span id="problems-related-to-recovery-processing"></span><h4>Problems Related to Recovery Processing<a class="headerlink" href="#problems-related-to-recovery-processing" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><a class="reference external" href="img/trouble_guide_troubleList_5.html">List of problems related to recovery processing</a></li>
+</ul>
+</div>
+<div class="section" id="problems-related-to-container-operation">
+<span id="problems-related-to-container-operation"></span><h4>Problems Related to Container Operation<a class="headerlink" href="#problems-related-to-container-operation" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><a class="reference external" href="img/trouble_guide_troubleList_6.html">List of problems related to container operations</a></li>
+</ul>
+</div>
+<div class="section" id="tql-related-problems">
+<span id="tql-related-problems"></span><h4>TQL-Related Problems<a class="headerlink" href="#tql-related-problems" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><a class="reference external" href="img/trouble_guide_troubleList_7.html">List of TQL-related problems</a></li>
+</ul>
+<p>[Reference] Compatibility</p>
+<ul class="simple">
+<li><a class="reference external" href="img/trouble_guide_troubleList_8.html">Compatibility between client and DB</a></li>
+</ul>
+</div>
+<div class="section" id="general-griddb-problems">
+<span id="general-griddb-problems"></span><h4>General GridDB problems<a class="headerlink" href="#general-griddb-problems" title="Permalink to this headline">¶</a></h4>
+<p>This sheet summarizes the list of problems above according to the circumstances under which the problems occurred. If the area of the problem which occurred can be clearly classified, use key words such as the error code etc. to conduct a search.</p>
+<p><a class="reference external" href="img/trouble_guide_troubleList.html">List of general GridDB problems (HTML)</a></p>
+<p><a class="reference external" href="img/trouble_guide_troubleList.pdf">List of general GridDB problems (PDF)</a></p>
+<p><strong>[Memo]</strong></p>
+<ul class="simple">
+<li>A list of the general GridDB problems which summarizes all the documents on the problems according to the circumstances under which they occurred into a single document.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="6-8_tuning.html" class="btn btn-neutral float-right" title="6.8 Tuning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="6-6_cluster-administration-operations.html" class="btn btn-neutral" title="6.6 Cluster Administration &amp; Operations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GridDB.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #fff;
+    }
+    .wy-nav-side {
+        background: #fff;
+    }
+    .wy-menu-vertical a {
+        color: #39A7D1;
+    }
+    .wy-menu-vertical a:hover {
+        background-color: #77c3df;
+        color: white;
+    }
+    .wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+        color: #24799a;
+    }
+    .wy-side-nav-search img {
+        height: 200px;
+        width: 200px;
+        border-radius: 0%;
+        background-color: #fff;
+    }
+    .highlight {
+        background: #F5F5F5;
+    }
+    .rst-content div[class^='highlight'] pre {
+        color: #24799a;
+    }
+  </style>
+
+
+</body>
+</html>

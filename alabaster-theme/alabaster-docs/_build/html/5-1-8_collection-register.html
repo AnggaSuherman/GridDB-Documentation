@@ -1,0 +1,384 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>5.1.8 Collection Registration &#8212; GridDB-Docs  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5.1.9 Data Retrieval" href="5-1-9_collection-retrieve.html" />
+    <link rel="prev" title="5.1.7 Container Creation and Deletion" href="5-1-7_container-create-drop.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+              <div class="related top">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="5-1-7_container-create-drop.html" title="Previous document">5.1.7 Container Creation and Deletion</a>
+        </li>
+        <li>
+          <a href="5-1-9_collection-retrieve.html" title="Next document">5.1.9 Data Retrieval</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+
+          <div class="body" role="main">
+            
+  <p>Table of Contents</p>
+<div class="section" id="collection-registration">
+<span id="collection-registration"></span><h1>5.1.8 Collection Registration<a class="headerlink" href="#collection-registration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This chapter describes registering data in a GridDB collection.</p>
+</div>
+<div class="section" id="data-to-be-registered">
+<span id="data-to-be-registered"></span><h2>Data to be registered<a class="headerlink" href="#data-to-be-registered" title="Permalink to this headline">¶</a></h2>
+<p>Create registration data in a CSV file with the contents as follows:</p>
+<ul class="simple">
+<li>Measuring instrument CSV file<ul>
+<li>File name<ul>
+<li><code class="docutils literal notranslate"><span class="pre">Weather_station.csv</span></code></li>
+</ul>
+</li>
+<li>Retention data<ul>
+<li>Row 1: measuring instrument ID</li>
+<li>Row 2: The name</li>
+<li>Row 3: installation coordinates (latitude)</li>
+<li>Row 4: installation coordinates (longitude)</li>
+<li>Row 5: camera presence</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>List.1 Data File</strong> (weather_station.csv)</p>
+<p>1,Hokkaido-Sapporo,43.06417,141.34694,true
+2,Aomori-Aomori-City,40.82444,140.74,false
+3,Iwate-Morioka,39.70361,141.1525,true
+4,Miyagi-Sendai,38.26889,140.87194,false
+5,Akita-Akita,39.71861,140.1025,true
+(Snip)</p>
+</div>
+<div class="section" id="data-registration">
+<span id="data-registration"></span><h2>Data registration<a class="headerlink" href="#data-registration" title="Permalink to this headline">¶</a></h2>
+<p>The following code demonstrates registering data:</p>
+<p><strong>List.2 Simple Data Registration</strong> (CollectionRegister.java)</p>
+<p>// Read WeatherStation data from csv
+List weatherStationList=wsLogic.readCsv ();
+// Register Collection
+wsLogic.registerCollection (store, weatherStationList);</p>
+<ul class="simple">
+<li>L.26: Read the CSV to get a list of measuring instruments.</li>
+<li>L.28: Register the list of measuring instruments in a GridDB collection.</li>
+</ul>
+<p><strong>List.3 Read CSV</strong> (WeatherStationLogic.java)</p>
+<p>public List<WeatherStation> readCsv() throws IOException {
+List<WeatherStation> weatherStationList = new ArrayList<WeatherStation>();
+// Read CSV file
+CSVReader reader = new CSVReader(new FileReader(“data/weather_station.csv”));</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="p">{</span>
+    <span class="n">String</span>\<span class="p">[</span>\<span class="p">]</span> <span class="n">line</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+    <span class="n">WeatherStation</span> <span class="n">weatherStation</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+
+    <span class="o">//</span> <span class="n">Read</span> <span class="nb">all</span> <span class="n">line</span> <span class="n">of</span> <span class="n">CSV</span>
+    <span class="k">while</span> <span class="p">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">readNext</span><span class="p">())</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">value</span> <span class="n">to</span> <span class="n">Row</span> <span class="n">of</span> <span class="n">WeatherStation</span>
+        <span class="n">weatherStation</span> <span class="o">=</span> <span class="n">new</span> <span class="n">WeatherStation</span><span class="p">();</span>
+        <span class="n">weatherStation</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">line</span>\<span class="p">[</span><span class="mi">0</span>\<span class="p">];</span>
+        <span class="n">weatherStation</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">line</span>\<span class="p">[</span><span class="mi">1</span>\<span class="p">];</span>
+        <span class="n">weatherStation</span><span class="o">.</span><span class="n">latitude</span> <span class="o">=</span> <span class="n">Double</span><span class="o">.</span><span class="n">valueOf</span><span class="p">(</span><span class="n">line</span>\<span class="p">[</span><span class="mi">2</span>\<span class="p">]);</span>
+        <span class="n">weatherStation</span><span class="o">.</span><span class="n">longitude</span> <span class="o">=</span> <span class="n">Double</span><span class="o">.</span><span class="n">valueOf</span><span class="p">(</span><span class="n">line</span>\<span class="p">[</span><span class="mi">3</span>\<span class="p">]);</span>
+        <span class="n">weatherStation</span><span class="o">.</span><span class="n">hasCamera</span> <span class="o">=</span> <span class="n">Boolean</span><span class="o">.</span><span class="n">valueOf</span><span class="p">(</span><span class="n">line</span>\<span class="p">[</span><span class="mi">4</span>\<span class="p">]);</span>
+
+        <span class="o">//</span> <span class="n">Add</span> <span class="n">Collection</span>
+        <span class="n">weatherStationList</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">weatherStation</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Close</span> <span class="n">CSV</span>
+    <span class="n">reader</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="n">weatherStationList</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>}</p>
+<div class="section" id="read-csv">
+<span id="read-csv"></span><h3>Read CSV<a class="headerlink" href="#read-csv" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>L.31: Read a CSV file <code class="docutils literal notranslate"><span class="pre">weather_station.csv</span></code> that contains the measuring instrument’s data. The operation of reading the CSV file uses the <code class="docutils literal notranslate"><span class="pre">CSVReader</span></code> class of which is an open source software <a class="reference external" href="http://opencsv.sourceforge.net/">opencsv</a>.</li>
+<li>L.38-45: Read the contents of the CSV and set the values to an instance of <code class="docutils literal notranslate"><span class="pre">WeatherStation</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="register-collection">
+<span id="register-collection"></span><h3>Register Collection<a class="headerlink" href="#register-collection" title="Permalink to this headline">¶</a></h3>
+<p><strong>List.4 Register Data</strong> (WeatherStationLogic.java)</p>
+<p>public void registerCollection(GridStore store, List<WeatherStation> weatherStationList)
+throws GSException {
+// Get Collection
+Collection&lt;String, WeatherStation&gt; weatherStationCol =
+store.getCollection(“weather_station”, WeatherStation.class);
+try {
+// Disable Auto Commit
+weatherStationCol.setAutoCommit(false);</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">boolean</span> <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">WeatherStation</span> <span class="n">weatherStation</span> <span class="p">:</span> <span class="n">weatherStationList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">weatherStation</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="o">//</span> <span class="n">Add</span> <span class="n">Collection</span>
+            <span class="n">weatherStationCol</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">weatherStation</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">weatherStation</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="o">//</span> <span class="k">if</span> <span class="n">Row</span> <span class="n">Data</span> <span class="ow">is</span> <span class="n">null</span><span class="p">,</span> <span class="n">abort</span> <span class="n">register</span>
+            <span class="n">weatherStationCol</span><span class="o">.</span><span class="n">abort</span><span class="p">();</span>
+            <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Register of the Collection is aborted.&quot;</span><span class="p">);</span>
+            <span class="n">isSuccess</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="o">//</span> <span class="n">Commit</span> <span class="n">only</span> <span class="n">when</span> <span class="n">the</span> <span class="n">registration</span> <span class="n">was</span> <span class="n">successful</span> <span class="nb">all</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">isSuccess</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">Commit</span>
+        <span class="n">weatherStationCol</span><span class="o">.</span><span class="n">commit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Close</span> <span class="n">Connection</span>
+    <span class="n">weatherStationCol</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>}</p>
+</div>
+<div class="section" id="get-container">
+<span id="get-container"></span><h3>Get Container<a class="headerlink" href="#get-container" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>L.67-68: Get the subject of container to be registered.</li>
+</ul>
+</div>
+<div class="section" id="auto-commit">
+<span id="auto-commit"></span><h3>Auto-commit<a class="headerlink" href="#auto-commit" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>L.71: Disable auto-commit.</li>
+</ul>
+<p>Auto-commit is set by <code class="docutils literal notranslate"><span class="pre">Collection.setAutoCommit</span> <span class="pre">()</span></code> method. Auto-commit by default in GridDB is enabled.When you register the data collectively, to disable auto-commit makes a reduction in the number of times of the inquiry, therefore increasing the throughput is expectable.</p>
+</div>
+<div class="section" id="add-data">
+<span id="add-data"></span><h3>Add Data<a class="headerlink" href="#add-data" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>L.78: Add the value read from CSV to the collection.</li>
+</ul>
+<p>In this code auto-commit is disabled, but If auto-commit is enabled, the data will be registered here.</p>
+</div>
+<div class="section" id="commit">
+<span id="commit"></span><h3>Commit<a class="headerlink" href="#commit" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>L.91: Commit to a collection.</li>
+</ul>
+<p>Commit is executed by <code class="docutils literal notranslate"><span class="pre">Collection.commit</span> <span class="pre">()</span></code> method. If auto-commit is disabled, the data is registered here.</p>
+</div>
+<div class="section" id="roll-back">
+<span id="roll-back"></span><h3>Roll back<a class="headerlink" href="#roll-back" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>L.81: Execute rollback to collection.</li>
+</ul>
+<p>Rollback is executed by <code class="docutils literal notranslate"><span class="pre">Collection.abort</span> <span class="pre">()</span></code> method.Rollback must be executed only when an exception occurs other than <code class="docutils literal notranslate"><span class="pre">GSException</span></code> or problems are detected. Otherwise operation of the pre-commit will be canceled if an exception <code class="docutils literal notranslate"><span class="pre">GSException</span></code> occurs when auto-commit is disabled.In this sample, if the data of the measuring instrument read from the CSV is NULL, execute rollback assuming that a problem occurs.</p>
+</div>
+</div>
+<div class="section" id="complete-source-code">
+<span id="complete-source-code"></span><h2>Complete source code<a class="headerlink" href="#complete-source-code" title="Permalink to this headline">¶</a></h2>
+<p>Complete source code used in this sample can be downloaded from the following.</p>
+<p>Download: <a class="reference external" href="img/collection-register.zip">collection-register.zip</a></p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="5-1-7_container-create-drop.html" title="Previous document">5.1.7 Container Creation and Deletion</a>
+        </li>
+        <li>
+          <a href="5-1-9_collection-retrieve.html" title="Next document">5.1.9 Data Retrieval</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">GridDB-Docs</h1>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=griddb&repo=griddb_nosql&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5.1.8 Collection Registration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-to-be-registered">Data to be registered</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-registration">Data registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-source-code">Complete source code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="5-1-7_container-create-drop.html" title="previous chapter">5.1.7 Container Creation and Deletion</a></li>
+      <li>Next: <a href="5-1-9_collection-retrieve.html" title="next chapter">5.1.9 Data Retrieval</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div> 
+    <div class="footer">
+      &copy;2018, GridDB.
+      
+      |
+      <a href="_sources/5-1-8_collection-register.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-81028923-2']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #39A7D1;
+    }
+  </style>
+
+  </body>
+</html>

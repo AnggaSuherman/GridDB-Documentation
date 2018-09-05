@@ -1,0 +1,409 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>5.1.16 TQL &#8212; GridDB-Docs  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5.1.17 Trigger (REST)" href="5-1-17_trigger-rest.html" />
+    <link rel="prev" title="5.1.15 TimeSeries Container Modification" href="5-1-15_timeseries-modify.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+              <div class="related top">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="5-1-15_timeseries-modify.html" title="Previous document">5.1.15 TimeSeries Container Modification</a>
+        </li>
+        <li>
+          <a href="5-1-17_trigger-rest.html" title="Next document">5.1.17 Trigger (REST)</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+
+          <div class="body" role="main">
+            
+  <p>Table of Contents</p>
+<div class="section" id="tql">
+<span id="tql"></span><h1>5.1.16 TQL<a class="headerlink" href="#tql" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This chapter covers the TQL query language for accessing GridDB. Only the SELECT statement is supported in TQL so no changes can be made to the database or schema. Please refer to the <a class="reference external" href="https://www.griddb.net/en/docs/GridDB_API_Reference.html">GridDB API</a> reference for more information.</p>
+</div>
+<div class="section" id="conditional-search">
+<span id="conditional-search"></span><h2>Conditional Search<a class="headerlink" href="#conditional-search" title="Permalink to this headline">¶</a></h2>
+<p>The TQL search functionality is the same as SQL.</p>
+<p><strong>List.1 Conditional Search</strong>(TqlSeach.java)</p>
+<p>// Get TimeSeries Container
+TimeSeries<InstrumentLog> logTs =
+store.getTimeSeries(“weather_station_1”, InstrumentLog.class);</p>
+<p>// Seach by temperture
+String tql = String.format(“SELECT * WHERE temperture &gt; %s”, temperture);
+Query<InstrumentLog> query = logTs.query(tql, InstrumentLog.class);
+RowSet<InstrumentLog> rows = query.fetch();</p>
+<ul class="simple">
+<li>Line 103: Use Container.query class to input the TQL statement</li>
+<li>Line 104: Fetch results from TQL statement</li>
+</ul>
+<p>The result of the TQL statement is stored in a RowSet and can be retrieved as follows:</p>
+<p><strong>List.2 Get the results of the Conditional Search</strong>(TqlSeach.java)</p>
+<p>while (rows.hasNext()) {
+InstrumentLog log = rows.next();
+System.out.println(“Timestamp\t\t\tWeatherStation ID\tTemperture”);
+System.out.println(String.format(“%s\t%-20s\t%-10s”, log.timestamp,
+log.weatherStationId, log.temperture));
+}</p>
+<ul class="simple">
+<li>Line 38: Use RowSet.hasNext() to see if there any more results</li>
+<li>Line 39: Use RowSet.next() to retrieve the next row.</li>
+</ul>
+<p>The execution results follow:</p>
+<p><strong>List.3 Results of the Conditional Search</strong>(TqlSeach.java)</p>
+<p>TQL:SELECT * WHERE temperture &gt; 70.0
+Timestamp                       WeatherStation ID       Temperture
+Fri Jul 01 09:00:00 JST 2016    weather_station_1       75.0
+Fri Jul 01 12:00:00 JST 2016    weather_station_1       80.0
+Fri Jul 01 15:00:00 JST 2016    weather_station_1       75.0
+Sat Jul 02 09:00:00 JST 2016    weather_station_1       75.0
+Sat Jul 02 12:00:00 JST 2016    weather_station_1       80.0
+Sat Jul 02 15:00:00 JST 2016    weather_station_1       75.0</p>
+</div>
+<div class="section" id="like-search">
+<span id="like-search"></span><h2>Like Search<a class="headerlink" href="#like-search" title="Permalink to this headline">¶</a></h2>
+<p>You can use the LIKE keyword search like SQL.</p>
+<p><strong>List.4 Like Search</strong>(TqlSeach.java)</p>
+<p>// Get Collection
+Collection&lt;String, WeatherStation&gt; weatherStationCol =
+store.getCollection(“weather_station”, WeatherStation.class);</p>
+<p>// Like Search
+String tql = “SELECT * WHERE name LIKE ‘%” + name + “%’”;
+// Search By TQL
+Query query = weatherStationCol.query(tql, WeatherStation.class);
+RowSet rows = query.fetch();</p>
+<ul class="simple">
+<li>Line 120: Specifies LIKE in the query string using patterns.</li>
+<li>%: Matches a string of one or more characters.</li>
+<li>_: Matches a single character.</li>
+</ul>
+<p>Retrieving the results from the RowSet does not change.</p>
+<p><strong>List.5 Get the results from the Like Query</strong>(TqlSeach.java)</p>
+<p>// Search WeatherStation by name
+RowSet<WeatherStation> wsRows = searchByName(store, “kyo”);</p>
+<p>// Show search WeatherStation results
+System.out.println(“ID\tName\t\t\tLongitude\tLatitude\tCamera”);
+while (wsRows.hasNext()) {
+WeatherStation weatherStation = wsRows.next();
+System.out.println(String.format(“%-3s\t%-20s\t%-10s\t%-10s\t%-5s”,
+weatherStation.id, weatherStation.name, weatherStation.latitude,
+weatherStation.longitude, weatherStation.hasCamera));
+(snip)
+}</p>
+<p>Execution results are as follows:</p>
+<p><strong>List.6 Result</strong>(TqlSeach.java)</p>
+<p>TQL:SELECT * WHERE name LIKE ‘%kyo%’
+ID      Name                    Longitude       Latitude        Camera
+13      Tokyo-Shinjuku          35.68944        139.69167       true</p>
+</div>
+<div class="section" id="time-specified-search">
+<span id="time-specified-search"></span><h2>Time specified Search<a class="headerlink" href="#time-specified-search" title="Permalink to this headline">¶</a></h2>
+<p>In the case of a TimeSeries container, TimeSeries.query() can be used with TQL.</p>
+<p><strong>List.7 TQL and TimeSeries</strong>(TqlSeach.java)</p>
+<p>// Get TimeSeries Container
+TimeSeries<InstrumentLog> logTs;
+logTs = store.getTimeSeries(“weather_station_” + weatherStationId, InstrumentLog.class);</p>
+<p>Query<InstrumentLog> query = logTs.query(String.format(
+“SELECT * WHERE TIMESTAMP(‘%s’) &gt;= timestamp AND timestamp &lt;= TIMESTAMP(‘%s’)”,
+TimestampUtils.format(start), TimestampUtils.format(end)));
+RowSet<InstrumentLog> rows = query.fetch();</p>
+<ul class="simple">
+<li>Line 144-146: Use TimestampUtils.date to specify the time with in the TQL search string.</li>
+</ul>
+<p><strong>List.8 Get results from a TimeSeries TQL Query</strong>(TqlSeach.java)</p>
+<p>// Search WeatherStation by name
+RowSet<WeatherStation> wsRows = searchByName(store, “kyo”);</p>
+<p>// Show search WeatherStation results
+System.out.println(“ID\tName\t\t\tLongitude\tLatitude\tCamera”);
+while (wsRows.hasNext()) {
+WeatherStation weatherStation = wsRows.next();
+System.out.println(String.format(“%-3s\t%-20s\t%-10s\t%-10s\t%-5s”,
+weatherStation.id, weatherStation.name, weatherStation.latitude,
+weatherStation.longitude, weatherStation.hasCamera));
+(snip)
+}</p>
+<p><strong>List.9 Results</strong> (TqlSeach.java)</p>
+<p>TQL:SELECT * WHERE TIMESTAMP(‘2016-07-01T21:00:00.000Z’) &lt;= timestamp AND timestamp &lt;= TIMESTAMP(‘2016-07-02T03:00:00.000Z’)
+Timestamp                       WeatherStation ID       Temperture
+Sat Jul 02 06:00:00 JST 2016    weather_station_13      70.0
+Sat Jul 02 09:00:00 JST 2016    weather_station_13      75.0
+Sat Jul 02 12:00:00 JST 2016    weather_station_13      80.0</p>
+</div>
+<div class="section" id="search-with-forupdate">
+<span id="search-with-forupdate"></span><h2>Search with forUpdate<a class="headerlink" href="#search-with-forupdate" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to update rows retrieved using TQL.</p>
+<p><strong>List.10 Search with forUpdate</strong>(TqlForUpdate.java)</p>
+<p>// Get TimeSeries
+Collection&lt;String, WeatherStation&gt; weatherStationCol =
+store.getCollection(“weather_station”, WeatherStation.class);</p>
+<p>// When using forUpdate, there is a need to disable the Auto Commit
+weatherStationCol.setAutoCommit(false);</p>
+<p>// In the case of boolean columns, NOT means false.
+String tql = “SELECT * WHERE NOT hasCamera”;
+// Search By TQL
+Query<WeatherStation> query = weatherStationCol.query(tql, WeatherStation.class);
+// Using forUpdate option.
+RowSet<WeatherStation> rows = query.fetch(true);</p>
+<p>// Install a camera in all of WeatherStation.
+while (rows.hasNext()) {
+System.out.println(“not exists camera”);
+WeatherStation weatherStation = rows.next();
+System.out.println(“ID:” + weatherStation.id);
+weatherStation.hasCamera = true;
+// update row of WeatherStation
+rows.update(weatherStation);
+}
+// Commit
+weatherStationCol.commit();</p>
+</div>
+<div class="section" id="tql-explain-and-analyze">
+<span id="tql-explain-and-analyze"></span><h2>TQL EXPLAIN and ANALYZE<a class="headerlink" href="#tql-explain-and-analyze" title="Permalink to this headline">¶</a></h2>
+<p>Like SQL, it is possible to use the EXPLAIN and ANALYZE keywords to get execution plans for TQL statemntes.</p>
+<p><strong>List.11 TQL Execution plans</strong>(TqlExplain.java)</p>
+<p>// Get InstrumentLog TimeSeries
+TimeSeries<InstrumentLog> logTs =
+store.getTimeSeries(“weather_station_1”, InstrumentLog.class);</p>
+<p>// Analyzing the execution plan of the TQL
+String tql = “EXPLAIN ANALYZE SELECT * WHERE 50.0 &lt;= temperture AND temperture &lt;= 70.0”
++ ” AND TIMESTAMP(‘2016-07-01T06:00:00Z’) &lt;= timestamp”;
+Query<QueryAnalysisEntry> query = logTs.query(tql, QueryAnalysisEntry.class);
+RowSet<QueryAnalysisEntry> rows = query.fetch();</p>
+<p>// output the execution plan of the TQL
+System.out.println(“ID\tDepth\tType\t\t\t\tValueType\tValue\t\t\tStatement”);
+while (rows.hasNext()) {
+QueryAnalysisEntry analysis = rows.next();
+System.out.println(String.format(“%s\t%s\t%-24s\t%-10s\t%-20s\t%s”,
+analysis.getId(), analysis.getDepth(), analysis.getType(),
+analysis.getValueType(), analysis.getValue(), analysis.getStatement()));
+}</p>
+<ul class="simple">
+<li>Line 31-32: Add EXPLAIN ANALYSZE to the start of the TQL statement.</li>
+<li>Line 33: Run the query with QueryAnalysisEntry.class as a parameter</li>
+</ul>
+<p><strong>List.12 Result</strong>(TqlExplain.java)</p>
+<p>ID      Depth   Type                            ValueType       Value                   Statement
+0       1       TIMESERIES_EXPIRE               TIMESTAMP       1970-01-01T00:00:00Z
+1       0       QUERY_LOOP_NUMBER               INTEGER         0
+2       1       NOT_INDEX_USABLE                COLUMN          temperture
+3       1       NOT_INDEX_USABLE                COLUMN          temperture
+4       1       INDEX_FOUND                     INDEX_TYPE      ROWKEY                  timestamp
+5       1       SET_INDEX_KEY                   STRING          START_KEY               2016-07-01T06:00:00.000Z
+6       1       SEARCH_EXECUTE                  MAP_TYPE        BTREE
+7       2       SEARCH_MAP                      STRING          TIME_SERIES_ROW_MAP
+8       1       SEARCH_RESULT_ROWS              INTEGER         6
+9       0       QUERY_EXECUTE_RESULT_ROWS       INTEGER         6
+10      0       QUERY_RESULT_TYPE               STRING          RESULT_ROW_ID_SET
+11      0       QUERY_RESULT_ROWS               INTEGER         6</p>
+</div>
+<div class="section" id="source-code">
+<span id="source-code"></span><h2>Source Code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h2>
+<p>Complete source code used in this sample can be downloaded from the following.</p>
+<p>Download: <a class="reference external" href="img/tql.zip">tql.zip</a></p>
+</div>
+</div>
+
+
+          </div>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="5-1-15_timeseries-modify.html" title="Previous document">5.1.15 TimeSeries Container Modification</a>
+        </li>
+        <li>
+          <a href="5-1-17_trigger-rest.html" title="Next document">5.1.17 Trigger (REST)</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
+    
+    <h1 class="logo logo-name">GridDB-Docs</h1>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=griddb&repo=griddb_nosql&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5.1.16 TQL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conditional-search">Conditional Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#like-search">Like Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#time-specified-search">Time specified Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#search-with-forupdate">Search with forUpdate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tql-explain-and-analyze">TQL EXPLAIN and ANALYZE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#source-code">Source Code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="5-1-15_timeseries-modify.html" title="previous chapter">5.1.15 TimeSeries Container Modification</a></li>
+      <li>Next: <a href="5-1-17_trigger-rest.html" title="next chapter">5.1.17 Trigger (REST)</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div> 
+    <div class="footer">
+      &copy;2018, GridDB.
+      
+      |
+      <a href="_sources/5-1-16_tql.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-81028923-2']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #39A7D1;
+    }
+  </style>
+
+  </body>
+</html>

@@ -1,0 +1,719 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6.8 Tuning &mdash; GridDB-Docs  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7.1 JDBC Connector" href="7-1_jdbc-connector.html" />
+    <link rel="prev" title="6.7 Monitoring &amp; Troubleshooting" href="6-7_monitoring-troubleshooting.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <img src="_static/logo.png"><a href="index.html"> GridDB-Docs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-13_timeseries-retrieve.html">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GridDB-Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>6.8 Tuning</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/6-8_tuning.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Table of Contents</p>
+<div class="section" id="tuning">
+<span id="tuning"></span><h1>6.8 Tuning<a class="headerlink" href="#tuning" title="Permalink to this headline">¶</a></h1>
+<p>After installation, the following settings are necessary in order to operate GridDB.</p>
+<ol class="simple">
+<li>Network environment settings</li>
+<li>Cluster name settings</li>
+</ol>
+<p>GridDB settings are configured by editing 2 types of definition files.</p>
+<ul class="simple">
+<li>Cluster definition file (gs_cluster.json)</li>
+<li>Node definition file (gs_node.json)</li>
+</ul>
+<p>The cluster definition file defines the parameters that are common in the entire clusters.</p>
+<p>The node definition files define the parameters for the different settings in each node.</p>
+<p>These definition file samples are installed as follows.</p>
+<p>/usr/gridstore/                     # installation directory
+conf/                # definition file directory
+gs_cluster.json # cluster definition file sample
+gs_node.json    # node definition file sample</p>
+<p>In a new installation, the same files are also placed in the conf directory under the GridDB home directory.</p>
+<p>/var/lib/gridstore/                     # GridDB home directory
+conf/                # definition file directory
+gs_cluster.json # (edited) cluster definition file
+gs_node.json    # (edited) node definition file</p>
+<p>During operations, edit these definition files.</p>
+<p><strong>[Points to note]</strong></p>
+<ul class="simple">
+<li>When the GridDB version is upgraded, compare the newly installed sample with these definition files to adequately reflect the parameters added.</li>
+<li>A cluster definition file defines the parameters that are common in the entire clusters. As a result, the settings must be the same in all of the nodes in the cluster. Nodes with different settings will get an error upon joining the cluster and prevented from participating in the cluster. Further details will be explained in the later chapter.</li>
+</ul>
+<div class="section" id="network-environment-settings-essential">
+<span id="network-environment-settings-essential"></span><h2>Network environment settings (essential)<a class="headerlink" href="#network-environment-settings-essential" title="Permalink to this headline">¶</a></h2>
+<p>First, set up the network environment.</p>
+<p>An explanation of the recommended configuration method in an environment that allows a multicast to be used is given below. In an environment which does not allow a multicast to be used, or an environment in which communications between fellow nodes cannot be established in a multicast, a cluster configuration method other than the multicast method has to be used. See <a class="reference external" href="#other_mode">Other cluster configuration method settings</a> for the details.</p>
+<p>The configuration items can be broadly divided as follows.</p>
+<ol class="simple">
+<li>Address information serving as an interface with the client</li>
+<li>Address information for cluster administration and processing</li>
+<li>Address information serving as an interface with the JDBC client (GridDB Advanced Edition only)</li>
+</ol>
+<p>Although these settings need to be set to match the environment, default settings will also work.</p>
+<p>However, an IP address derived in reverse from the host name of the machine needs to be an address that allows it to be connected from the outside regardless of whether the GridDB cluster has a multiple node configuration or a single node configuration.</p>
+<p>Normally, this can be set by stating the host name and the corresponding IP address in the /etc/hosts file.</p>
+<p><strong>/etc/hosts setting</strong></p>
+<p>First, check with the following command to see whether the setting has been configured. If the IP address appears, it means that the setting has already been configured.</p>
+<p>$ hostname -i
+192.168.11.10</p>
+<p>The setting has not been configured in the following cases.</p>
+<p>$ hostname -i
+hostname: no address corresponding to name</p>
+<p>In addition, a loopback address that cannot be connected from the outside may appear.</p>
+<p>$ hostname -i
+127.0.0.1</p>
+<p>If the setting has not been configured or if a loopback address appears, use the following example as a reference to configure /etc/hosts. The host name and IP address, and the appropriate network interface card (NIC) differ depending on the environment.</p>
+<ol>
+<li><p class="first">Check the host name and IP address.</p>
+<p>$ hostname
+GS_HOST
+$ ip route | grep eth0 | cut -f 12 -d ” ” | tr -d “\n”
+192.168.11.10</p>
+</li>
+<li><p class="first">Add the IP address and corresponding host name checked by the root user to the /etc/hosts file.</p>
+<p>192.168.11.10 GS_HOST</p>
+</li>
+<li><p class="first">Check that the settings have been configured correctly.</p>
+<p>$ hostname -i
+192.168.11.10</p>
+</li>
+</ol>
+<p>*If the displayed setting remains the same as before, it means that a setting higher in priority is given in the /etc/hosts file. Change the priority order appropriately.</p>
+<p>Proceed to the next setting after you have confirmed that /etc/hosts has been configured correctly.</p>
+<p><strong>(1) Address information serving as an interface with the client</strong></p>
+<p>In the address data serving as an interface with the client, there are configuration items in the <strong>node definition file</strong> and <strong>cluster definition file</strong>.</p>
+<p><strong>Node definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/transaction/serviceAddress</p>
+<p>string</p>
+<p>Reception address of transaction process</p>
+<p>/transaction/servicePort</p>
+<p>string</p>
+<p>Reception port of transaction process</p>
+<p>/system/serviceAddress</p>
+<p>string</p>
+<p>Connection address of operation command</p>
+<p>/system/servicePort</p>
+<p>string</p>
+<p>Connection port of operation command</p>
+<p>The reception address and port of transaction processes are used to connect individual client to the nodes in the cluster, and to request for the transaction process from the cluster. This address is used when configuring a cluster with a single node, but in the case where multiple nodes are present through API, the address is not used explicitly.</p>
+<p>The connection address and port of the operating command are used to specify the process request destination of the operation command, as well as the repository information of the integrated operation control GUI.</p>
+<p>These reception/connection addresses need not be set so long as there is no need to use/separate the use of multiple interfaces.</p>
+<p><strong>Cluster definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/transaction/notificationAddress</p>
+<p>string</p>
+<p>Interface address between client and cluster</p>
+<p>/transaction/notificationPort</p>
+<p>string</p>
+<p>Interface port between client and cluster</p>
+<p>A multi-cast address and port are specified in the interface address between a client and cluster. This is used by a GridDB cluster to send cluster information to its clients and for the clients to send processing requests via the API to the cluster. See the description of GridStoreFactory class/method in “GridDB API reference” (<a class="reference external" href="/en/docs/manuals/v3.1/GridDB_API_Reference.html">GridDB_API_Reference.html</a>) for details.</p>
+<p>It is also used as a connection destination address of the export/import tool, or as repository data of the integrated operation control GUI.</p>
+<p><strong>(2) Address information for cluster administration and processing</strong></p>
+<p>In the address data for a cluster to autonomously perform cluster administration and processing, there are configuration items in the <strong>node definition file</strong> and <strong>cluster definition file</strong>. These addresses are used internally by GridDB to exchange the heart beat (live check among clusters) and information among the clusters. These settings are not necessary so long as the address used is not duplicated with other systems on the same network or when using multiple network interface cards.</p>
+<p><strong>Node definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/cluster/serviceAddress</p>
+<p>string</p>
+<p>Reception address used for cluster administration</p>
+<p>/cluster/servicePort</p>
+<p>string</p>
+<p>Reception port used for cluster administration</p>
+<p><strong>Cluster definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/cluster/notificationAddress</p>
+<p>string</p>
+<p>Multicast address for cluster administration</p>
+<p>/cluster/notificationPort</p>
+<p>string</p>
+<p>Multicast port for cluster administration</p>
+<ul class="simple">
+<li>Although a synchronization process is carried out with a replica when the cluster configuration is changed, a timeout time can be set for the process.<ul>
+<li>/sync/timeoutInterval</li>
+</ul>
+</li>
+</ul>
+<p><strong>[Points to note]</strong></p>
+<ul class="simple">
+<li>An address or port that is not in use except in GridDB has to be set.</li>
+<li>The same address can be set for the node definition file gs_node.json /transaction/serviceAddress, /system/serviceAddress, and /cluster/serviceAddress for operations to be performed. If a machine has multiple network interfaces, the bandwidth can be increased by assigning a separate address to each respective interface.</li>
+</ul>
+<p>The following settings are applicable in the GridDB Advanced Edition only.</p>
+<p><strong>(3) Address information serving as an interface with the JDBC client</strong></p>
+<p>In the address data serving as an interface with the JDBC/ODBC client, there are configuration items in the <strong>node definition file</strong> and <strong>cluster definition file</strong>.</p>
+<p><strong>Node definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/sql/serviceAddress</p>
+<p>string</p>
+<p>Reception address for JDBC/ODBC client connection</p>
+<p>/sql/servicePort</p>
+<p>int</p>
+<p>Reception port for JDBC/ODBC client connection</p>
+<p>The reception address and port of JDBC/ODBC client connection are used to connect JDBC/ODBC individual client to the nodes in the cluster, and to access the cluster data in SQL. This address is used when configuring a cluster with a single node, but in the case where multiple nodes are present through API, the address is not used explicitly.</p>
+<p><strong>Cluster definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/sql/notificationAddress</p>
+<p>string</p>
+<p>Address for multi-cast distribution to JDBC/ODBC client</p>
+<p>/sql/notificationPort</p>
+<p>int</p>
+<p>Multicast port to JDBC/ODBC client</p>
+<p>The address and port used for multicast distribution to a JDBC/ODBC client are used for the GridDB cluster to notify the JDBC/ODBC client of cluster data, and to access the cluster data in SQL with the JDBC/ODBC client.</p>
+<p>Refer to Annex <a class="reference external" href="#param_list">Parameter List</a> for the other parameters and default values.</p>
+</div>
+<div class="section" id="cluster-name-settings-essential">
+<span id="cluster-name-settings-essential"></span><h2>Cluster name settings (essential)<a class="headerlink" href="#cluster-name-settings-essential" title="Permalink to this headline">¶</a></h2>
+<p>Set the name of the cluster to be composed by the target nodes in advance. The name set will be checked to see if it matches the value specified in the command to compose the cluster. As a result, this prevents a different node and cluster from being composed when there is an error in specifying the command.</p>
+<p>The cluster name is specified in the following configuration items of the <strong>cluster definition file</strong>.</p>
+<p><strong>Cluster definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/cluster/clusterName</p>
+<p>string</p>
+<p>Name of cluster to create</p>
+<p><strong>[Points to note]</strong></p>
+<ul class="simple">
+<li>Node failed to start with default value (“”).</li>
+<li>A unique name on the sub-network is recommended.</li>
+<li>A cluster name is a string composed of 1 or more ASCII alphanumeric characters and the underscore “_”. However, the first character cannot be a number. The name is also not case-sensitive. In addition, it has to be specified within 64&nbsp;characters.</li>
+</ul>
+</div>
+<div class="section" id="settings-of-other-cluster-configuration-methods">
+<span id="settings-of-other-cluster-configuration-methods"></span><h2>Settings of other cluster configuration methods<a class="headerlink" href="#settings-of-other-cluster-configuration-methods" title="Permalink to this headline">¶</a></h2>
+<p>In an environment which does not allow the multicast method to be used, configure the cluster using the fixed list method or provider method. An explanation of the respective network settings in the fixed list method and provider method is given below.</p>
+<p>When using the multicast method, proceed to <a class="reference external" href="#tune-up_params">Setting the tuning parameters</a>.</p>
+<p><strong>(1) Fixed list method</strong></p>
+<p>When a fixed address list is given to start a node, the list is used to compose the cluster.</p>
+<p>When composing a cluster using the fixed list method, configure the parameters in the cluster definition file.</p>
+<p><strong>Cluster definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/cluster/notificationMember</p>
+<p>string</p>
+<p>Specify the address list when using the fixed list method as the cluster configuration method.</p>
+<p>A configuration example of a cluster definition file is shown below.</p>
+<p>{
+:
+:
+“cluster”:{
+“clusterName”:”yourClusterName”,
+“replicationNum”:2,
+“heartbeatInterval”:”5s”,
+“loadbalanceCheckInterval”:”180s”,
+“notificationMember”: [
+{
+“cluster”: {“address”:”172.17.0.44”, “port”:10010},
+“sync”: {“address”:”172.17.0.44”, “port”:10020},
+“system”: {“address”:”172.17.0.44”, “port”:10040},
+“transaction”: {“address”:”172.17.0.44”, “port”:10001},
+“sql”: {“address”:”172.17.0.44”, “port”:20001}
+},
+{
+“cluster”: {“address”:”172.17.0.45”, “port”:10010},
+“sync”: {“address”:”172.17.0.45”, “port”:10020},
+“system”: {“address”:”172.17.0.45”, “port”:10040},
+“transaction”: {“address”:”172.17.0.45”, “port”:10001},
+“sql”: {“address”:”172.17.0.45”, “port”:20001}
+},
+{
+“cluster”: {“address”:”172.17.0.46”, “port”:10010},
+“sync”: {“address”:”172.17.0.46”, “port”:10020},
+“system”: {“address”:”172.17.0.46”, “port”:10040},
+“transaction”: {“address”:”172.17.0.46”, “port”:10001},
+“sql”: {“address”:”172.17.0.46”, “port”:20001}
+}
+]
+},
+:
+:
+}</p>
+<p><strong>(2) Provider method</strong></p>
+<p>Get the address list supplied by the address provider to perform cluster configuration.</p>
+<p>When composing a cluster using the provider method, configure the parameters in the cluster definition file.</p>
+<p><strong>Cluster definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/cluster/notificationProvider/url</p>
+<p>string</p>
+<p>Specify the URL of the address provider when using the provider method as the cluster configuration method.</p>
+<p>/cluster/notificationProvider/updateInterval</p>
+<p>string</p>
+<p>Specify the interval to get the list from the address provider. Specify a value that is 1s or higher and less than 2^31s.</p>
+<p>A configuration example of a cluster definition file is shown below.</p>
+<p>{
+:
+:
+“cluster”:{
+“clusterName”:”yourClusterName”,
+“replicationNum”:2,
+“heartbeatInterval”:”5s”,
+“loadbalanceCheckInterval”:”180s”,
+“notificationProvider”:{
+“url”:”http://example.com/notification/provider”,
+“updateInterval”:”30s”
+}
+},
+:
+:
+}</p>
+<p>The address provider can be configured as a Web service or as a static content. The specifications below need to be satisfied.</p>
+<ul class="simple">
+<li>Compatible with the GET method.</li>
+<li>When accessing the URL, the node address list of the cluster containing the cluster definition file in which the URL is written is returned as a response.<ul>
+<li>Response body: Same JSON as the contents of the node list specified in the fixed list method</li>
+<li>Response header: Including Content-Type:application/json</li>
+</ul>
+</li>
+</ul>
+<p>An example of a response sent from the address provider is as follows.</p>
+<p>$ curl http://example.com/notification/provider
+[
+{
+“cluster”: {“address”:”172.17.0.44”, “port”:10010},
+“sync”: {“address”:”172.17.0.44”, “port”:10020},
+“system”: {“address”:”172.17.0.44”, “port”:10040},
+“transaction”: {“address”:”172.17.0.44”, “port”:10001},
+“sql”: {“address”:”172.17.0.44”, “port”:20001}
+},
+{
+“cluster”: {“address”:”172.17.0.45”, “port”:10010},
+“sync”: {“address”:”172.17.0.45”, “port”:10020},
+“system”: {“address”:”172.17.0.45”, “port”:10040},
+“transaction”: {“address”:”172.17.0.45”, “port”:10001},
+“sql”: {“address”:”172.17.0.45”, “port”:20001}
+},
+{
+“cluster”: {“address”:”172.17.0.46”, “port”:10010},
+“sync”: {“address”:”172.17.0.46”, “port”:10020},
+“system”: {“address”:”172.17.0.46”, “port”:10040},
+“transaction”: {“address”:”172.17.0.46”, “port”:10001},
+“sql”: {“address”:”172.17.0.46”, “port”:20001}
+}
+]</p>
+<p><strong>[Memo]</strong></p>
+<ul class="simple">
+<li>Specify the serviceAddress and servicePort of the node definition file in each module (cluster,sync etc.) for each address and port.</li>
+<li>SQL items are required in the GridDB Advanced Edition only.</li>
+<li>Set either the /cluster/notificationAddress, /cluster/notificationMember, /cluster/notificationProvider in the cluster definition file to match the cluster configuration method used.</li>
+<li>See “GridDB technical reference” (<a class="reference external" href="/en/docs/manuals/v3.1/GridDB_TechnicalReference.html">GridDB_TechnicalReference.html</a>) for details on the cluster configuration method.</li>
+</ul>
+</div>
+<div class="section" id="setting-the-tuning-parameters">
+<span id="setting-the-tuning-parameters"></span><h2>Setting the tuning parameters<a class="headerlink" href="#setting-the-tuning-parameters" title="Permalink to this headline">¶</a></h2>
+<p>The main tuning parameters are described here. These parameters are not mandatory but affect the processing performance of the cluster.</p>
+</div>
+<div class="section" id="parameter-related-to-update-performance">
+<span id="parameter-related-to-update-performance"></span><h2>Parameter related to update performance<a class="headerlink" href="#parameter-related-to-update-performance" title="Permalink to this headline">¶</a></h2>
+<p>GridDB creates a transaction log file and checkpoint file for persistency purposes. As data written in these files has an impact on the update performance, the method of creation can be changed by the following parameters. However, the disadvantage is that the possibility of data being lost during a failure is higher.</p>
+<p>The related parameters are shown below.</p>
+<p><strong>Node definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/dataStore/persistencyMode</p>
+<p>string</p>
+<p>Persistency mode</p>
+<p>/dataStore/logWriteMode</p>
+<p>int</p>
+<p>Log write mode</p>
+<p>The persistency mode specifies whether to write data to a file during a data update. The log write mode specifies the timing to write data to the transaction log file.</p>
+<p>Either one of the values below can be set in the persistency mode.</p>
+<ul class="simple">
+<li>“NORMAL”</li>
+<li>“KEEP_ALL_LOGS”</li>
+</ul>
+<p>A “NORMAL” writes data to the transaction log file and checkpoint file every time there is an update. A transaction log file which is no longer required will be deleted by a checkpoint. The write timing of “KEEP_ALL_LOGS” is the same as “NORMAL” but all transaction log files are retained. Default value is “NORMAL”.</p>
+<p><strong>[Points to note]</strong></p>
+<ul class="simple">
+<li>When performing a differential backup, set the persistency mode to “NORMAL”.</li>
+</ul>
+<p>Either one of the values below can be set in the log write mode.</p>
+<ul class="simple">
+<li>0: SYNC</li>
+<li>An integer value of 1 or higher1: DELAYED_SYNC</li>
+</ul>
+<p>In the “SYNC” mode, log writing is carried out synchronously every time an update transaction is committed or aborted. In the “DELAYED_SYNC” mode, log writing during an update is carried out at a specified delay of several seconds regardless of the update timing. Default value is “1 (DELAYED_SYNC 1 sec)”.</p>
+</div>
+<div class="section" id="parameter-related-to-performance-and-availability">
+<span id="parameter-related-to-performance-and-availability"></span><h2>Parameter related to performance and availability<a class="headerlink" href="#parameter-related-to-performance-and-availability" title="Permalink to this headline">¶</a></h2>
+<p>By composing a cluster, GridDB can replicate data in multiple nodes to improve the search performance and availability. As replication of these data has an impact on the update performance, the method of creation can be changed by the following parameters. However, the disadvantage is that the possibility of data being lost during a failure is higher.</p>
+<p>The related parameters are shown below.</p>
+<p><strong>Cluster definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/transaction/replicationMode</p>
+<p>int</p>
+<p>Replication mode</p>
+<p>The replication mode specifies how to create a replica. The replication method has to be same for all nodes in the cluster .</p>
+<ul class="simple">
+<li>“0”: Asynchronous replication</li>
+<li>“1”: Semi-synchronous replication</li>
+</ul>
+<p>“Asynchronous replication” performs replication without synchronizing the timing of the update process. “Semi-synchronous replication” performs replication synchronously at the timing of the update process timing but makes no appointment at the end of the replication. Default is “0”.</p>
+</div>
+<div class="section" id="parameter-related-to-access-performance-immediately-after-startup">
+<span id="parameter-related-to-access-performance-immediately-after-startup"></span><h2>Parameter related to access performance immediately after startup<a class="headerlink" href="#parameter-related-to-access-performance-immediately-after-startup" title="Permalink to this headline">¶</a></h2>
+<p>Data perpetuated on a disk etc. can be loaded into the memory at the same time when a node is started (warm start process).</p>
+<p>The warm start process can be enabled/disabled by the parameter below.</p>
+<p><strong>Node definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/dataStore/storeWarmStart</p>
+<p>boolean</p>
+<p>Start processing mode</p>
+<ul class="simple">
+<li>false: non-warm start mode</li>
+<li>true: warm start mode</li>
+</ul>
+<p>Default is true (valid).</p>
+</div>
+<div class="section" id="other-parameters">
+<span id="other-parameters"></span><h2>Other parameters<a class="headerlink" href="#other-parameters" title="Permalink to this headline">¶</a></h2>
+<p>An explanation of the other parameters is given. See Annex <a class="reference external" href="#param_list">Parameters list</a> for the default values.</p>
+<p><strong>Node definition file</strong></p>
+<p>Parameters</p>
+<p>Data type</p>
+<p>Meaning</p>
+<p>/dataStore/dbPath</p>
+<p>string</p>
+<p>Database file directory</p>
+<p>/dataStore/backupPath</p>
+<p>string</p>
+<p>Backup file directory</p>
+<p>/dataStore/storeMemoryLimit</p>
+<p>string</p>
+<p>Memory buffer size</p>
+<p>/dataStore/concurrency</p>
+<p>int</p>
+<p>Processing parallelism</p>
+<p>/dataStore/affinityGroupSize</p>
+<p>int</p>
+<p>No. of data affinity groups</p>
+<p>/checkpoint/checkpointInterval</p>
+<p>int</p>
+<p>Checkpoint execution interval (unit: sec)</p>
+<p>/system/eventLogPath</p>
+<p>string</p>
+<p>Output directory of event log file</p>
+<p>/transaction/connectionLimit</p>
+<p>int</p>
+<p>No. of connections upper limit value</p>
+<p>/trace/category</p>
+<p>string</p>
+<p>Event log output level</p>
+<ul class="simple">
+<li>A database file directory is created when the data registered in the in-memory is perpetuated. In this directory, the transaction log file and checkpoint files are created.</li>
+<li>A backup file directory is created when a backup is executed (further details will be explained in the subsequent chapters). In this directory, the backup file is stored.</li>
+<li>The memory buffer size is used for data management. To set the memory size, simply use numbers and text to specify the memory size and its unit respectively. E.g. “2048MB”.</li>
+<li>Processing parallelism refers to the upper limit value for GridDB to perform I/O processing of the secondary memory device in parallel.</li>
+<li>With regards to data affinity, related data are collected, and the number of groups is specified during layout management.</li>
+<li>Any number from 1 to 64 can be selected when specifying the number of groups. Please note though that the larger the group, the lower the memory utilization efficiency becomes.</li>
+<li>The checkpoint execution interval is the interval to execute an internal checkpoint process regularly (related to the perpetuation of data).</li>
+<li>The output directory of event log is the directory where messages (event message files) related to event data occurring inside a node such as exceptions etc, will be saved into.</li>
+<li>As a rule of thumb, please set the no. of connection upper limit to at least twice the number of expected clients.</li>
+<li>The event log output level is the output level for each category of the event log.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="7-1_jdbc-connector.html" class="btn btn-neutral float-right" title="7.1 JDBC Connector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="6-7_monitoring-troubleshooting.html" class="btn btn-neutral" title="6.7 Monitoring &amp; Troubleshooting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GridDB.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #fff;
+    }
+    .wy-nav-side {
+        background: #fff;
+    }
+    .wy-menu-vertical a {
+        color: #39A7D1;
+    }
+    .wy-menu-vertical a:hover {
+        background-color: #77c3df;
+        color: white;
+    }
+    .wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+        color: #24799a;
+    }
+    .wy-side-nav-search img {
+        height: 200px;
+        width: 200px;
+        border-radius: 0%;
+        background-color: #fff;
+    }
+    .highlight {
+        background: #F5F5F5;
+    }
+    .rst-content div[class^='highlight'] pre {
+        color: #24799a;
+    }
+  </style>
+
+
+</body>
+</html>

@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5.1.13 Data Retrieval &mdash; GridDB-Docs  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5.1.14 TimeSeries Data Deletion" href="5-1-14_timeseries-delete.html" />
+    <link rel="prev" title="5.1.12 Data Registration" href="5-1-12_timeseries-register.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <img src="_static/logo.png"><a href="index.html"> GridDB-Docs
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1-1_what-is-griddb.html">1.1 What is GridDB?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2_griddb-edition.html">1.2 GridDB Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1_system-requirements.html">2.1 System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2_installation.html">2.2 Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-3_run-your-first-griddb-node-cluster.html">2.3 Run your First GridDB Node/Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-4_run-a-sample-java-client-app.html">2.4 Run a Sample Java Client App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1_griddb-technical-overview.html">3.1 GridDB Technical Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2_key-container-model.html">3.2 Key Container Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3_tql.html">3.3 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4_crud-operations.html">3.4 CRUD Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5_transactions-and-acid.html">3.5 Transactions and ACID</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6_indexes.html">3.6 Indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7_storage-architecture.html">3.7 Storage Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-8_replication-distribution.html">3.8 Replication &amp; Distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-9_sharding.html">3.9 Sharding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1_data-modeling-basics.html">4.1 Data Modeling Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-2_data-modeling-using-griddb.html">4.2 Data Modeling Using GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-3_modeling-relationships.html">4.3 Modeling Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-4_possibilities-and-variations-of-data-models-in-griddb.html">4.4 Possibilities and Variations of Data Models in GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-1_introduction.html">5.1.1 Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-2_griddb-basics.html">5.1.2 GridDB Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-3_prepare-server.html">5.1.3 Preparation: Environment (server)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-4_prepare-client.html">5.1.4 Preparation: Environment (client)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-5_connection.html">5.1.5 Preparation: Connecting to GridDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-6_container-schema.html">5.1.6 Schema definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-7_container-create-drop.html">5.1.7 Container Creation and Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-8_collection-register.html">5.1.8 Collection Registration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-9_collection-retrieve.html">5.1.9 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-10_collection-delete.html">5.1.10 Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-11_collection-modify.html">5.1.11 Collection Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-12_timeseries-register.html">5.1.12 Data Registration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5.1.13 Data Retrieval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-14_timeseries-delete.html">5.1.14 TimeSeries Data Deletion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-15_timeseries-modify.html">5.1.15 TimeSeries Container Modification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-16_tql.html">5.1.16 TQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-17_trigger-rest.html">5.1.17 Trigger (REST)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-18_trigger-jms.html">5.1.18 Trigger (JMS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-19_multiput.html">5.1.19 Multi-Put</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-20_multiquery.html">5.1.20 Multi-Query</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-1-21_multiget.html">5.1.21 Multi-Get</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-1_supported-os-platforms-and-system-requirements.html">6.1 Supported OS, Platforms and System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-2_sizing-and-scaling.html">6.2 Sizing and Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-3_installing.html">6.3 Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-4_upgrading-the-editions.html">6.4 Upgrading the Editions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-5_migration-from-other-databases.html">6.5 Migration from Other Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-6_cluster-administration-operations.html">6.6 Cluster Administration &amp; Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-7_monitoring-troubleshooting.html">6.7 Monitoring &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-8_tuning.html">6.8 Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-1_jdbc-connector.html">7.1 JDBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-2_odbc-connector.html">7.2 ODBC Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-3_hadoop-and-spark-connector.html">7.3 Hadoop and Spark Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7-4_grafana-connector.html">7.4 Grafana Connector*</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GridDB-Docs</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>5.1.13 Data Retrieval</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/5-1-13_timeseries-retrieve.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>Table of Contents</p>
+<div class="section" id="data-retrieval">
+<span id="data-retrieval"></span><h1>5.1.13 Data Retrieval<a class="headerlink" href="#data-retrieval" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<span id="overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This section describes the data acquisition of time-series container of GridDB in this chapter.</p>
+</div>
+<div class="section" id="data-acquisition">
+<span id="data-acquisition"></span><h2>Data Acquisition<a class="headerlink" href="#data-acquisition" title="Permalink to this headline">¶</a></h2>
+<p>The following are methods to fetch and read TimeSeries containers:</p>
+<div class="section" id="specified-time">
+<span id="specified-time"></span><h3>Specified time<a class="headerlink" href="#specified-time" title="Permalink to this headline">¶</a></h3>
+<p>Time to get the data (= low) of the series container, you will need to specify the time is Rouki of time series container.</p>
+<p><strong>List.1 Acquire Data for a Specified Time</strong> (TimeSeriesRetrieve.java)</p>
+<p>// Specify Time
+InstrumentLog log = logTs.get(format.parse(“2016/07/02 12:00”));
+System.out.println(“get by Time”);
+System.out.println(String.format(“%s\t%-20s\t%-10s”, log.timestamp, log.weatherStationId,
+log.temperture));</p>
+<ul class="simple">
+<li>Line 100: Use <code class="docutils literal notranslate"><span class="pre">TimeSeries.get</span> <span class="pre">(Date)</span></code> to get rows with a specified time stamp.</li>
+</ul>
+<p>Execution results are as follows.</p>
+<p><strong>List.2 Results</strong></p>
+<p>get by Time
+Sat Jul 02 12:00:00 EDT 2016 weather_station_1 80.0</p>
+</div>
+<div class="section" id="specified-range">
+<span id="specified-range"></span><h3>Specified range<a class="headerlink" href="#specified-range" title="Permalink to this headline">¶</a></h3>
+<p>Time series container will be able to get to specify the range to be retrieved.</p>
+<p><strong>List.3 Aquire rows within a Range</strong> (TimeSeriesRetrieve.java)</p>
+<p>// Specify Time Range
+System.out.println(“get by Time Range”);
+Date start = format.parse(“2016/07/02 9:00”);
+Date end = TimestampUtils.add(start, 6, TimeUnit.HOUR);</p>
+<p>Query<InstrumentLog> query = logTs.query(start, end);
+// fetch row
+RowSet<InstrumentLog> rowSet = query.fetch();
+while (rowSet.hasNext()) {
+InstrumentLog log = rowSet.next();
+System.out.println(“Timestamp\t\t\tWeatherStation ID\tTemperture\tLive Image”);
+System.out.println(String.format(“%s\t%-20s\t%-10s\t%s”, log.timestamp,
+log.weatherStationId, log.temperture));
+}</p>
+<ul class="simple">
+<li>Line 119-120: Generate the start and end time for the range.</li>
+<li>Line 122: Use <code class="docutils literal notranslate"><span class="pre">TimeSeries.query</span> <span class="pre">(Date,</span> <span class="pre">Date)</span></code> method with start and end times for the range of data to fetch.</li>
+<li>Line 124-126: Fetch rows.</li>
+</ul>
+<p>Execution results are as follows.</p>
+<p><strong>List.4 Results</strong></p>
+<p>get by Time Range
+Sat Jul 02 09:00:00 EDT 2016 weather_station_1 75.0
+Sat Jul 02 12:00:00 EDT 2016 weather_station_1 80.0
+Sat Jul 02 15:00:00 EDT 2016 weather_station_1 75.0</p>
+</div>
+<div class="section" id="relative-time">
+<span id="relative-time"></span><h3>Relative Time<a class="headerlink" href="#relative-time" title="Permalink to this headline">¶</a></h3>
+<p>You can fetch rows with timestamps are earlier or later than specified timestamp with the <code class="docutils literal notranslate"><span class="pre">TimeOperator</span></code> enum.</p>
+<p><strong>Table 1 TimeOperator Enum</strong></p>
+<p>Acquisition method</p>
+<p>Description</p>
+<p>TimeOperator.NEXT</p>
+<p>Returns the oldest among the Rows whose timestamp are identical with or later than the specified time.</p>
+<p>TimeOperator.NEXT_ONLY</p>
+<p>Returns the oldest among the Rows whose timestamp are later than the specified time.</p>
+<p>TimeOperator.PREVIOUS</p>
+<p>Returns the newest among the Rows whose timestamp are identical with or earlier than the specified time.</p>
+<p>TimeOperator.PREVIOUS_ONLY</p>
+<p>Returns the newest among the Rows whose timestamp are earlier than the specified time.</p>
+<p><strong>Fetching Rows with a Relative Time stamp</strong> (TimeSeriesRetrieve.java)</p>
+<p>// Specify the next time, including a specified time
+InstrumentLog log = logTs.get(format.parse(“2016/07/02 12:00”), TimeOperator.NEXT);
+System.out.println(“get by Next Time”);
+System.out.println(String.format(“%s\t%-20s\t%-10s”, log.timestamp, log.weatherStationId,
+log.temperture));</p>
+<p>// Specify the next time
+log = logTs.get(format.parse(“2016/07/02 12:00”), TimeOperator.NEXT_ONLY);
+System.out.println(“get by NextOnly Time”);
+System.out.println(String.format(“%s\t%-20s\t%-10s”, log.timestamp, log.weatherStationId,
+log.temperture));</p>
+<p>// Specify the previous time, including a specified time
+log = logTs.get(format.parse(“2016/07/02 12:00”), TimeOperator.PREVIOUS);
+System.out.println(“get by Previous Time”);
+System.out.println(String.format(“%s\t%-20s\t%-10s”, log.timestamp, log.weatherStationId,
+log.temperture));</p>
+<p>// Specify the previous time
+log = logTs.get(format.parse(“2016/07/02 12:00”), TimeOperator.PREVIOUS_ONLY);
+System.out.println(“get by PreviousOnly Time”);
+System.out.println(String.format(“%s\t%-20s\t%-10s”, log.timestamp, log.weatherStationId,
+log.temperture));</p>
+<ul class="simple">
+<li>Line 144: you get to specify the <code class="docutils literal notranslate"><span class="pre">TimeOperator.NEXT</span></code>.</li>
+<li>Line 150: you get to specify the <code class="docutils literal notranslate"><span class="pre">TimeOperator.NEXT_ONLY</span></code>.</li>
+<li>Line 156: you get to specify the <code class="docutils literal notranslate"><span class="pre">TimeOperator.PREVIOUS</span></code>.</li>
+<li>Line 162: you get to specify the <code class="docutils literal notranslate"><span class="pre">TimeOperator.PREVIOUS_ONLY</span></code>.</li>
+</ul>
+<p>Serving as a reference time has designated all <code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">2016/07/02</span> <span class="pre">12:00</span> <span class="pre">&quot;</span></code>.</p>
+<p>Execution results are as follows.</p>
+<p><strong>List.6 Results</strong> that the constant time was on the basis of</p>
+<p>get by Next Time
+Sat Jul 02 12:00:00 EDT 2016 weather_station_1 80.0
+get by NextOnly Time
+Sat Jul 02 15:00:00 EDT 2016 weather_station_1 75.0
+get by Previous Time
+Sat Jul 02 12:00:00 EDT 2016 weather_station_1 80.0
+get by PreviousOnly Time
+Sat Jul 02 09:00:00 EDT 2016 weather_station_1 75.0</p>
+</div>
+<div class="section" id="aggregatation">
+<span id="aggregatation"></span><h3>Aggregatation<a class="headerlink" href="#aggregatation" title="Permalink to this headline">¶</a></h3>
+<p>Time series container is able to aggregate the data for the specified time period.</p>
+<p><strong>List.7 Aggregate Average</strong></p>
+<p>// Average Temperature
+Date start = format.parse(“2016/07/01 12:00”);
+Date end = format.parse(“2016/07/02 9:00”);
+AggregationResult aggrResult =
+logTs.aggregate(start, end, “temperture”, Aggregation.AVERAGE);
+System.out.println(“Average Temperature:” + aggrResult.getDouble() + “\n”);</p>
+<ul class="simple">
+<li>181-182 line: <code class="docutils literal notranslate"><span class="pre">TimeSeries.aggregate</span> <span class="pre">(Date,</span> <span class="pre">Date,</span> <span class="pre">String,</span> <span class="pre">Aggregation)</span></code> method You have a summary to find the average value of the temperature.</li>
+</ul>
+<p>Execution results are as follows.</p>
+<p><strong>List.8 Aggregate Results</strong></p>
+<p>Average Temperature: 67.5</p>
+<p>The different types of Aggregation methods are as follows:</p>
+<p><strong>Table 2 Aggregation types</strong></p>
+<p>Aggregation method</p>
+<p>Description</p>
+<p>Aggregation.AVERAGE</p>
+<p>Obtain the average value.</p>
+<p>Aggregation.COUNT</p>
+<p>Obtain the number of samples.</p>
+<p>Aggregation.MAXIMUM</p>
+<p>Obtain the maximum value.</p>
+<p>Aggregation.MINIMUM</p>
+<p>Obtain the minimum value.</p>
+<p>Aggregation.STANDARD_DEVIATION</p>
+<p>Obtain the standard deviation.</p>
+<p>Aggregation.TOTAL</p>
+<p>Obtain the total value (sum).</p>
+<p>Aggregation.VARIANCE</p>
+<p>Obtain the variance within the rows.</p>
+<p>Aggregation.WEIGHTED_AVERAGE</p>
+<p>Obtain the weighted average.</p>
+<p>For more information, please refer to the <a class="reference external" href="/en/docs/GridDB_API_Reference.html">GridDB API Reference</a></p>
+</div>
+</div>
+<div class="section" id="complete-source-code">
+<span id="complete-source-code"></span><h2>Complete source code<a class="headerlink" href="#complete-source-code" title="Permalink to this headline">¶</a></h2>
+<p>Complete source code used in this sample can be downloaded from the following.</p>
+<p>Download: <a class="reference external" href="img/timeseries-retrieve.zip">timeseries-retrieve.zip</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="5-1-14_timeseries-delete.html" class="btn btn-neutral float-right" title="5.1.14 TimeSeries Data Deletion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="5-1-12_timeseries-register.html" class="btn btn-neutral" title="5.1.12 Data Registration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GridDB.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>  
+
+  <style>
+    /* Sidebar header (and topbar for mobile) */
+    .wy-side-nav-search, .wy-nav-top {
+      background: #fff;
+    }
+    .wy-nav-side {
+        background: #fff;
+    }
+    .wy-menu-vertical a {
+        color: #39A7D1;
+    }
+    .wy-menu-vertical a:hover {
+        background-color: #77c3df;
+        color: white;
+    }
+    .wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+        color: #24799a;
+    }
+    .wy-side-nav-search img {
+        height: 200px;
+        width: 200px;
+        border-radius: 0%;
+        background-color: #fff;
+    }
+    .highlight {
+        background: #F5F5F5;
+    }
+    .rst-content div[class^='highlight'] pre {
+        color: #24799a;
+    }
+  </style>
+
+
+</body>
+</html>
