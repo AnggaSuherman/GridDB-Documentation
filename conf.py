@@ -1,4 +1,4 @@
-import rtcat_sphinx_theme
+import sphinx_rtd_theme
 
 # -*- coding: utf-8 -*-
 #

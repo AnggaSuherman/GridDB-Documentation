@@ -7,7 +7,7 @@ Welcome to GridDB-Docs's documentation!
 =======================================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    Introduction
    1-1_what-is-griddb
